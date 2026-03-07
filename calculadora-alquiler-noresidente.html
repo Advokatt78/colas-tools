@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyresinkomst – Skattekalkylator | Colás Abogados</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A84C;--gold-light:#E8D5A3;--dark:#1A1A2E;--dark-mid:#2C2C44;--light:#F8F5EF;--text:#3A3A3A;--muted:#7A7A8A;--border:#DDD5C8;--white:#FFFFFF;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--text);min-height:100vh;}
+.calc-wrapper{max-width:820px;margin:0 auto;padding:48px 24px 80px;}
+.calc-header{text-align:center;margin-bottom:40px;}
+.eyebrow{font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,36px);font-weight:600;color:var(--dark);line-height:1.2;margin-bottom:14px;}
+.calc-header p{font-size:15px;color:var(--muted);line-height:1.6;max-width:560px;margin:0 auto;}
+.divider{width:48px;height:2px;background:var(--gold);margin:20px auto 0;}
+.lang-toggle{display:flex;justify-content:center;gap:8px;margin-bottom:36px;flex-wrap:wrap;}
+.lang-btn{padding:6px 18px;border-radius:20px;border:1.5px solid var(--border);background:transparent;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;color:var(--muted);}
+.lang-btn.active{background:var(--dark);border-color:var(--dark);color:var(--white);}
+.info-banner{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:13px;color:var(--muted);line-height:1.6;display:flex;gap:10px;}
+.info-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.section-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:32px;margin-bottom:16px;}
+.section-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;}
+.badge{width:26px;height:26px;background:var(--gold);color:var(--white);border-radius:50%;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.section-subtitle{font-size:13px;color:var(--muted);margin-bottom:24px;padding-left:36px;}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:580px){.field-grid{grid-template-columns:1fr;}.section-card{padding:24px 20px;}}
+.field{display:flex;flex-direction:column;gap:6px;}
+.field.full{grid-column:1/-1;}
+label{font-size:12px;font-weight:500;letter-spacing:.5px;color:var(--muted);text-transform:uppercase;}
+.input-wrap{position:relative;}
+.currency{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--muted);pointer-events:none;}
+input[type=number],select{width:100%;padding:11px 36px 11px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--text);background:var(--white);transition:border-color .2s;-moz-appearance:textfield;appearance:textfield;}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;}
+select{padding-right:14px;cursor:pointer;}
+input[type=number]:focus,select:focus{outline:none;border-color:var(--gold);}
+.hint{font-size:11px;color:var(--muted);font-style:italic;line-height:1.4;}
+.quarter-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+@media(max-width:480px){.quarter-grid{grid-template-columns:repeat(2,1fr);}}
+.q-option{border:1.5px solid var(--border);border-radius:8px;padding:10px 8px;cursor:pointer;transition:all .2s;text-align:center;}
+.q-option:hover{border-color:var(--gold-light);}
+.q-option input[type=radio]{display:none;}
+.q-option.selected{border-color:var(--gold);background:#FDF9F0;}
+.payer-toggle{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+.payer-opt{flex:1;min-width:160px;border:1.5px solid var(--border);border-radius:8px;padding:12px 14px;cursor:pointer;transition:all .2s;text-align:center;}
+.payer-opt:hover{border-color:var(--gold-light);}
+.payer-opt input[type=radio]{display:none;}
+.payer-opt.selected{border-color:var(--gold);background:#FDF9F0;}
+.payer-opt .p-icon{font-size:20px;display:block;margin-bottom:4px;}
+.payer-opt .p-label{font-size:13px;font-weight:500;color:var(--text);display:block;}
+.payer-opt .p-desc{font-size:10px;color:var(--muted);display:block;margin-top:2px;line-height:1.4;}
+.annual-note{background:rgba(46,125,50,.07);border:1px solid rgba(46,125,50,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:#2E7D32;line-height:1.5;margin-top:12px;display:none;}
+.annual-note.show{display:block;}
+.filing-mode-wrap{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;}
+.filing-mode-wrap.hide{display:none;}
+.filing-opt{flex:1;min-width:140px;border:1.5px solid var(--border);border-radius:8px;padding:11px 14px;cursor:pointer;transition:all .2s;text-align:center;}
+.filing-opt:hover{border-color:var(--gold-light);}
+.filing-opt input[type=radio]{display:none;}
+.filing-opt.selected{border-color:var(--gold);background:#FDF9F0;}
+.filing-opt .fo-icon{font-size:18px;display:block;margin-bottom:3px;}
+.filing-opt .fo-label{font-size:13px;font-weight:500;color:var(--text);display:block;}
+.filing-opt .fo-desc{font-size:10px;color:var(--muted);display:block;margin-top:2px;}
+.annual-note.show{display:block;}
+#quarter-row{transition:opacity .3s;}
+.q-label{font-size:13px;font-weight:500;color:var(--text);display:block;}
+.q-months{font-size:10px;color:var(--muted);display:block;margin-top:3px;}
+.residency-wrap{display:flex;gap:10px;flex-wrap:wrap;}
+.res-option{flex:1;min-width:140px;border:1.5px solid var(--border);border-radius:8px;padding:14px;cursor:pointer;transition:all .2s;text-align:center;}
+.res-option:hover{border-color:var(--gold-light);}
+.res-option input[type=radio]{display:none;}
+.res-option.selected{border-color:var(--gold);background:#FDF9F0;}
+.res-label{font-size:13px;font-weight:500;color:var(--text);display:block;}
+.res-rate{font-size:24px;font-weight:300;font-family:'Playfair Display',serif;color:var(--gold);display:block;margin:6px 0 4px;}
+.res-desc{font-size:11px;color:var(--muted);display:block;}
+.res-note{border-radius:8px;padding:10px 14px;font-size:12px;line-height:1.5;margin-top:14px;display:none;}
+.res-note.show{display:block;}
+.eu-note{background:rgba(45,125,90,.07);border:1px solid rgba(45,125,90,.2);color:#2D7D5A;}
+.noneu-note{background:rgba(176,64,64,.07);border:1px solid rgba(176,64,64,.2);color:#B04040;}
+.rate-tag{display:inline-block;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);border-radius:20px;padding:2px 10px;font-size:11px;color:var(--gold);font-weight:500;margin-left:8px;vertical-align:middle;}
+.calc-btn{width:100%;padding:16px;background:var(--dark);color:var(--white);border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;letter-spacing:.5px;cursor:pointer;transition:all .25s;margin-top:8px;}
+.calc-btn:hover{background:var(--dark-mid);transform:translateY(-1px);}
+.results-card{background:var(--dark);border-radius:12px;padding:36px 32px;margin-top:24px;display:none;animation:fadeUp .4s ease;}
+.results-card.visible{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.results-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);margin-bottom:4px;}
+.results-sub{font-size:12px;color:rgba(255,255,255,.4);margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.1);}
+.section-lbl{font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin:18px 0 8px;}
+.result-row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);gap:16px;}
+.result-row:last-of-type{border-bottom:none;}
+.result-label{font-size:13px;color:rgba(255,255,255,.55);flex:1;line-height:1.4;}
+.result-value{font-size:15px;font-weight:500;color:var(--white);white-space:nowrap;text-align:right;}
+.result-value.neg{color:#F08080;}
+.result-value.neu{color:rgba(255,255,255,.85);}
+.sep{height:1px;background:rgba(255,255,255,.12);margin:12px 0;}
+.result-final{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);border-radius:10px;padding:20px 24px;margin-top:20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+.result-final-label{font-size:14px;color:var(--gold-light);font-weight:500;}
+.result-final-label small{display:block;font-size:11px;font-weight:300;color:rgba(255,255,255,.4);margin-top:3px;}
+.result-final-amount{font-family:'Playfair Display',serif;font-size:32px;font-weight:600;white-space:nowrap;color:#F08080;}
+.qb-table{margin-top:20px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:10px;overflow:hidden;}
+.qb-head{padding:12px 20px;font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.3);border-bottom:1px solid rgba(255,255,255,.06);display:grid;grid-template-columns:1fr 1fr 1fr 1.2fr;gap:8px;}
+.qb-row{display:grid;grid-template-columns:1fr 1fr 1fr 1.2fr;padding:10px 20px;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;gap:8px;}
+.qb-row:last-child{border-bottom:none;}
+.qb-c{color:rgba(255,255,255,.55);}
+.qb-c.name{color:rgba(255,255,255,.85);font-weight:500;}
+.qb-c.tax{color:#F08080;text-align:right;}
+.qb-c.dl{color:rgba(255,255,255,.4);font-size:11px;text-align:right;}
+.qb-row.current{background:rgba(201,168,76,.07);}
+.cta-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:32px;margin-top:20px;text-align:center;display:none;}
+.cta-card.visible{display:block;}
+.cta-name{font-family:'Playfair Display',serif;font-size:17px;color:var(--dark);margin-bottom:6px;}
+.cta-card p{font-size:15px;color:var(--muted);line-height:1.6;margin:0 auto 20px;max-width:480px;}
+.cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.cta-link{padding:11px 22px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:6px;}
+.cta-link.primary{background:var(--dark);color:var(--white);}
+.cta-link.primary:hover{background:var(--dark-mid);}
+.cta-link.secondary{border:1.5px solid var(--border);color:var(--text);background:transparent;}
+.cta-link.secondary:hover{border-color:var(--gold);color:var(--gold);}
+.disclaimer{font-size:11px;color:var(--muted);text-align:center;margin-top:32px;line-height:1.6;max-width:600px;margin-left:auto;margin-right:auto;}
+.reset-btn{background:none;border:none;font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(255,255,255,.4);cursor:pointer;text-decoration:underline;display:block;margin:16px auto 0;transition:color .2s;}
+.reset-btn:hover{color:rgba(255,255,255,.7);}
+#expenses-section{transition:opacity .3s;}
+.days-row{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:16px 18px;margin-bottom:20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.days-row .days-main{flex:1;min-width:160px;}
+.days-row label{color:#8a7040;font-size:12px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;}
+.days-input-wrap{display:flex;align-items:center;gap:10px;margin-top:6px;}
+.days-input-wrap input{width:90px;padding:10px 12px;border:1.5px solid rgba(201,168,76,.4);border-radius:8px;font-family:"DM Sans",sans-serif;font-size:18px;font-weight:500;color:#6b5a2a;background:#fffdf5;text-align:center;-moz-appearance:textfield;appearance:textfield;}
+.days-input-wrap input::-webkit-inner-spin-button,.days-input-wrap input::-webkit-outer-spin-button{-webkit-appearance:none;}
+.days-input-wrap input:focus{outline:none;border-color:var(--gold);}
+.days-of{font-size:13px;color:var(--muted);}
+.proration-badge{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);border-radius:20px;padding:5px 14px;font-size:13px;font-weight:500;color:#8a7040;white-space:nowrap;}
+.proration-note{font-size:11px;color:var(--muted);margin-top:6px;font-style:italic;}
+.exp-proration-hint{font-size:10px;color:rgba(201,168,76,.8);font-style:italic;margin-top:2px;}
+</style>
+</head>
+<body>
+<div class="calc-wrapper">
+
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('sv')" id="btn-sv">🇸🇪 Svenska</button>
+    <button class="lang-btn" onclick="setLang('no')" id="btn-no">🇳🇴 Norsk</button>
+    <button class="lang-btn" onclick="setLang('en')" id="btn-en">🇬🇧 English</button>
+    <button class="lang-btn" onclick="setLang('es')" id="btn-es">🇪🇸 Español</button>
+  </div>
+
+  <div class="calc-header">
+    <div class="eyebrow">Colás Abogados</div>
+    <h1 data-t="h1">Skatt på hyresinkomster</h1>
+    <p data-t="subtitle">Beräkna din kvartalsvisa IRNR-deklaration för hyresinkomster i Spanien (Modelo 210).</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="info-banner">
+    <span class="info-icon">ℹ️</span>
+    <span data-t="infoBanner">Modelo 210 ska lämnas kvartalsvis: senast 20 april, 20 juli, 20 oktober och 20 januari. EU/EES-boende får dra av direkta kostnader; icke-EU-boende beskattas på bruttoinkomsten utan avdrag.</span>
+  </div>
+
+  <!-- S1: Income -->
+  <div class="section-card">
+    <div class="section-title"><span class="badge">1</span><span data-t="s1title">Hyresinkomst</span></div>
+    <p class="section-subtitle" data-t="s1sub">Ange hyresintäkter för kvartalet</p>
+    <div class="field" style="margin-bottom:20px">
+      <label data-t="payerTypeLabel">Typ av uthyrning</label>
+      <div class="payer-toggle">
+        <label class="payer-opt selected" id="opt-single">
+          <input type="radio" name="payertype" value="single" checked onchange="selPayer('single')">
+          <span class="p-icon">👤</span>
+          <span class="p-label" data-t="singlePayerLabel">En hyresgäst</span>
+          <span class="p-desc" data-t="singlePayerDesc">Årsdeklaration möjlig: 1–20 jan</span>
+        </label>
+        <label class="payer-opt" id="opt-multi">
+          <input type="radio" name="payertype" value="multi" onchange="selPayer('multi')">
+          <span class="p-icon">👥</span>
+          <span class="p-label" data-t="multiPayerLabel">Flera hyresgäster</span>
+          <span class="p-desc" data-t="multiPayerDesc">Kvartalvis deklaration obligatorisk</span>
+        </label>
+      </div>
+      <div class="filing-mode-wrap" id="filing-mode-wrap">
+        <label class="filing-opt selected" id="opt-quarterly">
+          <input type="radio" name="filingmode" value="quarterly" checked onchange="selFiling('quarterly')">
+          <span class="fo-icon">📅</span>
+          <span class="fo-label" data-t="filingQuarterlyLabel">Trimestral</span>
+          <span class="fo-desc" data-t="filingQuarterlyDesc">20 abr · 20 jul · 20 oct · 20 ene</span>
+        </label>
+        <label class="filing-opt" id="opt-annual">
+          <input type="radio" name="filingmode" value="annual" onchange="selFiling('annual')">
+          <span class="fo-icon">📆</span>
+          <span class="fo-label" data-t="filingAnnualLabel">Anual</span>
+          <span class="fo-desc" data-t="filingAnnualDesc">1–20 enero del año siguiente</span>
+        </label>
+      </div>
+      <div class="annual-note" id="annual-note">
+        <span data-t="annualNoteText">✓ Con un único arrendatario puedes optar por declaración anual (1–20 enero). El cálculo se aplica a los ingresos del año completo.</span>
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <div class="field">
+        <label data-t="yearLabel">Räkenskapsår</label>
+        <div class="input-wrap"><input type="number" id="taxYear" placeholder="2025" min="2020" max="2030" style="padding-right:14px"></div>
+      </div>
+      <div class="field" id="quarter-row">
+        <label data-t="quarterLabel">Kvartal</label>
+        <div class="quarter-grid">
+          <label class="q-option selected" id="opt-q1"><input type="radio" name="quarter" value="1" checked onchange="selQ('opt-q1')"><span class="q-label">Q1</span><span class="q-months" data-t="q1m">Jan–Mar</span></label>
+          <label class="q-option" id="opt-q2"><input type="radio" name="quarter" value="2" onchange="selQ('opt-q2')"><span class="q-label">Q2</span><span class="q-months" data-t="q2m">Apr–Jun</span></label>
+          <label class="q-option" id="opt-q3"><input type="radio" name="quarter" value="3" onchange="selQ('opt-q3')"><span class="q-label">Q3</span><span class="q-months" data-t="q3m">Jul–Sep</span></label>
+          <label class="q-option" id="opt-q4"><input type="radio" name="quarter" value="4" onchange="selQ('opt-q4')"><span class="q-label">Q4</span><span class="q-months" data-t="q4m">Okt–Dec</span></label>
+        </div>
+      </div>
+      <div class="field full">
+        <label data-t="grossLabel">Bruttohyra kvartalet</label>
+        <div class="input-wrap"><input type="number" id="grossRent" placeholder="0" min="0"><span class="currency">€</span></div>
+        <span class="hint" data-t="grossHint" id="gross-hint">Totalt mottagna hyresbetalningar (exkl. depositum)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2: Residency -->
+  <div class="section-card">
+    <div class="section-title"><span class="badge">2</span><span data-t="s2title">Skatteresidensland</span></div>
+    <p class="section-subtitle" data-t="s2sub">Avgör skattesats och rätt till avdrag</p>
+    <div class="residency-wrap">
+      <label class="res-option selected" id="opt-eu">
+        <input type="radio" name="res" value="eu" checked onchange="selRes('opt-eu')">
+        <span class="res-label" data-t="euLabel">EU / EES</span>
+        <span class="res-rate">19%</span>
+        <span class="res-desc" data-t="euDesc">Sverige, Norge, Danmark, Finland m.fl.</span>
+      </label>
+      <label class="res-option" id="opt-noneu">
+        <input type="radio" name="res" value="noneu" onchange="selRes('opt-noneu')">
+        <span class="res-label" data-t="noneuLabel">Utanför EU / EES</span>
+        <span class="res-rate">24%</span>
+        <span class="res-desc" data-t="noneuDesc">USA, Kanada, Australien m.fl.</span>
+      </label>
+    </div>
+    <div class="res-note eu-note show" id="eu-note"><span data-t="euNote">✓ Som EU/EES-boende har du rätt att dra av direkta kostnader kopplade till uthyrningen. Skatten beräknas på nettoinkomsten.</span></div>
+    <div class="res-note noneu-note" id="noneu-note"><span data-t="noneuNote">⚠ Som boende utanför EU/EES beskattas du på bruttohyresinkomsten. Inga avdrag tillåts enligt spansk lag (LIRNR art. 24.6).</span></div>
+  </div>
+
+  <!-- S3: Expenses -->
+  <div class="section-card" id="expenses-section">
+    <div class="section-title"><span class="badge">3</span><span data-t="s3title">Avdragsgilla kostnader</span><span class="rate-tag" data-t="euOnly">Endast EU/EES</span></div>
+    <p class="section-subtitle" data-t="s3sub">Kostnader direkt kopplade till uthyrningen under kvartalet</p>
+    <!-- Days rented selector -->
+    <div class="days-row" id="days-row">
+      <div class="days-main">
+        <label data-t="daysLabel">Antal dagar uthyrt</label>
+        <div class="days-input-wrap">
+          <input type="number" id="daysRented" placeholder="90" min="1" max="366" oninput="updateProration()">
+          <span class="days-of" id="days-of-label">/ <span id="totalDaysSpan">90</span> <span data-t="daysOfPeriod">dagar i perioden</span></span>
+        </div>
+        <div class="proration-note" data-t="daysNote">Gastos fijos se prorratean automáticamente (IBI, comunidad, seguro, intereses, amortización)</div>
+      </div>
+      <div class="proration-badge" id="proration-badge">— %</div>
+    </div>
+
+    <div class="field-grid">
+      <div class="field">
+        <label data-t="lInterest">Räntekostnader</label>
+        <div class="input-wrap"><input type="number" id="interest" placeholder="0" min="0"><span class="currency">€</span></div>
+        <span class="exp-proration-hint" data-t="proratableHint" id="hint-interest">↻ Se prorratea automáticamente</span>
+        <span class="hint" data-t="hInterest">Räntor på bolån (ej amortering)</span>
+      </div>
+      <div class="field">
+        <label data-t="lIbi">IBI (fastighetsskatt)</label>
+        <div class="input-wrap"><input type="number" id="ibi" placeholder="0" min="0"><span class="currency">€</span></div>
+        <span class="exp-proration-hint" data-t="proratableHint" id="hint-ibi">↻ Se prorratea automáticamente</span>
+        <span class="hint" data-t="hIbi">Proportionellt mot uthyrningsperiod</span>
+      </div>
+      <div class="field">
+        <label data-t="lCommunity">Gemensamma avgifter</label>
+        <div class="input-wrap"><input type="number" id="community" placeholder="0" min="0"><span class="currency">€</span></div>
+        <span class="exp-proration-hint" data-t="proratableHint" id="hint-community">↻ Se prorratea automáticamente</span>
+        <span class="hint" data-t="hCommunity">Comunidad de propietarios</span>
+      </div>
+      <div class="field">
+        <label data-t="lInsurance">Försäkring</label>
+        <div class="input-wrap"><input type="number" id="insurance" placeholder="0" min="0"><span class="currency">€</span></div>
+        <span class="exp-proration-hint" data-t="proratableHint" id="hint-insurance">↻ Se prorratea automáticamente</span>
+        <span class="hint" data-t="hInsurance">Hemförsäkring, prop. mot hyresperiod</span>
+      </div>
+      <div class="field">
+        <label data-t="lRepairs">Reparationer & underhåll</label>
+        <div class="input-wrap"><input type="number" id="repairs" placeholder="0" min="0"><span class="currency">€</span></div>
+        <span class="hint" data-t="hRepairs">Ej förbättringar. Prop. mot uthyrningsperiod.</span>
+      </div>
+      <div class="field">
+        <label data-t="lUtilities">Vatten, el, gas</label>
+        <div class="input-wrap"><input type="number" id="utilities" placeholder="0" min="0"><span class="currency">€</span></div>
+        <span class="hint" data-t="hUtilities">Om inkluderat i hyran och betalat av ägaren</span>
+      </div>
+      <div class="field">
+        <label data-t="lMgmt">Förvaltningsarvode</label>
+        <div class="input-wrap"><input type="number" id="mgmt" placeholder="0" min="0"><span class="currency">€</span></div>
+        <span class="hint" data-t="hMgmt">Mäklare, fastighetsförvaltare m.m.</span>
+      </div>
+      <div class="field">
+        <label data-t="lAmort">Avskrivning fastighet</label>
+        <div class="input-wrap"><input type="number" id="amort" placeholder="0" min="0"><span class="currency">€</span></div>
+        <span class="exp-proration-hint" data-t="proratableHint" id="hint-amort">↻ Se prorratea automáticamente</span>
+        <span class="hint" data-t="hAmort">3% av byggnadsvärdet ÷ 4 per kvartal</span>
+      </div>
+      <div class="field full">
+        <label data-t="lOther">Övriga avdragsgilla</label>
+        <div class="input-wrap"><input type="number" id="otherExp" placeholder="0" min="0"><span class="currency">€</span></div>
+        <span class="hint" data-t="hOther">Bokföring, juridisk rådgivning m.m.</span>
+      </div>
+    </div>
+  </div>
+
+  <button class="calc-btn" onclick="calculate()" data-t="calcBtn">Beräkna skatt</button>
+
+  <!-- Results -->
+  <div class="results-card" id="results">
+    <div class="results-title" data-t="rTitle">Beräkningsresultat</div>
+    <div class="results-sub" id="r-sub">—</div>
+
+    <div class="section-lbl" data-t="lIncome">Inkomster</div>
+    <div class="result-row">
+      <span class="result-label" data-t="rGross">Bruttohyra kvartalet</span>
+      <span class="result-value neu" id="r-gross">—</span>
+    </div>
+
+    <div id="eu-block">
+      <div class="section-lbl" data-t="lDeductions">Avdragsgilla kostnader</div>
+      <div class="result-row">
+        <span class="result-label" data-t="rExpenses">Totala avdrag</span>
+        <span class="result-value neg" id="r-expenses">—</span>
+      </div>
+      <div class="sep"></div>
+      <div class="result-row">
+        <span class="result-label" style="font-weight:500;color:rgba(255,255,255,.85)" data-t="rNetIncome">Nettoinkomst (skattebas)</span>
+        <span class="result-value neu" id="r-net" style="color:rgba(255,255,255,.9)">—</span>
+      </div>
+    </div>
+
+    <div id="noneu-block" style="display:none">
+      <div class="sep"></div>
+      <div class="result-row">
+        <span class="result-label" style="font-weight:500;color:rgba(255,255,255,.85)" data-t="rTaxBase">Base imponible (bruto)</span>
+        <span class="result-value neu" id="r-base" style="color:rgba(255,255,255,.9)">—</span>
+      </div>
+    </div>
+
+    <div class="sep" style="margin-top:12px"></div>
+    <div class="section-lbl" data-t="lTax">Skatteberäkning</div>
+    <div class="result-row">
+      <span class="result-label" id="r-rate-lbl">Skattesats</span>
+      <span class="result-value neu" id="r-rate">—</span>
+    </div>
+    <div class="result-row">
+      <span class="result-label" data-t="rTaxDue">Skatt att betala (Modelo 210)</span>
+      <span class="result-value neg" id="r-tax">—</span>
+    </div>
+
+    <div class="result-final">
+      <div class="result-final-label">
+        <span data-t="rFinal">Total skatt kvartalet</span>
+        <small id="r-deadline">—</small>
+      </div>
+      <div class="result-final-amount" id="r-amount">—</div>
+    </div>
+
+    <!-- Quarterly overview -->
+    <div class="qb-table" id="qb-table">
+      <div class="qb-head">
+        <div data-t="qbQ">Kvartal</div><div data-t="qbBase">Skattebas</div><div class="tax" style="text-align:right" data-t="qbTax">Skatt</div><div style="text-align:right" data-t="qbDl">Sista dag</div>
+      </div>
+      <div id="qb-body"></div>
+    </div>
+
+    <button class="reset-btn" onclick="reset()" data-t="resetBtn">← Ny beräkning</button>
+  </div>
+
+  <div class="cta-card" id="cta-box">
+    <div class="cta-name">Colás Abogados</div>
+    <p data-t="ctaText">Vill du att vi hanterar dina hyresskattdeklarationer? Vi är specialiserade på fastighets- och skatterätt för skandinaver på Costa Blanca – med full service på svenska och norska.</p>
+    <div class="cta-btns">
+      <a href="https://colas-abogados.com/kontakt-advokat-alicante/" class="cta-link primary" data-t="ctaBtn">Kontakta oss</a>
+      <a href="https://wa.me/34629549430" class="cta-link secondary">💬 WhatsApp</a>
+    </div>
+  </div>
+
+  <p class="disclaimer" data-t="disclaimer">Denna kalkylator är avsedd som vägledning och ersätter inte juridisk eller skattemässig rådgivning. EU/EES-boende kan dra av direkta kostnader enligt art. 24.2 LIRNR. Kontakta oss för en exakt bedömning av ditt fall.</p>
+</div>
+
+<script>
+const T={
+  sv:{h1:"Skatt på hyresinkomster",subtitle:"Beräkna din kvartalsvisa IRNR-deklaration för hyresinkomster i Spanien (Modelo 210).",infoBanner:"Modelo 210 lämnas normalt kvartalsvis. Vid en enda hyresgäst/betalare kan du välja årsdeklaration (1–20 jan). EU/EES-boende får dra av direkta kostnader; icke-EU-boende beskattas på bruttoinkomsten.",s1title:"Hyresinkomst",s1sub:"Ange hyresintäkter för kvartalet",yearLabel:"Räkenskapsår",quarterLabel:"Kvartal",q1m:"Jan–Mar",q2m:"Apr–Jun",q3m:"Jul–Sep",q4m:"Okt–Dec",grossLabel:"Bruttohyra kvartalet",grossHint:"Totalt mottagna hyresbetalningar (exkl. depositum)",s2title:"Skatteresidensland",s2sub:"Avgör skattesats och rätt till avdrag",euLabel:"EU / EES",euDesc:"Sverige, Norge, Danmark, Finland m.fl.",noneuLabel:"Utanför EU / EES",noneuDesc:"USA, Kanada, Australien m.fl.",euNote:"✓ Som EU/EES-boende har du rätt att dra av direkta kostnader kopplade till uthyrningen. Skatten beräknas på nettoinkomsten.",noneuNote:"⚠ Som boende utanför EU/EES beskattas du på bruttohyresinkomsten. Inga avdrag tillåts enligt spansk lag (LIRNR art. 24.6).",s3title:"Avdragsgilla kostnader",s3sub:"Kostnader direkt kopplade till uthyrningen under kvartalet",euOnly:"Endast EU/EES",lInterest:"Räntekostnader",hInterest:"Räntor på bolån (ej amortering)",lIbi:"IBI (fastighetsskatt)",hIbi:"Proportionellt mot uthyrningsperiod",lCommunity:"Gemensamma avgifter",hCommunity:"Comunidad de propietarios",lInsurance:"Försäkring",hInsurance:"Hemförsäkring, prop. mot hyresperiod",lRepairs:"Reparationer & underhåll",hRepairs:"Ej förbättringar. Prop. mot uthyrningsperiod.",lUtilities:"Vatten, el, gas",hUtilities:"Om inkluderat i hyran och betalat av ägaren",lMgmt:"Förvaltningsarvode",hMgmt:"Mäklare, fastighetsförvaltare m.m.",lAmort:"Avskrivning fastighet",hAmort:"3% av byggnadsvärdet ÷ 4 per kvartal",lOther:"Övriga avdragsgilla",hOther:"Bokföring, juridisk rådgivning m.m.",calcBtn:"Beräkna skatt",rTitle:"Beräkningsresultat",lIncome:"Inkomster",rGross:"Bruttohyra kvartalet",lDeductions:"Avdragsgilla kostnader",rExpenses:"Totala avdrag",rNetIncome:"Nettoinkomst (skattebas)",rTaxBase:"Skattebas (brutto)",lTax:"Skatteberäkning",rTaxDue:"Skatt att betala (Modelo 210)",rFinal:"Total skatt kvartalet",qbQ:"Kvartal",qbBase:"Skattebas",qbTax:"Skatt",qbDl:"Sista dag",resetBtn:"← Ny beräkning",ctaText:"Vill du att vi hanterar dina hyresskattdeklarationer? Vi är specialiserade på fastighets- och skatterätt för skandinaver på Costa Blanca – med full service på svenska och norska.",ctaBtn:"Kontakta oss",disclaimer:"Denna kalkylator är avsedd som vägledning och ersätter inte juridisk eller skattemässig rådgivning. EU/EES-boende kan dra av direkta kostnader enligt art. 24.2 LIRNR. Kontakta oss för en exakt bedömning av ditt fall.",euRate:"19% (EU/EES)",noneuRate:"24% (utanför EU/EES)",dl:{1:"20 april",2:"20 juli",3:"20 oktober",4:"20 januari"},qs:{1:"Q1 (Jan–Mar)",2:"Q2 (Apr–Jun)",3:"Q3 (Jul–Sep)",4:"Q4 (Okt–Dec)"},dlNote:"Inlämningsdatum Modelo 210",rateLabel:"Skattesats",negBase:"Underskott – ingen skatt detta kvartal",
+    filingQuarterlyLabel:"Trimestral",filingQuarterlyDesc:"20 apr · 20 jul · 20 okt · 20 jan",filingAnnualLabel:"Årsdeklaration",filingAnnualDesc:"1–20 januari året efter",annualNoteText:"✓ Med en enda hyresgäst kan du välja årsdeklaration (1–20 januari) istället för fyra kvartalsvisa. Beräkningen gäller hela årets inkomster.",daysLabel:"Antal hyresdagar",daysOfPeriod:"dagar i perioden",daysNote:"Fasta kostnader (IBI, avgifter, försäkring, räntor, avskrivning) proratas automatiskt efter antal hyresdagar.",proratableHint:"↻ Prorateras automatiskt",
+    payerTypeLabel:"Typ av uthyrning",singlePayerLabel:"En hyresgäst",singlePayerDesc:"Årsdeklaration möjlig: 1–20 jan",multiPayerLabel:"Flera hyresgäster",multiPayerDesc:"Kvartalvis deklaration obligatorisk",
+    annualNoteText:"✓ Med en enda hyresgäst under hela året kan du välja att lämna en årsdeklaration (1–20 januari) istället för fyra kvartalsvisa. Beräkningen nedan gäller då hela årets inkomster och avdrag.",
+    grossLabelAnnual:"Bruttohyra hela året",grossHintAnnual:"Totala hyresintäkter för hela räkenskapsåret (exkl. depositum)",
+    quarterLabelHidden:"(Ej tillämpligt – årsdeklaration)",rFinalAnnual:"Total skatt för hela året",annualDeadline:"Inlämning: 1–20 januari",annualQbTitle:"Jämförelse kvartalsvis (beräknat på samma inkomst)"
+  },
+  no:{h1:"Skatt på leieinntekter",subtitle:"Beregn din kvartalsvise IRNR-melding for leieinntekter i Spania (Modelo 210).",infoBanner:"Modelo 210 leveres normalt kvartalsvis. Ved én enkelt leietaker/betaler kan du velge årsmelding (1.–20. januar). EU/EØS-bosatte kan trekke fra direkte kostnader; andre beskattes av bruttoinntekten.",s1title:"Leieinntekt",s1sub:"Oppgi leieinntekter for kvartalet",yearLabel:"Regnskapsår",quarterLabel:"Kvartal",q1m:"Jan–Mar",q2m:"Apr–Jun",q3m:"Jul–Sep",q4m:"Okt–Des",grossLabel:"Brutto leieinntekt kvartalet",grossHint:"Totalt mottatte leiebetalinger (ekskl. depositum)",s2title:"Skattebostedsland",s2sub:"Avgjør skattesats og fradragsrett",euLabel:"EU / EØS",euDesc:"Sverige, Norge, Danmark, Finland m.fl.",noneuLabel:"Utenfor EU / EØS",noneuDesc:"USA, Canada, Australia m.fl.",euNote:"✓ Som EU/EØS-bosatt kan du trekke fra direkte kostnader knyttet til utleien. Skatten beregnes av nettoinntekten.",noneuNote:"⚠ Som bosatt utenfor EU/EØS skattlegges du av brutto leieinntekt. Ingen fradrag er tillatt etter spansk lov (LIRNR art. 24.6).",s3title:"Fradragsberettigede kostnader",s3sub:"Kostnader direkte knyttet til utleien i kvartalet",euOnly:"Kun EU/EØS",lInterest:"Rentekostnader",hInterest:"Renter på boliglån (ikke avdrag)",lIbi:"IBI (eiendomsskatt)",hIbi:"Forholdsmessig etter utleieperiode",lCommunity:"Felleskostnader",hCommunity:"Comunidad de propietarios",lInsurance:"Forsikring",hInsurance:"Innboforsikring, prop. etter utleieperiode",lRepairs:"Reparasjoner & vedlikehold",hRepairs:"Ikke forbedringer. Prop. etter utleieperiode.",lUtilities:"Vann, strøm, gass",hUtilities:"Hvis inkludert i leien og betalt av eier",lMgmt:"Forvaltningshonorar",hMgmt:"Eiendomsmegler, forvalter m.m.",lAmort:"Avskrivning eiendom",hAmort:"3% av bygningsverdien ÷ 4 per kvartal",lOther:"Andre fradragsberettigede",hOther:"Regnskap, juridisk rådgivning m.m.",calcBtn:"Beregn skatt",rTitle:"Beregningsresultat",lIncome:"Inntekter",rGross:"Brutto leieinntekt kvartalet",lDeductions:"Fradragsberettigede kostnader",rExpenses:"Totale fradrag",rNetIncome:"Nettoinntekt (skattegrunnlag)",rTaxBase:"Skattegrunnlag (brutto)",lTax:"Skatteberegning",rTaxDue:"Skatt å betale (Modelo 210)",rFinal:"Total skatt kvartalet",qbQ:"Kvartal",qbBase:"Grunnlag",qbTax:"Skatt",qbDl:"Frist",resetBtn:"← Ny beregning",ctaText:"Vil du at vi håndterer dine leieskattmeldinger? Vi er spesialister på eiendoms- og skatterett for skandinaver på Costa Blanca – med full service på norsk og svensk.",ctaBtn:"Kontakt oss",disclaimer:"Denne kalkulatoren er veiledende og erstatter ikke juridisk eller skattemessig rådgivning. EU/EØS-bosatte kan trekke fra direkte kostnader etter art. 24.2 LIRNR. Kontakt oss for en nøyaktig vurdering.",euRate:"19% (EU/EØS)",noneuRate:"24% (utenfor EU/EØS)",dl:{1:"20. april",2:"20. juli",3:"20. oktober",4:"20. januar"},qs:{1:"Q1 (Jan–Mar)",2:"Q2 (Apr–Jun)",3:"Q3 (Jul–Sep)",4:"Q4 (Okt–Des)"},dlNote:"Innleveringsfrist Modelo 210",rateLabel:"Skattesats",negBase:"Underskudd – ingen skatt dette kvartalet",
+    filingQuarterlyLabel:"Kvartalsvis",filingQuarterlyDesc:"20. apr · 20. jul · 20. okt · 20. jan",filingAnnualLabel:"Årsmelding",filingAnnualDesc:"1.–20. januar året etter",annualNoteText:"✓ Med én enkelt leietaker kan du velge årsmelding (1.–20. januar) i stedet for fire kvartalsvise. Beregningen gjelder hele årets inntekter.",daysLabel:"Antall utleiedager",daysOfPeriod:"dager i perioden",daysNote:"Faste kostnader (IBI, avgifter, forsikring, renter, avskrivning) prorateres automatisk etter antall utleiedager.",proratableHint:"↻ Prorateres automatisk",
+    payerTypeLabel:"Type utleie",singlePayerLabel:"Én leietaker",singlePayerDesc:"Årsmelding mulig: 1.–20. jan",multiPayerLabel:"Flere leietakere",multiPayerDesc:"Kvartalsvis melding obligatorisk",
+    annualNoteText:"✓ Med én enkelt leietaker hele året kan du velge årsmelding (1.–20. januar) i stedet for fire kvartalsvise. Beregningen nedenfor gjelder da hele årets inntekter og fradrag.",
+    grossLabelAnnual:"Brutto leieinntekt hele året",grossHintAnnual:"Totale leieinntekter for hele regnskapsåret (ekskl. depositum)",
+    quarterLabelHidden:"(Ikke aktuelt – årsmelding)",rFinalAnnual:"Total skatt for hele året",annualDeadline:"Frist: 1.–20. januar",annualQbTitle:"Sammenligning kvartalsvis (beregnet på samme inntekt)"
+  },
+  en:{h1:"Rental Income Tax",subtitle:"Calculate your quarterly IRNR return for rental income in Spain as a non-resident (Modelo 210).",infoBanner:"Modelo 210 is normally filed quarterly. With a single tenant/payer you may opt for an annual return (1–20 January). EU/EEA residents may deduct direct costs; non-EU residents are taxed on gross income.",s1title:"Rental Income",s1sub:"Enter rental income for the quarter",yearLabel:"Tax Year",quarterLabel:"Quarter",q1m:"Jan–Mar",q2m:"Apr–Jun",q3m:"Jul–Sep",q4m:"Oct–Dec",grossLabel:"Gross rental income (quarter)",grossHint:"Total rental payments received (excl. deposit)",s2title:"Tax Residency",s2sub:"Determines tax rate and deduction entitlement",euLabel:"EU / EEA",euDesc:"Sweden, Norway, Denmark, Finland, etc.",noneuLabel:"Outside EU / EEA",noneuDesc:"USA, Canada, Australia, etc.",euNote:"✓ As an EU/EEA resident you may deduct direct costs related to the rental. Tax is calculated on net income.",noneuNote:"⚠ As a non-EU/EEA resident you are taxed on gross rental income. No deductions are permitted under Spanish law (LIRNR art. 24.6).",s3title:"Deductible Expenses",s3sub:"Direct costs related to the rental during the quarter",euOnly:"EU/EEA only",lInterest:"Mortgage interest",hInterest:"Interest on property loan (not principal)",lIbi:"IBI (property tax)",hIbi:"Proportional to rental period",lCommunity:"Community fees",hCommunity:"Comunidad de propietarios",lInsurance:"Insurance",hInsurance:"Home insurance proportional to rental period",lRepairs:"Repairs & maintenance",hRepairs:"Not improvements. Proportional to rental period.",lUtilities:"Water, electricity, gas",hUtilities:"If included in rent and paid by owner",lMgmt:"Management fees",hMgmt:"Estate agent, property manager, etc.",lAmort:"Property depreciation",hAmort:"3% of building value ÷ 4 per quarter",lOther:"Other deductible costs",hOther:"Accounting, legal fees, etc.",calcBtn:"Calculate Tax",rTitle:"Calculation Results",lIncome:"Income",rGross:"Gross rental income (quarter)",lDeductions:"Deductible Expenses",rExpenses:"Total deductions",rNetIncome:"Net income (tax base)",rTaxBase:"Tax base (gross)",lTax:"Tax Calculation",rTaxDue:"Tax payable (Modelo 210)",rFinal:"Total tax for quarter",qbQ:"Quarter",qbBase:"Tax base",qbTax:"Tax",qbDl:"Deadline",resetBtn:"← New calculation",ctaText:"Would you like us to handle your rental tax returns? We specialise in property and tax law for Scandinavians on the Costa Blanca.",ctaBtn:"Contact us",disclaimer:"This calculator is a guide only and does not replace legal or tax advice. EU/EEA residents may deduct direct costs under art. 24.2 LIRNR. Contact us for an accurate assessment of your case.",euRate:"19% (EU/EEA)",noneuRate:"24% (non-EU/EEA)",dl:{1:"20 April",2:"20 July",3:"20 October",4:"20 January"},qs:{1:"Q1 (Jan–Mar)",2:"Q2 (Apr–Jun)",3:"Q3 (Jul–Sep)",4:"Q4 (Oct–Dec)"},dlNote:"Modelo 210 filing deadline",rateLabel:"Tax rate",negBase:"Deficit – no tax due this quarter",
+    filingQuarterlyLabel:"Quarterly",filingQuarterlyDesc:"20 Apr · 20 Jul · 20 Oct · 20 Jan",filingAnnualLabel:"Annual return",filingAnnualDesc:"1–20 January of the following year",annualNoteText:"✓ With a single tenant you may opt for an annual return (1–20 January) instead of four quarterly ones. The calculation covers the full year's income.",daysLabel:"Days rented out",daysOfPeriod:"days in period",daysNote:"Fixed costs (IBI, fees, insurance, interest, depreciation) are automatically prorated by rental days.",proratableHint:"↻ Automatically prorated",
+    payerTypeLabel:"Rental type",singlePayerLabel:"Single tenant",singlePayerDesc:"Annual return option: 1–20 Jan",multiPayerLabel:"Multiple tenants",multiPayerDesc:"Quarterly filing required",
+    annualNoteText:"✓ With a single tenant/payer for the whole year you may opt for one annual return (1–20 January) instead of four quarterly ones. The calculation below then covers the full year's income and expenses.",
+    grossLabelAnnual:"Gross rental income (full year)",grossHintAnnual:"Total rental income for the entire tax year (excl. deposit)",
+    quarterLabelHidden:"(N/A – annual return)",rFinalAnnual:"Total tax for the full year",annualDeadline:"Filing deadline: 1–20 January",annualQbTitle:"Quarterly comparison (based on same income)"
+  },
+  es:{h1:"Impuesto sobre alquileres",subtitle:"Calcula tu declaración trimestral del IRNR por ingresos de alquiler en España como no residente (Modelo 210).",infoBanner:"El Modelo 210 se presenta normalmente cada trimestre. Con un único pagador, puede optarse por declaración anual (del 1 al 20 de enero). Residentes UE/EEE pueden deducir gastos directos; los demás tributan sobre ingresos brutos.",s1title:"Ingresos por alquiler",s1sub:"Introduce los ingresos del trimestre",yearLabel:"Ejercicio fiscal",quarterLabel:"Trimestre",q1m:"Ene–Mar",q2m:"Abr–Jun",q3m:"Jul–Sep",q4m:"Oct–Dic",grossLabel:"Ingresos brutos de alquiler (trimestre)",grossHint:"Total alquileres cobrados en el trimestre (excl. fianza)",s2title:"País de residencia fiscal",s2sub:"Determina el tipo impositivo y el derecho a deducciones",euLabel:"UE / EEE",euDesc:"Suecia, Noruega, Dinamarca, Finlandia, etc.",noneuLabel:"Fuera de la UE / EEE",noneuDesc:"EE.UU., Canadá, Australia, etc.",euNote:"✓ Como residente UE/EEE puedes deducir los gastos directamente relacionados con el arrendamiento. El impuesto se calcula sobre la renta neta.",noneuNote:"⚠ Como residente fuera de la UE/EEE tributas sobre los ingresos brutos. No se admiten deducciones según la LIRNR art. 24.6.",s3title:"Gastos deducibles",s3sub:"Gastos directamente relacionados con el alquiler durante el trimestre",euOnly:"Solo UE/EEE",lInterest:"Intereses hipotecarios",hInterest:"Intereses del préstamo (no amortización)",lIbi:"IBI (impuesto municipal)",hIbi:"Proporcional al período de arrendamiento",lCommunity:"Gastos de comunidad",hCommunity:"Comunidad de propietarios",lInsurance:"Seguros",hInsurance:"Seguro del hogar proporcional al período de alquiler",lRepairs:"Reparaciones y conservación",hRepairs:"No mejoras. Proporcional al período arrendado.",lUtilities:"Agua, electricidad, gas",hUtilities:"Si incluido en el alquiler y pagado por el propietario",lMgmt:"Honorarios de gestión",hMgmt:"Agencia inmobiliaria, administrador, etc.",lAmort:"Amortización del inmueble",hAmort:"3% del valor de construcción ÷ 4 por trimestre",lOther:"Otros gastos deducibles",hOther:"Gestoría, asesoría jurídica, etc.",calcBtn:"Calcular impuesto",rTitle:"Resultado del cálculo",lIncome:"Ingresos",rGross:"Ingresos brutos de alquiler (trimestre)",lDeductions:"Gastos deducibles",rExpenses:"Total deducciones",rNetIncome:"Rendimiento neto (base imponible)",rTaxBase:"Base imponible (bruta)",lTax:"Cálculo del impuesto",rTaxDue:"Cuota a ingresar (Modelo 210)",rFinal:"Total a pagar el trimestre",qbQ:"Trimestre",qbBase:"Base imponible",qbTax:"Cuota",qbDl:"Plazo",resetBtn:"← Nuevo cálculo",ctaText:"¿Quieres que gestionemos tus declaraciones de IRNR por alquiler? Somos especialistas en derecho inmobiliario y fiscal para no residentes en la Costa Blanca.",ctaBtn:"Contáctanos",disclaimer:"Esta calculadora es orientativa y no sustituye el asesoramiento jurídico o fiscal. Los residentes UE/EEE pueden deducir gastos directos conforme al art. 24.2 LIRNR. Contáctanos para una valoración exacta.",euRate:"19% (UE/EEE)",noneuRate:"24% (fuera UE/EEE)",dl:{1:"20 de abril",2:"20 de julio",3:"20 de octubre",4:"20 de enero"},qs:{1:"T1 (Ene–Mar)",2:"T2 (Abr–Jun)",3:"T3 (Jul–Sep)",4:"T4 (Oct–Dic)"},dlNote:"Plazo presentación Modelo 210",rateLabel:"Tipo impositivo",negBase:"Base negativa – sin cuota este trimestre",
+    filingQuarterlyLabel:"Trimestral",filingQuarterlyDesc:"20 abr · 20 jul · 20 oct · 20 ene",filingAnnualLabel:"Anual",filingAnnualDesc:"Del 1 al 20 de enero del año siguiente",annualNoteText:"✓ Con un único arrendatario puedes optar por declaración anual (del 1 al 20 de enero) en lugar de cuatro trimestrales. El cálculo corresponde a los ingresos del año completo.",daysLabel:"Días arrendados",daysOfPeriod:"días en el período",daysNote:"Los gastos fijos (IBI, comunidad, seguro, intereses, amortización) se prorratean automáticamente según los días arrendados.",proratableHint:"↻ Se prorratea automáticamente",
+    payerTypeLabel:"Tipo de arrendamiento",singlePayerLabel:"Un solo pagador",singlePayerDesc:"Opción anual: del 1 al 20 de enero",multiPayerLabel:"Varios pagadores",multiPayerDesc:"Declaración trimestral obligatoria",
+    annualNoteText:"✓ Con un único arrendatario/pagador durante todo el año, puedes optar por una declaración anual (del 1 al 20 de enero) en lugar de cuatro trimestrales. El cálculo siguiente corresponde entonces a los ingresos y gastos del año completo.",
+    grossLabelAnnual:"Ingresos brutos de alquiler (año completo)",grossHintAnnual:"Total de alquileres cobrados en el ejercicio fiscal (excl. fianza)",
+    quarterLabelHidden:"(No aplicable – declaración anual)",rFinalAnnual:"Total a pagar por el año completo",annualDeadline:"Plazo: 1 al 20 de enero",annualQbTitle:"Desglose trimestral orientativo (mismos ingresos)"
+  }
+};
+
+let lang='sv', res='eu', payerType='single';
+
+const PERIOD_DAYS = {1:90, 2:91, 3:92, 4:92}; // approximate days per quarter; annual=365
+
+function getDaysInPeriod(){
+  if(payerType==='single') return 365;
+  const q=parseInt(document.querySelector('input[name="quarter"]:checked').value);
+  return PERIOD_DAYS[q]||90;
+}
+
+function updateProration(){
+  const total=getDaysInPeriod();
+  document.getElementById('totalDaysSpan').textContent=total;
+  const days=parseInt(document.getElementById('daysRented').value)||0;
+  const pct=days>0?Math.min(100,Math.round(days/total*100)):0;
+  document.getElementById('proration-badge').textContent=days>0?pct+'%':'— %';
+  // Update colour
+  const badge=document.getElementById('proration-badge');
+  badge.style.background=days===total?'rgba(46,125,50,.12)':'rgba(201,168,76,.15)';
+  badge.style.borderColor=days===total?'rgba(46,125,50,.3)':'rgba(201,168,76,.3)';
+  badge.style.color=days===total?'#2E7D32':'#8a7040';
+}
+
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('btn-'+l).classList.add('active');
+  const t=T[l];
+  document.querySelectorAll('[data-t]').forEach(el=>{
+    const k=el.getAttribute('data-t');
+    if(t[k]!==undefined) el.textContent=t[k];
+  });
+}
+
+function selPayer(type){
+  payerType=type;
+  document.querySelectorAll('.payer-opt').forEach(o=>o.classList.remove('selected'));
+  document.getElementById('opt-'+type).classList.add('selected');
+  const t=T[lang];
+  const filingWrap=document.getElementById('filing-mode-wrap');
+  const annualNote=document.getElementById('annual-note');
+  const qrow=document.getElementById('quarter-row');
+  const grossLbl=document.querySelector('[data-t="grossLabel"]');
+  const grossHint=document.getElementById('gross-hint');
+  if(type==='single'){
+    filingWrap.classList.remove('hide');
+    annualNote.classList.add('show');
+    qrow.style.opacity='0.4';
+    qrow.style.pointerEvents='none';
+    if(grossLbl&&t.grossLabelAnnual) grossLbl.textContent=t.grossLabelAnnual;
+    if(grossHint&&t.grossHintAnnual) grossHint.textContent=t.grossHintAnnual;
+  } else {
+    filingWrap.classList.add('hide');
+    annualNote.classList.remove('show');
+    qrow.style.opacity='1';
+    qrow.style.pointerEvents='auto';
+    // Reset to quarterly when switching to multi
+    document.querySelector('input[name="filingmode"][value="quarterly"]').checked=true;
+    document.querySelectorAll('.filing-opt').forEach(o=>o.classList.remove('selected'));
+    document.getElementById('opt-quarterly').classList.add('selected');
+    if(grossLbl&&t.grossLabel) grossLbl.textContent=t.grossLabel;
+    if(grossHint&&t.grossHint) grossHint.textContent=t.grossHint;
+  }
+  // Refresh filing mode labels
+  const fql=document.querySelector('[data-t="filingQuarterlyLabel"]');
+  const fqd=document.querySelector('[data-t="filingQuarterlyDesc"]');
+  const fal=document.querySelector('[data-t="filingAnnualLabel"]');
+  const fad=document.querySelector('[data-t="filingAnnualDesc"]');
+  const ant=document.querySelector('[data-t="annualNoteText"]');
+  if(fql&&t.filingQuarterlyLabel) fql.textContent=t.filingQuarterlyLabel;
+  if(fqd&&t.filingQuarterlyDesc) fqd.textContent=t.filingQuarterlyDesc;
+  if(fal&&t.filingAnnualLabel) fal.textContent=t.filingAnnualLabel;
+  if(fad&&t.filingAnnualDesc) fad.textContent=t.filingAnnualDesc;
+  if(ant&&t.annualNoteText) ant.textContent=t.annualNoteText;
+  // Refresh days labels
+  const daysLbl=document.querySelector('[data-t="daysLabel"]');
+  const daysOf=document.querySelector('[data-t="daysOfPeriod"]');
+  const daysNote=document.querySelector('[data-t="daysNote"]');
+  const hints=document.querySelectorAll('[data-t="proratableHint"]');
+  if(daysLbl&&t.daysLabel) daysLbl.textContent=t.daysLabel;
+  if(daysOf&&t.daysOfPeriod) daysOf.textContent=t.daysOfPeriod;
+  if(daysNote&&t.daysNote) daysNote.textContent=t.daysNote;
+  hints.forEach(h=>{if(t.proratableHint) h.textContent=t.proratableHint;});
+  // Refresh payer-dependent labels
+  if(payerType==='single'){
+    const gl=document.querySelector('[data-t="grossLabel"]');
+    const gh=document.getElementById('gross-hint');
+    if(gl&&t.grossLabelAnnual) gl.textContent=t.grossLabelAnnual;
+    if(gh&&t.grossHintAnnual) gh.textContent=t.grossHintAnnual;
+  }
+}
+
+function selFiling(mode){
+  const isAnnual=mode==='annual';
+  document.querySelectorAll('.filing-opt').forEach(o=>o.classList.remove('selected'));
+  document.getElementById(isAnnual?'opt-annual':'opt-quarterly').classList.add('selected');
+  const annualNote=document.getElementById('annual-note');
+  const qrow=document.getElementById('quarter-row');
+  const grossLbl=document.querySelector('[data-t="grossLabel"]');
+  const grossHint=document.getElementById('gross-hint');
+  const t=T[lang];
+  if(isAnnual){
+    annualNote.classList.add('show');
+    qrow.style.opacity='0.4';
+    qrow.style.pointerEvents='none';
+    if(grossLbl&&t.grossLabelAnnual) grossLbl.textContent=t.grossLabelAnnual;
+    if(grossHint&&t.grossHintAnnual) grossHint.textContent=t.grossHintAnnual;
+  } else {
+    annualNote.classList.remove('show');
+    qrow.style.opacity='1';
+    qrow.style.pointerEvents='auto';
+    if(grossLbl&&t.grossLabel) grossLbl.textContent=t.grossLabel;
+    if(grossHint&&t.grossHint) grossHint.textContent=t.grossHint;
+  }
+  updateProration();
+}
+
+function selQ(id){
+  document.querySelectorAll('.q-option').forEach(o=>o.classList.remove('selected'));
+  document.getElementById(id).classList.add('selected');
+  updateProration();
+}
+
+function selRes(id){
+  document.querySelectorAll('.res-option').forEach(o=>o.classList.remove('selected'));
+  document.getElementById(id).classList.add('selected');
+  res=id==='opt-eu'?'eu':'noneu';
+  document.getElementById('eu-note').classList.toggle('show',res==='eu');
+  document.getElementById('noneu-note').classList.toggle('show',res==='noneu');
+  const exp=document.getElementById('expenses-section');
+  exp.style.opacity=res==='eu'?'1':'0.4';
+  exp.style.pointerEvents=res==='eu'?'auto':'none';
+}
+
+function gv(id){return parseFloat(document.getElementById(id).value)||0;}
+
+function fmt(n){
+  return new Intl.NumberFormat('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2}).format(n)+' €';
+}
+
+function calculate(){
+  const gross=gv('grossRent');
+  const year=gv('taxYear')||new Date().getFullYear();
+  const q=parseInt(document.querySelector('input[name="quarter"]:checked').value);
+  const isAnnual=document.querySelector('input[name="filingmode"]:checked')?.value==='annual';
+  const isEU=res==='eu';
+  const t=T[lang];
+
+  if(!gross){
+    alert(lang==='es'?'Introduce los ingresos brutos de alquiler.':
+          lang==='no'?'Oppgi brutto leieinntekt.':
+          lang==='en'?'Please enter the gross rental income.':
+          'Fyll i bruttohyran.');
+    return;
+  }
+
+  const rate=isEU?0.19:0.24;
+  // Proration logic
+  const totalDays=getDaysInPeriod();
+  const daysRented=Math.min(parseInt(document.getElementById('daysRented').value)||totalDays, totalDays);
+  const proRatio=daysRented/totalDays;
+
+  // Fixed expenses: prorated by days rented / total days in period
+  const fixedExp=gv('interest')+gv('ibi')+gv('community')+gv('insurance')+gv('amort');
+  const fixedExpProrated=fixedExp*proRatio;
+  // Direct expenses: already proportional to rental period, no further proration needed
+  const directExp=gv('repairs')+gv('utilities')+gv('mgmt')+gv('otherExp');
+
+  const expenses=isEU?(fixedExpProrated+directExp):0;
+  const netIncome=isEU?Math.max(0,gross-expenses):gross;
+  const taxDue=netIncome*rate;
+  const isNeg=isEU&&(gross-expenses)<0;
+
+  document.getElementById('r-gross').textContent=fmt(gross);
+
+  if(isEU){
+    document.getElementById('eu-block').style.display='block';
+    document.getElementById('noneu-block').style.display='none';
+    const proText=daysRented<totalDays?' ('+daysRented+'/'+totalDays+' dias)':(lang==='es'?' (período completo)':lang==='no'?' (hele perioden)':lang==='en'?' (full period)':' (hela perioden)');
+    document.getElementById('r-expenses').textContent=expenses>0?'− '+fmt(expenses)+proText:'0,00 €';
+    document.getElementById('r-net').textContent=isNeg?t.negBase:fmt(netIncome);
+  } else {
+    document.getElementById('eu-block').style.display='none';
+    document.getElementById('noneu-block').style.display='block';
+    document.getElementById('r-base').textContent=fmt(gross);
+  }
+
+  document.getElementById('r-rate-lbl').textContent=t.rateLabel;
+  document.getElementById('r-rate').textContent=isEU?t.euRate:t.noneuRate;
+  document.getElementById('r-tax').textContent='− '+fmt(taxDue);
+  document.getElementById('r-amount').textContent=fmt(taxDue);
+
+  const nextY=year+1;
+  const dlYear=q===4?nextY:year;
+  document.getElementById('r-deadline').textContent=isAnnual?t.annualDeadline+' '+(year+1):(t.dlNote+': '+t.dl[q]+' '+dlYear);
+  document.getElementById('r-sub').textContent=isAnnual?(lang==='es'?'Declaración anual':lang==='no'?'Årsmelding':lang==='en'?'Annual return':'Årsdeklaration')+' · '+year:t.qs[q]+' · '+year;
+
+  // Quarterly breakdown
+  const body=document.getElementById('qb-body');
+  body.innerHTML='';
+  for(let i=1;i<=4;i++){
+    const dly=i===4?nextY:year;
+    const row=document.createElement('div');
+    row.className='qb-row'+(i===q?' current':'');
+    row.innerHTML=`<div class="qb-c name">${t.qs[i]}</div><div class="qb-c">${fmt(netIncome)}</div><div class="qb-c tax">${fmt(taxDue)}</div><div class="qb-c dl">${t.dl[i]} ${dly}</div>`;
+    body.appendChild(row);
+  }
+
+  document.getElementById('results').classList.add('visible');
+  document.getElementById('cta-box').classList.add('visible');
+  document.querySelector('[data-t="rFinal"]').textContent=isAnnual?t.rFinalAnnual:t.rFinal;
+
+  document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function reset(){
+  document.querySelectorAll('input[type=number]').forEach(i=>i.value='');
+  document.getElementById('results').classList.remove('visible');
+  document.getElementById('cta-box').classList.remove('visible');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+window.addEventListener('DOMContentLoaded',function(){
+  selPayer('single');
+  updateProration();
+});
+</script>
+</body>
+</html>

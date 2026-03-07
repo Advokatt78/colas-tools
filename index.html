@@ -769,6 +769,12 @@
       <div class="calc-card-desc" id="c3-desc">Simulera arvsskatten i Spanien (Comunidad Valenciana)</div>
       <div class="calc-card-arrow">→</div>
     </div>
+    <div class="calc-card" onclick="window.open('calculadora-alquiler-noresidente.html','_blank')">
+      <div class="calc-card-icon">🔑</div>
+      <div class="calc-card-title" id="c4-title">Hyresinkomst – IRNR</div>
+      <div class="calc-card-desc" id="c4-desc">Modelo 210 – kvartalsvis skatt på hyresinkomster</div>
+      <div class="calc-card-arrow">→</div>
+    </div>
   </div>
 
   <!-- Services -->
@@ -833,6 +839,8 @@ const T = {
     c2Desc: "Modelo 210 – kapitalvinstskatt för icke-residenter",
     c3Title: "Arvsskatt",
     c3Desc: "Simulera arvsskatten i Spanien (Comunidad Valenciana)",
+    c4Title: "Hyresinkomst – IRNR",
+    c4Desc: "Modelo 210 – kvartalsvis skatt på hyresinkomster för icke-residenter",
     svcLabel: "Tjänster",
     services: ["Köp och försäljning av fastigheter","Modelo 210 och icke-residentskatt","Arv med tillgångar i Spanien","Hyresavtal och arrende","Bolagsrätt och företag","NIE och administrativa ärenden"],
     qrLabel: "QR-kod",
@@ -854,6 +862,8 @@ const T = {
     c2Desc: "Modelo 210 – capital gains tax for non-residents",
     c3Title: "Inheritance Tax",
     c3Desc: "Simulate inheritance tax in Spain (Comunidad Valenciana)",
+    c4Title: "Rental Income – IRNR",
+    c4Desc: "Modelo 210 – quarterly tax on rental income for non-residents",
     svcLabel: "Services",
     services: ["Property purchase and sale","Modelo 210 and non-resident tax","Inheritance with assets in Spain","Rental agreements","Corporate law and companies","NIE and administrative matters"],
     qrLabel: "QR Code",
@@ -875,6 +885,8 @@ const T = {
     c2Desc: "Modelo 210 – kapitalgevinstskatt for ikke-residenter",
     c3Title: "Arveavgift",
     c3Desc: "Similer arveavgiften i Spania (Comunidad Valenciana)",
+    c4Title: "Leieinntekt – IRNR",
+    c4Desc: "Modelo 210 – kvartalsvis skatt på leieinntekter for ikke-bosatte",
     svcLabel: "Tjenester",
     services: ["Kjøp og salg av eiendom","Modelo 210 og ikke-residentskatt","Arv med eiendeler i Spania","Leiekontrakter og leieforhold","Selskapsrett og bedrifter","NIE og administrative saker"],
     qrLabel: "QR-kode",
@@ -896,6 +908,8 @@ const T = {
     c2Desc: "Modelo 210 – ganancia patrimonial para no residentes",
     c3Title: "Impuesto de sucesiones",
     c3Desc: "Simula el impuesto de sucesiones en España (C. Valenciana)",
+    c4Title: "Ingresos por alquiler – IRNR",
+    c4Desc: "Modelo 210 – declaración trimestral de alquiler para no residentes",
     svcLabel: "Servicios",
     services: ["Compraventa de inmuebles","Modelo 210 e IRNR","Herencias con bienes en España","Arrendamientos","Derecho mercantil y sociedades","NIE y gestiones administrativas"],
     qrLabel: "Código QR",
@@ -931,6 +945,8 @@ function setLang(l) {
   document.getElementById('c2-desc').textContent = t.c2Desc;
   document.getElementById('c3-title').textContent = t.c3Title;
   document.getElementById('c3-desc').textContent = t.c3Desc;
+  if(t.c4Title) document.getElementById('c4-title').textContent = t.c4Title;
+  if(t.c4Desc) document.getElementById('c4-desc').textContent = t.c4Desc;
   document.getElementById('svc-label').textContent = t.svcLabel;
   document.getElementById('qr-label').textContent = t.qrLabel;
   document.getElementById('qr-title').textContent = t.qrTitle;
