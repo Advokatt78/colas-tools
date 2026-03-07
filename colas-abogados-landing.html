@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colás Abogados – Juridisk rådgivning på Costa Blanca</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root {
+    --gold: #CC0B20;
+    --gold-light: #E8909A;
+    --gold-dark: #A00820;
+    --dark: #111518;
+    --dark-mid: #1C2028;
+    --dark-light: #252A32;
+    --cream: #FAFAFA;
+    --cream-dark: #F0F0F0;
+    --text: #191E23;
+    --muted: #616670;
+    --border: #E0E0E4;
+    --white: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--cream);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── BACKGROUND TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(204,11,32,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 90%, rgba(204,11,32,0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── LANGUAGE TOGGLE ── */
+  .lang-bar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    padding: 20px 0 0;
+  }
+
+  .lang-btn {
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(204,11,32,0.3);
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    color: rgba(255,255,255,0.45);
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+  }
+
+  .lang-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .lang-btn.active { background: var(--gold); border-color: var(--gold); color: var(--dark); }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 52px 0 48px;
+    position: relative;
+  }
+
+  .hero-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .ornament-line {
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+
+  .ornament-line.right {
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+
+  .ornament-diamond {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  .firm-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 8vw, 54px);
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .firm-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 4vw, 24px);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+    max-width: 480px;
+    margin: 0 auto 8px;
+  }
+
+  /* ── LAWYER CARD ── */
+  .lawyer-card {
+    background: linear-gradient(135deg, var(--dark-mid) 0%, var(--dark-light) 100%);
+    border: 1px solid rgba(204,11,32,0.2);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .lawyer-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .lawyer-inner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .lawyer-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border: 2px solid rgba(204,11,32,0.4);
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--dark);
+    flex-shrink: 0;
+    letter-spacing: -1px;
+  }
+
+  .lawyer-info { flex: 1; min-width: 0; }
+
+  .lawyer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .lawyer-title {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .lawyer-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .lawyer-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .lawyer-contact-item:hover { color: var(--gold-light); }
+
+  .contact-icon {
+    width: 16px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  @media(max-width: 480px) {
+    .lawyer-inner { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ── BOT CTA ── */
+  .bot-card {
+    background: linear-gradient(135deg, #1A2E20 0%, #152218 100%);
+    border: 1px solid rgba(100,200,100,0.2);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .bot-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(100,200,100,0.5), transparent);
+  }
+
+  .bot-icon-wrap {
+    width: 56px;
+    height: 56px;
+    background: rgba(100,200,100,0.15);
+    border: 1px solid rgba(100,200,100,0.3);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+
+  .bot-text { flex: 1; }
+
+  .bot-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(100,200,100,0.8);
+    margin-bottom: 6px;
+  }
+
+  .bot-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .bot-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.5;
+  }
+
+  .bot-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    background: rgba(100,200,100,0.2);
+    border: 1px solid rgba(100,200,100,0.4);
+    border-radius: 10px;
+    color: rgba(150,230,150,0.9);
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .bot-btn:hover {
+    background: rgba(100,200,100,0.3);
+    border-color: rgba(100,200,100,0.6);
+  }
+
+  @media(max-width: 560px) {
+    .bot-card { flex-direction: column; align-items: flex-start; }
+    .bot-btn { width: 100%; justify-content: center; }
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    margin-top: 8px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(204,11,32,0.3), transparent);
+  }
+
+  /* ── CALCULATORS GRID ── */
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  @media(max-width: 560px) {
+    .calc-grid { grid-template-columns: 1fr; }
+  }
+
+  .calc-card {
+    background: linear-gradient(135deg, var(--dark-mid) 0%, var(--dark-light) 100%);
+    border: 1px solid rgba(204,11,32,0.15);
+    border-radius: 14px;
+    padding: 22px 18px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: all 0.25s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .calc-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  .calc-card:hover {
+    border-color: rgba(204,11,32,0.35);
+    transform: translateY(-3px);
+  }
+
+  .calc-card:hover::after { transform: scaleX(1); }
+
+  .calc-card-icon {
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  .calc-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .calc-card-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .calc-card-arrow {
+    font-size: 12px;
+    color: var(--gold);
+    align-self: flex-end;
+  }
+
+  /* ── MODAL OVERLAY ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,15,20,0.92);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    backdrop-filter: blur(8px);
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal-box {
+    background: var(--dark-mid);
+    border: 1px solid rgba(204,11,32,0.2);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: modalIn 0.3s ease;
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.95) translateY(16px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    border-bottom: 1px solid rgba(204,11,32,0.15);
+    flex-shrink: 0;
+  }
+
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  .modal-close {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: transparent;
+    color: rgba(255,255,255,0.5);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .modal-close:hover { background: rgba(255,255,255,0.1); color: var(--white); }
+
+  .modal-iframe-wrap {
+    flex: 1;
+    overflow: hidden;
+    background: var(--cream);
+  }
+
+  .modal-iframe-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    min-height: 70vh;
+  }
+
+  /* ── QR SECTION ── */
+  .qr-section {
+    background: linear-gradient(135deg, var(--dark-mid) 0%, var(--dark-light) 100%);
+    border: 1px solid rgba(204,11,32,0.2);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .qr-wrap {
+    width: 110px;
+    height: 110px;
+    background: var(--white);
+    border-radius: 10px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  #qr-code canvas, #qr-code img {
+    width: 94px !important;
+    height: 94px !important;
+  }
+
+  .qr-text { flex: 1; }
+
+  .qr-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .qr-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .qr-url {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+
+  @media(max-width: 480px) {
+    .qr-section { flex-direction: column; align-items: center; text-align: center; }
+  }
+
+  /* ── SERVICES ── */
+  .services-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  @media(max-width:480px) { .services-list { grid-template-columns: 1fr; } }
+
+  .service-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+  }
+
+  .service-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .service-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.4;
+  }
+
+  /* ── DISCLAIMER ── */
+  .disclaimer-box {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+  }
+
+  .disclaimer-text {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    line-height: 1.7;
+    text-align: center;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+    font-weight: 300;
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .fade-up:nth-child(1) { animation-delay: 0.1s; }
+  .fade-up:nth-child(2) { animation-delay: 0.2s; }
+  .fade-up:nth-child(3) { animation-delay: 0.3s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- MODAL for calculators -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title" id="modal-title">Kalkylator</span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-iframe-wrap">
+      <iframe id="modal-iframe" src="" title="Kalkylator"></iframe>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Language Bar -->
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="setLang('sv')" id="lb-sv">SV</button>
+    <button class="lang-btn" onclick="setLang('en')" id="lb-en">EN</button>
+    <button class="lang-btn" onclick="setLang('no')" id="lb-no">NO</button>
+    <button class="lang-btn" onclick="setLang('es')" id="lb-es">ES</button>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero fade-up">
+    <div class="hero-ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line right"></div>
+    </div>
+    <div class="firm-name">Colás Abogados</div>
+    <div class="firm-sub">Advokater</div>
+    <p class="tagline" id="tagline">Juridisk specialistkompetens för utländska fastighetsägare på Costa Blanca</p>
+  </div>
+
+  <!-- Lawyer Card -->
+  <div class="lawyer-card fade-up">
+    <div class="lawyer-inner">
+      <div class="lawyer-avatar">HG</div>
+      <div class="lawyer-info">
+        <div class="lawyer-name">Hugo Gutiérrez Colás</div>
+        <div class="lawyer-title">Abogado · Col. 6.539 ICALI</div>
+        <div class="lawyer-contacts">
+          <a href="tel:+34966868492" class="lawyer-contact-item">
+            <span class="contact-icon">📞</span>
+            <span>+34 966 868 492</span>
+          </a>
+          <a href="tel:+34629549430" class="lawyer-contact-item">
+            <span class="contact-icon">📱</span>
+            <span>+34 629 549 430</span>
+          </a>
+          <a href="/cdn-cgi/l/email-protection#0960676f66496a6665687a24686b666e686d667a276a6664" class="lawyer-contact-item">
+            <span class="contact-icon">✉</span>
+            <span><span class="__cf_email__" data-cfemail="7811161e17381b1714190b55191a171f191c170b561b1715">[email&#160;protected]</span></span>
+          </a>
+          <a href="https://www.colas-abogados.com" target="_blank" class="lawyer-contact-item">
+            <span class="contact-icon">🌐</span>
+            <span>www.colas-abogados.com</span>
+          </a>
+          <span class="lawyer-contact-item">
+            <span class="contact-icon">📍</span>
+            <span>Calle Mozart 9, 03581 Alfaz del Pi, Alicante</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bot CTA -->
+  <div class="bot-card fade-up">
+    <div class="bot-icon-wrap">🤖</div>
+    <div class="bot-text">
+      <div class="bot-label" id="bot-label">Assistent tillgänglig 24/7</div>
+      <div class="bot-title" id="bot-title">Juridisk rådgivning på ditt språk</div>
+      <div class="bot-desc" id="bot-desc">Skriv din fråga direkt – vi svarar på svenska, norska, danska och engelska.</div>
+    </div>
+    <a href="https://t.me/Colasabogadosbot" target="_blank" class="bot-btn" id="bot-btn">
+      ✈ Telegram
+    </a>
+  </div>
+
+  <!-- Calculators -->
+  <div class="section-header">
+    <span class="section-label" id="calc-label">Kalkylatorer</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="calc-grid">
+    <div class="calc-card" onclick="openCalc('buy')">
+      <div class="calc-card-icon">🏠</div>
+      <div class="calc-card-title" id="c1-title">Köpkostnader</div>
+      <div class="calc-card-desc" id="c1-desc">Skatter, notarie och avgifter vid köp av bostad i Spanien</div>
+      <div class="calc-card-arrow">→</div>
+    </div>
+    <div class="calc-card" onclick="openCalc('sell')">
+      <div class="calc-card-icon">📊</div>
+      <div class="calc-card-title" id="c2-title">Vinstskatt vid försäljning</div>
+      <div class="calc-card-desc" id="c2-desc">Modelo 210 – kapitalvinstskatt för icke-residenter</div>
+      <div class="calc-card-arrow">→</div>
+    </div>
+    <div class="calc-card" onclick="openCalc('inherit')">
+      <div class="calc-card-icon">⚖️</div>
+      <div class="calc-card-title" id="c3-title">Arvsskatt</div>
+      <div class="calc-card-desc" id="c3-desc">Simulera arvsskatten i Spanien (Comunidad Valenciana)</div>
+      <div class="calc-card-arrow">→</div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <div class="section-header">
+    <span class="section-label" id="svc-label">Tjänster</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="services-list" id="services-list">
+    <div class="service-item"><div class="service-dot"></div><div class="service-text" data-key="s1">Köp och försäljning av fastigheter</div></div>
+    <div class="service-item"><div class="service-dot"></div><div class="service-text" data-key="s2">Modelo 210 och icke-residentskatt</div></div>
+    <div class="service-item"><div class="service-dot"></div><div class="service-text" data-key="s3">Arv med tillgångar i Spanien</div></div>
+    <div class="service-item"><div class="service-dot"></div><div class="service-text" data-key="s4">Hyresavtal och arrende</div></div>
+    <div class="service-item"><div class="service-dot"></div><div class="service-text" data-key="s5">Bolagsrätt och företag</div></div>
+    <div class="service-item"><div class="service-dot"></div><div class="service-text" data-key="s6">NIE och administrativa ärenden</div></div>
+  </div>
+
+  <!-- QR Code -->
+  <div class="section-header">
+    <span class="section-label" id="qr-label">QR-kod</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="qr-section">
+    <div class="qr-wrap">
+      <div id="qr-code"></div>
+    </div>
+    <div class="qr-text">
+      <div class="qr-title" id="qr-title">Skanna för direktåtkomst</div>
+      <div class="qr-desc" id="qr-desc">Skanna koden med din mobilkamera för att komma till vår juridiska assistent och kalkylatorer – direkt, utan att söka.</div>
+      <div class="qr-url">t.me/Colasabogadosbot</div>
+    </div>
+  </div>
+
+  <!-- Disclaimer -->
+  <div class="disclaimer-box">
+    <p class="disclaimer-text" id="disclaimer-text">
+      Informationen på denna sida och via vår assistent är av allmän och informativ karaktär. Den utgör inte juridisk rådgivning och är inte bindande för byrån. All information måste bekräftas av Hugo Gutiérrez Colás, advokat 6.539 ICALI, innan några juridiska eller ekonomiska beslut fattas.
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-logo">Colás Abogados · Advokater · Costa Blanca</div>
+  </div>
+
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── Translations ──────────────────────────────────────────────────────────
+const T = {
+  sv: {
+    tagline: "Juridisk specialistkompetens för utländska fastighetsägare på Costa Blanca",
+    botLabel: "Assistent tillgänglig 24/7",
+    botTitle: "Juridisk rådgivning på ditt språk",
+    botDesc: "Skriv din fråga direkt – vi svarar på svenska, norska, danska och engelska.",
+    botBtn: "✈ Öppna i Telegram",
+    calcLabel: "Kalkylatorer",
+    c1Title: "Köpkostnader",
+    c1Desc: "Skatter, notarie och avgifter vid köp av bostad i Spanien",
+    c2Title: "Vinstskatt vid försäljning",
+    c2Desc: "Modelo 210 – kapitalvinstskatt för icke-residenter",
+    c3Title: "Arvsskatt",
+    c3Desc: "Simulera arvsskatten i Spanien (Comunidad Valenciana)",
+    svcLabel: "Tjänster",
+    services: ["Köp och försäljning av fastigheter","Modelo 210 och icke-residentskatt","Arv med tillgångar i Spanien","Hyresavtal och arrende","Bolagsrätt och företag","NIE och administrativa ärenden"],
+    qrLabel: "QR-kod",
+    qrTitle: "Skanna för direktåtkomst",
+    qrDesc: "Skanna koden med din mobilkamera för att komma till vår juridiska assistent och kalkylatorer – direkt, utan att söka.",
+    disclaimer: "Informationen på denna sida och via vår assistent är av allmän och informativ karaktär. Den utgör inte juridisk rådgivning och är inte bindande för byrån. All information måste bekräftas av Hugo Gutiérrez Colás, advokat 6.539 ICALI, innan några juridiska eller ekonomiska beslut fattas.",
+    modalTitles: { buy: "Köpkostnadskalkylator", sell: "Skattekalkylator – Försäljning", inherit: "Arvsskattesimulator" }
+  },
+  en: {
+    tagline: "Specialist legal services for foreign property owners on the Costa Blanca",
+    botLabel: "Assistant available 24/7",
+    botTitle: "Legal advice in your language",
+    botDesc: "Ask your question directly – we reply in English, Swedish, Norwegian and Danish.",
+    botBtn: "✈ Open in Telegram",
+    calcLabel: "Calculators",
+    c1Title: "Purchase Costs",
+    c1Desc: "Taxes, notary and fees when buying property in Spain",
+    c2Title: "Capital Gains Tax on Sale",
+    c2Desc: "Modelo 210 – capital gains tax for non-residents",
+    c3Title: "Inheritance Tax",
+    c3Desc: "Simulate inheritance tax in Spain (Comunidad Valenciana)",
+    svcLabel: "Services",
+    services: ["Property purchase and sale","Modelo 210 and non-resident tax","Inheritance with assets in Spain","Rental agreements","Corporate law and companies","NIE and administrative matters"],
+    qrLabel: "QR Code",
+    qrTitle: "Scan for direct access",
+    qrDesc: "Scan the code with your phone camera to access our legal assistant and calculators instantly.",
+    disclaimer: "The information on this page and via our assistant is for general informational purposes only. It does not constitute legal advice and is not binding on the firm. All information must be validated by Hugo Gutiérrez Colás, Lawyer 6.539 ICALI, before making any legal or financial decision.",
+    modalTitles: { buy: "Purchase Cost Calculator", sell: "Tax Calculator – Property Sale", inherit: "Inheritance Tax Simulator" }
+  },
+  no: {
+    tagline: "Juridisk spesialkompetanse for utenlandske eiendomseiere på Costa Blanca",
+    botLabel: "Assistent tilgjengelig 24/7",
+    botTitle: "Juridisk rådgivning på ditt språk",
+    botDesc: "Still ditt spørsmål direkte – vi svarer på norsk, svensk, dansk og engelsk.",
+    botBtn: "✈ Åpne i Telegram",
+    calcLabel: "Kalkulatorer",
+    c1Title: "Kjøpskostnader",
+    c1Desc: "Skatter, notarius og avgifter ved kjøp av bolig i Spania",
+    c2Title: "Gevinstskatt ved salg",
+    c2Desc: "Modelo 210 – kapitalgevinstskatt for ikke-residenter",
+    c3Title: "Arveavgift",
+    c3Desc: "Similer arveavgiften i Spania (Comunidad Valenciana)",
+    svcLabel: "Tjenester",
+    services: ["Kjøp og salg av eiendom","Modelo 210 og ikke-residentskatt","Arv med eiendeler i Spania","Leiekontrakter og leieforhold","Selskapsrett og bedrifter","NIE og administrative saker"],
+    qrLabel: "QR-kode",
+    qrTitle: "Skann for direkte tilgang",
+    qrDesc: "Skann koden med mobilkameraet for å få direkte tilgang til vår juridiske assistent og kalkulatorer.",
+    disclaimer: "Informasjonen på denne siden og via vår assistent er utelukkende av generell og informativ karakter. Den utgjør ikke juridisk rådgivning og er ikke bindende for kontoret. All informasjon må bekreftes av Hugo Gutiérrez Colás, advokat 6.539 ICALI, før juridiske eller økonomiske beslutninger tas.",
+    modalTitles: { buy: "Kjøpskostnadskalkulator", sell: "Skattekalkulator – Salg", inherit: "Arveavgiftssimulator" }
+  },
+  es: {
+    tagline: "Asesoramiento jurídico especializado para propietarios extranjeros en la Costa Blanca",
+    botLabel: "Asistente disponible 24/7",
+    botTitle: "Asesoramiento jurídico en tu idioma",
+    botDesc: "Escribe tu consulta directamente – respondemos en español, sueco, noruego y danés.",
+    botBtn: "✈ Abrir en Telegram",
+    calcLabel: "Calculadoras",
+    c1Title: "Costes de compra",
+    c1Desc: "Impuestos, notaría y gastos al comprar un inmueble en España",
+    c2Title: "Impuesto sobre la ganancia",
+    c2Desc: "Modelo 210 – ganancia patrimonial para no residentes",
+    c3Title: "Impuesto de sucesiones",
+    c3Desc: "Simula el impuesto de sucesiones en España (C. Valenciana)",
+    svcLabel: "Servicios",
+    services: ["Compraventa de inmuebles","Modelo 210 e IRNR","Herencias con bienes en España","Arrendamientos","Derecho mercantil y sociedades","NIE y gestiones administrativas"],
+    qrLabel: "Código QR",
+    qrTitle: "Escanea para acceso directo",
+    qrDesc: "Escanea el código con tu móvil para acceder directamente a nuestro asistente jurídico y calculadoras.",
+    disclaimer: "La información de esta página y de nuestro asistente tiene carácter exclusivamente informativo y general. No constituye asesoramiento jurídico vinculante ni compromete al despacho. Toda consulta debe ser validada por Hugo Gutiérrez Colás, Abogado 6.539 ICALI, antes de tomar cualquier decisión.",
+    modalTitles: { buy: "Calculadora de costes de compra", sell: "Calculadora fiscal – Venta", inherit: "Simulador del impuesto de sucesiones" }
+  }
+};
+
+let lang = 'sv';
+const CALC_FILES = {
+  buy: 'calculadora-compra-espana.html',
+  sell: 'calculadora-venta-noresidente.html',
+  inherit: 'simulador-herencia-espana.html'
+};
+
+function setLang(l) {
+  lang = l;
+  ['sv','en','no','es'].forEach(x => document.getElementById('lb-'+x).classList.remove('active'));
+  document.getElementById('lb-'+l).classList.add('active');
+  const t = T[l];
+
+  document.getElementById('tagline').textContent = t.tagline;
+  document.getElementById('bot-label').textContent = t.botLabel;
+  document.getElementById('bot-title').textContent = t.botTitle;
+  document.getElementById('bot-desc').textContent = t.botDesc;
+  document.getElementById('bot-btn').textContent = t.botBtn;
+  document.getElementById('calc-label').textContent = t.calcLabel;
+  document.getElementById('c1-title').textContent = t.c1Title;
+  document.getElementById('c1-desc').textContent = t.c1Desc;
+  document.getElementById('c2-title').textContent = t.c2Title;
+  document.getElementById('c2-desc').textContent = t.c2Desc;
+  document.getElementById('c3-title').textContent = t.c3Title;
+  document.getElementById('c3-desc').textContent = t.c3Desc;
+  document.getElementById('svc-label').textContent = t.svcLabel;
+  document.getElementById('qr-label').textContent = t.qrLabel;
+  document.getElementById('qr-title').textContent = t.qrTitle;
+  document.getElementById('qr-desc').textContent = t.qrDesc;
+  document.getElementById('disclaimer-text').textContent = t.disclaimer;
+
+  const items = document.querySelectorAll('[data-key]');
+  items.forEach((el, i) => { if (t.services[i]) el.textContent = t.services[i]; });
+}
+
+function openCalc(type) {
+  const t = T[lang];
+  document.getElementById('modal-title').textContent = t.modalTitles[type];
+  document.getElementById('modal-iframe').src = CALC_FILES[type];
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.getElementById('modal-iframe').src = '';
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// Generate QR code
+window.addEventListener('load', () => {
+  n

@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Köpkostnadskalkylator – Bostad i Spanien</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #162032;
+    --navy-mid: #1E2E42;
+    --gold: #B8973A;
+    --gold-light: #E2CFA0;
+    --cream: #FAF7F2;
+    --white: #FFFFFF;
+    --border: #E0D8CC;
+    --muted: #7A7870;
+    --text: #2C2C2A;
+    --green: #3A7D5A;
+    --red: #9B3B3B;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  .wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 52px 24px 88px;
+  }
+
+  /* Language */
+  .lang-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-bottom: 36px;
+  }
+
+  .lang-btn {
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--muted);
+    transition: all 0.18s;
+  }
+  .lang-btn.active { background: var(--navy); border-color: var(--navy); color: var(--white); }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 52px; }
+  .header .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 5vw, 46px);
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .header p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+  .header-line {
+    width: 40px; height: 1.5px;
+    background: var(--gold);
+    margin: 22px auto 0;
+  }
+
+  /* Step pills */
+  .steps-nav {
+    display: flex;
+    gap: 0;
+    margin-bottom: 32px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--white);
+  }
+
+  .step-pill {
+    flex: 1;
+    padding: 14px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .step-pill:last-child { border-right: none; }
+  .step-pill .pill-num {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 3px;
+    text-transform: uppercase;
+  }
+  .step-pill .pill-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .step-pill.active {
+    background: var(--navy);
+  }
+  .step-pill.active .pill-num,
+  .step-pill.active .pill-label { color: var(--white); }
+  .step-pill.done { background: #F0EDE8; }
+  .step-pill.done .pill-num { color: var(--gold); }
+
+  @media (max-width: 560px) {
+    .step-pill .pill-label { font-size: 11px; }
+  }
+
+  /* Panels */
+  .panel { display: none; }
+  .panel.active { display: block; animation: fadeIn 0.3s ease; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Cards */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 18px;
+  }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .card-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 26px;
+    line-height: 1.5;
+  }
+
+  /* Type selector */
+  .type-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .type-opt {
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .type-opt:hover { border-color: var(--gold-light); }
+  .type-opt.selected { border-color: var(--gold); background: #FDF9F1; }
+  .type-opt input { display: none; }
+  .type-opt .type-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .type-opt .type-tax {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--gold);
+    display: block;
+  }
+  .type-opt .type-desc {
+    font-size: 11px;
+    color: var(--muted);
+    display: block;
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+
+  /* Region selector */
+  .region-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 10px;
+    font-style: italic;
+  }
+
+  select.styled {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    background: var(--white);
+    cursor: pointer;
+    transition: border-color 0.2s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237A7870' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+  }
+  select.styled:focus { outline: none; border-color: var(--gold); }
+
+  /* Fields */
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 560px) { .field-grid { grid-template-columns: 1fr; } }
+
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field.full { grid-column: 1 / -1; }
+
+  label.field-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .input-wrap { position: relative; }
+  .input-wrap .sym {
+    position: absolute; right: 12px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px; color: var(--muted);
+    pointer-events: none;
+  }
+
+  input[type="number"] {
+    width: 100%;
+    padding: 11px 36px 11px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    background: var(--white);
+    transition: border-color 0.2s;
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+  input[type="number"]:focus { outline: none; border-color: var(--gold); }
+
+  .field-hint { font-size: 11px; color: var(--muted); font-style: italic; }
+
+  /* Collapsible */
+  .collapse-toggle {
+    display: flex; align-items: center; gap: 8px;
+    background: none; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500;
+    color: var(--gold); padding: 0; margin-top: 6px;
+    transition: opacity 0.2s;
+  }
+  .collapse-toggle:hover { opacity: 0.7; }
+  .collapse-toggle .arr { transition: transform 0.22s; font-size: 10px; }
+  .collapse-toggle.open .arr { transform: rotate(180deg); }
+
+  .collapsible {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--border);
+  }
+  @media (max-width: 560px) { .collapsible { grid-template-columns: 1fr; } }
+  .collapsible.open { display: grid; }
+
+  /* Nav buttons */
+  .nav-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .btn-next {
+    flex: 1;
+    padding: 15px;
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-next:hover { background: var(--navy-mid); transform: translateY(-1px); }
+
+  .btn-back {
+    padding: 15px 22px;
+    background: transparent;
+    color: var(--muted);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-back:hover { border-color: var(--navy); color: var(--navy); }
+
+  /* ── RESULTS ── */
+  .results-wrap { display: none; }
+  .results-wrap.visible { display: block; animation: fadeIn 0.4s ease; }
+
+  .results-hero {
+    background: var(--navy);
+    border-radius: 14px;
+    padding: 40px 36px;
+    margin-bottom: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .results-hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(184,151,58,0.08);
+  }
+
+  .results-hero-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    opacity: 0.7;
+  }
+
+  .results-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 3vw, 24px);
+    color: var(--white);
+    font-weight: 400;
+    margin-bottom: 28px;
+    line-height: 1.3;
+  }
+
+  .hero-amounts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 480px) { .hero-amounts { grid-template-columns: 1fr; } }
+
+  .hero-amt {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+
+  .hero-amt-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+  }
+
+  .hero-amt-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  .hero-amt-value.gold { color: var(--gold-light); }
+
+  /* Breakdown table */
+  .breakdown-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 18px;
+  }
+
+  .breakdown-head {
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .breakdown-head-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--navy);
+  }
+
+  .breakdown-head-badge {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #F0EDE8;
+    color: var(--muted);
+  }
+
+  .breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 28px;
+    border-bottom: 1px solid #F5F2ED;
+    gap: 12px;
+  }
+  .breakdown-row:last-child { border-bottom: none; }
+
+  .br-label { font-size: 14px; color: var(--text); line-height: 1.4; }
+  .br-sub { font-size: 11px; color: var(--muted); display: block; margin-top: 2px; }
+  .br-value { font-size: 15px; font-weight: 500; color: var(--text); white-space: nowrap; }
+  .br-value.accent { color: var(--gold); }
+
+  .breakdown-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 28px;
+    background: #F8F5EF;
+    border-top: 1.5px solid var(--border);
+    gap: 12px;
+  }
+
+  .bt-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--navy);
+  }
+
+  .bt-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  /* Summary bar */
+  .summary-bar {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 18px;
+    display: flex;
+    gap: 0;
+  }
+
+  .sum-item {
+    flex: 1;
+    text-align: center;
+    padding: 0 16px;
+    border-right: 1px solid var(--border);
+  }
+  .sum-item:last-child { border-right: none; }
+
+  .sum-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .sum-value { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; color: var(--navy); }
+
+  @media (max-width: 560px) {
+    .summary-bar { flex-direction: column; gap: 16px; }
+    .sum-item { border-right: none; border-bottom: 1px solid var(--border); padding: 0 0 16px; }
+    .sum-item:last-child { border-bottom: none; padding-bottom: 0; }
+  }
+
+  /* CTA */
+  .cta-card {
+    background: linear-gradient(135deg, var(--navy) 0%, #1E3A5A 100%);
+    border-radius: 12px;
+    padding: 36px 32px;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  .cta-card .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .cta-card p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-btns {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-link {
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .cta-link.primary { background: var(--gold); color: var(--navy); }
+  .cta-link.primary:hover { background: var(--gold-light); }
+  .cta-link.secondary { border: 1px solid rgba(255,255,255,0.25); color: var(--white); }
+  .cta-link.secondary:hover { border-color: rgba(255,255,255,0.5); }
+
+  .btn-reset {
+    display: block;
+    margin: 0 auto;
+    background: none; border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; color: var(--muted);
+    text-decoration: underline; cursor: pointer;
+    margin-top: 6px;
+  }
+
+  .disclaimer {
+    font-size: 11px; color: var(--muted);
+    text-align: center; line-height: 1.6;
+    margin-top: 28px;
+    max-width: 580px;
+    margin-left: auto; margin-right: auto;
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Lang -->
+  <div class="lang-row">
+    <button class="lang-btn active" onclick="setLang('sv')" id="lb-sv">Svenska</button>
+    <button class="lang-btn" onclick="setLang('en')" id="lb-en">English</button>
+    <button class="lang-btn" onclick="setLang('es')" id="lb-es">Español</button>
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+    <span class="tag">Colás Abogados</span>
+    <h1 data-t="h1">Köpkostnadskalkylator</h1>
+    <p data-t="subtitle">Beräkna alla kostnader du kan förvänta dig när du köper en bostad i Spanien – skatter, notarie, advokat och registrering.</p>
+    <div class="header-line"></div>
+  </div>
+
+  <!-- Steps nav -->
+  <div class="steps-nav">
+    <div class="step-pill active" id="pill-1" onclick="goStep(1)">
+      <span class="pill-num" data-t="step1num">Steg 1</span>
+      <span class="pill-label" data-t="step1label">Bostad</span>
+    </div>
+    <div class="step-pill" id="pill-2" onclick="goStep(2)">
+      <span class="pill-num" data-t="step2num">Steg 2</span>
+      <span class="pill-label" data-t="step2label">Skatter</span>
+    </div>
+    <div class="step-pill" id="pill-3" onclick="goStep(3)">
+      <span class="pill-num" data-t="step3num">Steg 3</span>
+      <span class="pill-label" data-t="step3label">Tjänster</span>
+    </div>
+  </div>
+
+  <!-- ── PANEL 1: Property ── -->
+  <div class="panel active" id="panel-1">
+    <div class="card">
+      <div class="card-title" data-t="p1title">Om bostaden</div>
+      <p class="card-sub" data-t="p1sub">Ange köpepris och välj typ av bostad</p>
+
+      <div class="field-grid">
+        <div class="field full">
+          <label class="field-label" data-t="priceLabel">Köpepris</label>
+          <div class="input-wrap">
+            <input type="number" id="price" placeholder="250 000" min="0">
+            <span class="sym">€</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px">
+        <label class="field-label" style="display:block;margin-bottom:12px" data-t="typeLabel">Typ av bostad</label>
+        <div class="type-grid">
+          <label class="type-opt selected" id="opt-second">
+            <input type="radio" name="proptype" value="second" checked onchange="selectType(this,'opt-second')">
+            <span class="type-name" data-t="secondName">Andrahandsbostad</span>
+            <span class="type-tax" id="itp-rate-display">10%</span>
+            <span class="type-desc" data-t="secondDesc">ITP – Överlåtelseskatt</span>
+          </label>
+          <label class="type-opt" id="opt-new">
+            <input type="radio" name="proptype" value="new" onchange="selectType(this,'opt-new')">
+            <span class="type-name" data-t="newName">Nyproduktion</span>
+            <span class="type-tax">10% + 1,5%</span>
+            <span class="type-desc" data-t="newDesc">IVA + AJD (stämpelskatt)</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" data-t="regionTitle">Region</div>
+      <p class="card-sub" data-t="regionSub">ITP-skatten varierar beroende på region. Välj den autonoma regionen där bostaden ligger.</p>
+      <select class="styled" id="region" onchange="updateItpDisplay()">
+        <option value="10" selected>Comunidad Valenciana (Alicante, Valencia, Castellón) — 10%</option>
+        <option value="8">Murcia — 8%</option>
+        <option value="7">Andalucía — 7%</option>
+        <option value="10">Cataluña — 10%</option>
+        <option value="6">Madrid — 6%</option>
+        <option value="8">Islas Baleares — 8%</option>
+        <option value="10">Canarias (IGIC) — 6,5% + 1%</option>
+        <option value="8">Castilla-La Mancha — 9%</option>
+        <option value="8">Aragón — 8%</option>
+        <option value="8">Otras regiones — 8%</option>
+      </select>
+      <p class="region-note" data-t="regionNote">* Los tipos impositivos son orientativos y pueden estar sujetos a modificaciones legislativas.</p>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-next" onclick="nextStep(1)" data-t="nextBtn">Nästa →</button>
+    </div>
+  </div>
+
+  <!-- ── PANEL 2: Taxes ── -->
+  <div class="panel" id="panel-2">
+    <div class="card">
+      <div class="card-title" data-t="p2title">Skatter vid köpet</div>
+      <p class="card-sub" data-t="p2sub">Beräknade skatter baserade på köpepriset och vald region. Du kan justera beloppen manuellt om du har exakta siffror.</p>
+
+      <div class="field-grid">
+        <div class="field" id="field-itp">
+          <label class="field-label" data-t="itpFieldLabel">ITP – Överlåtelseskatt</label>
+          <div class="input-wrap">
+            <input type="number" id="itp" placeholder="0" min="0">
+            <span class="sym">€</span>
+          </div>
+          <span class="field-hint" id="itp-hint-text"></span>
+        </div>
+        <div class="field" id="field-iva" style="display:none">
+          <label class="field-label" data-t="ivaLabel">IVA (moms)</label>
+          <div class="input-wrap">
+            <input type="number" id="iva" placeholder="0" min="0">
+            <span class="sym">€</span>
+          </div>
+          <span class="field-hint" data-t="ivaHint">10% på nyproduktion</span>
+        </div>
+        <div class="field" id="field-ajd" style="display:none">
+          <label class="field-label" data-t="ajdLabel">AJD – Stämpelskatt</label>
+          <div class="input-wrap">
+            <input type="number" id="ajd" placeholder="0" min="0">
+            <span class="sym">€</span>
+          </div>
+          <span class="field-hint" data-t="ajdHint">1,5% på nyproduktion (Valenciana)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-back" onclick="goStep(1)" data-t="backBtn">←</button>
+      <button class="btn-next" onclick="nextStep(2)" data-t="nextBtn">Nästa →</button>
+    </div>
+  </div>
+
+  <!-- ── PANEL 3: Services ── -->
+  <div class="panel" id="panel-3">
+    <div class="card">
+      <div class="card-title" data-t="p3title">Notarie, register & tjänster</div>
+      <p class="card-sub" data-t="p3sub">Standardkostnaderna beräknas automatiskt. Du kan justera eller lägga till egna siffror.</p>
+
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label" data-t="notaryLabel">Notariekostnad</label>
+          <div class="input-wrap">
+            <input type="number" id="notary" placeholder="0" min="0">
+            <span class="sym">€</span>
+          </div>
+          <span class="field-hint" data-t="notaryHint">Ca. 0,1–0,4% av köpesumman</span>
+        </div>
+        <div class="field">
+          <label class="field-label" data-t="registryLabel">Fastighetsregistrering</label>
+          <div class="input-wrap">
+            <input type="number" id="registry" placeholder="0" min="0">
+            <span class="sym">€</span>
+          </div>
+          <span class="field-hint" data-t="registryHint">Ca. 0,1–0,2% av köpesumman</span>
+        </div>
+        <div class="field">
+          <label class="field-label" data-t="lawyerLabel">Advokatarvode</label>
+          <div class="input-wrap">
+            <input type="number" id="lawyer" placeholder="0" min="0">
+            <span class="sym">€</span>
+          </div>
+          <span class="field-hint" data-t="lawyerHint">Ca. 1% av köpesumman</span>
+        </div>
+        <div class="field">
+          <label class="field-label" data-t="nieLabel">NIE-ansökan</label>
+          <div class="input-wrap">
+            <input type="number" id="nie" placeholder="0" min="0">
+            <span class="sym">€</span>
+          </div>
+          <span class="field-hint" data-t="nieHint">Statlig avgift ca. 10 €</span>
+        </div>
+      </div>
+
+      <button class="collapse-toggle" onclick="toggleExtra()" id="extra-toggle">
+        <span data-t="extraToggle">+ Övriga kostnader (bankkonto, gestoría, m.m.)</span>
+        <span class="arr">▼</span>
+      </button>
+
+      <div class="collapsible" id="extra-fields">
+        <div class="field">
+          <label class="field-label" data-t="bankLabel">Bankkonto & bankavgifter</label>
+          <div class="input-wrap">
+            <input type="number" id="bank" placeholder="0" min="0">
+            <span class="sym">€</span>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label" data-t="gestoriaLabel">Gestoría</label>
+          <div class="input-wrap">
+            <input type="number" id="gestoria" placeholder="0" min="0">
+            <span class="sym">€</span>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label" data-t="surveyLabel">Besiktning / Värdering</label>
+          <div class="input-wrap">
+            <input type="number" id="survey" placeholder="0" min="0">
+            <span class="sym">€</span>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label" data-t="otherLabel">Övrigt</label>
+          <div class="input-wrap">
+            <input type="number" id="other" placeholder="0" min="0">
+            <span class="sym">€</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-back" onclick="goStep(2)" data-t="backBtn">←</button>
+      <button class="btn-next" onclick="calculate()" data-t="calcBtn">Beräkna kostnader</button>
+    </div>
+  </div>
+
+  <!-- ── RESULTS ── -->
+  <div class="results-wrap" id="results">
+
+    <div class="results-hero">
+      <div class="results-hero-label" data-t="heroLabel">Sammanfattning</div>
+      <div class="results-hero-title" data-t="heroTitle">Beräknade totalkostnader för ditt köp</div>
+      <div class="hero-amounts">
+        <div class="hero-amt">
+          <div class="hero-amt-label" data-t="heroPrice">Köpepris</div>
+          <div class="hero-amt-value" id="h-price">—</div>
+        </div>
+        <div class="hero-amt">
+          <div class="hero-amt-label" data-t="heroCosts">Tillkommande kostnader</div>
+          <div class="hero-amt-value gold" id="h-costs">—</div>
+        </div>
+        <div class="hero-amt">
+          <div class="hero-amt-label" data-t="heroTotal">Total investering</div>
+          <div class="hero-amt-value" id="h-total">—</div>
+        </div>
+        <div class="hero-amt">
+          <div class="hero-amt-label" data-t="heroPercent">Kostnader i %</div>
+          <div class="hero-amt-value gold" id="h-pct">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Taxes breakdown -->
+    <div class="breakdown-card">
+      <div class="breakdown-head">
+        <span class="breakdown-head-title" data-t="taxBreakTitle">Skatter</span>
+        <span class="breakdown-head-badge" id="tax-badge">—</span>
+      </div>
+      <div id="tax-rows"></div>
+      <div class="breakdown-total">
+        <span class="bt-label" data-t="taxTotal">Totala skatter</span>
+        <span class="bt-value" id="tax-total-val">—</span>
+      </div>
+    </div>
+
+    <!-- Services breakdown -->
+    <div class="breakdown-card">
+      <div class="breakdown-head">
+        <span class="breakdown-head-title" data-t="svcBreakTitle">Notarie, register & tjänster</span>
+        <span class="breakdown-head-badge" id="svc-badge">—</span>
+      </div>
+      <div id="svc-rows"></div>
+      <div class="breakdown-total">
+        <span class="bt-label" data-t="svcTotal">Totala tjänstekostnader</span>
+        <span class="bt-value" id="svc-total-val">—</span>
+      </div>
+    </div>
+
+    <!-- Summary bar -->
+    <div class="summary-bar">
+      <div class="sum-item">
+        <div class="sum-label" data-t="sumPrice">Köpepris</div>
+        <div class="sum-value" id="s-price">—</div>
+      </div>
+      <div class="sum-item">
+        <div class="sum-label" data-t="sumTaxes">Skatter</div>
+        <div class="sum-value" id="s-taxes">—</div>
+      </div>
+      <div class="sum-item">
+        <div class="sum-label" data-t="sumServices">Tjänster</div>
+        <div class="sum-value" id="s-services">—</div>
+      </div>
+      <div class="sum-item">
+        <div class="sum-label" data-t="sumTotal">Total</div>
+        <div class="sum-value" id="s-total" style="color:var(--gold);font-weight:600">—</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-card">
+      <div class="cta-title" data-t="ctaTitle">Redo att ta nästa steg?</div>
+      <p data-t="ctaText">Vi hjälper dig genom hela köpprocessen på svenska – från due diligence och NIE till notarieunderskrift och registrering.</p>
+      <div class="cta-btns">
+        <a href="https://colas-abogados.com/kontakt-advokat-alicante/" class="cta-link primary" data-t="ctaContact">Kontakta oss</a>
+        <a href="https://wa.me/34629549430" class="cta-link secondary" data-t="ctaWA">💬 WhatsApp</a>
+      </div>
+    </div>
+
+    <button class="btn-reset" onclick="resetCalc()" data-t="resetBtn">← Ny beräkning</button>
+
+    <p class="disclaimer" data-t="disclaimer">Beräkningarna är uppskattningar och kan variera beroende på specifika omständigheter, förhandlingar och eventuella ändringar i lagstiftningen. Kontakta Colás Abogados för en exakt kostnadsanalys av ditt specifika fall.</p>
+  </div>
+
+</div>
+
+<script>
+// ── Translations ──────────────────────────────────────────
+const T = {
+  sv: {
+    h1:"Köpkostnadskalkylator", subtitle:"Beräkna alla kostnader du kan förvänta dig när du köper en bostad i Spanien – skatter, notarie, advokat och registrering.",
+    step1num:"Steg 1", step1label:"Bostad", step2num:"Steg 2", step2label:"Skatter", step3num:"Steg 3", step3label:"Tjänster",
+    p1title:"Om bostaden", p1sub:"Ange köpepris och välj typ av bostad",
+    priceLabel:"Köpepris", typeLabel:"Typ av bostad",
+    secondName:"Andrahandsbostad", secondDesc:"ITP – Överlåtelseskatt",
+    newName:"Nyproduktion", newDesc:"IVA + AJD (stämpelskatt)",
+    regionTitle:"Region", regionSub:"ITP-skatten varierar beroende på region. Välj den autonoma regionen där bostaden ligger.",
+    regionNote:"* Los tipos impositivos son orientativos y pueden estar sujetos a modificaciones legislativas.",
+    p2title:"Skatter vid köpet", p2sub:"Beräknade skatter baserade på köpepriset och vald region. Du kan justera beloppen manuellt.",
+    itpFieldLabel:"ITP – Överlåtelseskatt", ivaLabel:"IVA (moms)", ivaHint:"10% på nyproduktion",
+    ajdLabel:"AJD – Stämpelskatt", ajdHint:"1,5% på nyproduktion (Valenciana)",
+    p3title:"Notarie, register & tjänster", p3sub:"Standardkostnaderna beräknas automatiskt. Du kan justera eller lägga till egna siffror.",
+    notaryLabel:"Notariekostnad", notaryHint:"Ca. 0,1–0,4% av köpesumman",
+    registryLabel:"Fastighetsregistrering", registryHint:"Ca. 0,1–0,2% av köpesumman",
+    lawyerLabel:"Advokatarvode", lawyerHint:"Ca. 1% av köpesumman",
+    nieLabel:"NIE-ansökan", nieHint:"Statlig avgift ca. 10 €",
+    extraToggle:"+ Övriga kostnader (bankkonto, gestoría, m.m.)",
+    bankLabel:"Bankkonto & bankavgifter", gestoriaLabel:"Gestoría",
+    surveyLabel:"Besiktning / Värdering", otherLabel:"Övrigt",
+    nextBtn:"Nästa →", backBtn:"←", calcBtn:"Beräkna kostnader",
+    heroLabel:"Sammanfattning", heroTitle:"Beräknade totalkostnader för ditt köp",
+    heroPrice:"Köpepris", heroCosts:"Tillkommande kostnader", heroTotal:"Total investering", heroPercent:"Kostnader i %",
+    taxBreakTitle:"Skatter", svcBreakTitle:"Notarie, register & tjänster",
+    taxTotal:"Totala skatter", svcTotal:"Totala tjänstekostnader",
+    sumPrice:"Köpepris", sumTaxes:"Skatter", sumServices:"Tjänster", sumTotal:"Total",
+    ctaTitle:"Redo att ta nästa steg?",
+    ctaText:"Vi hjälper dig genom hela köpprocessen på svenska – från due diligence och NIE till notarieunderskrift och registrering.",
+    ctaContact:"Kontakta oss", ctaWA:"💬 WhatsApp",
+    resetBtn:"← Ny beräkning",
+    disclaimer:"Beräkningarna är uppskattningar och kan variera beroende på specifika omständigheter, förhandlingar och eventuella ändringar i lagstiftningen. Kontakta Colás Abogados för en exakt kostnadsanalys av ditt specifika fall.",
+    taxNames:{ itp:"ITP – Överlåtelseskatt", iva:"IVA (moms)", ajd:"AJD – Stämpelskatt" },
+    svcNames:{ notary:"Notariekostnad", registry:"Fastighetsregistrering", lawyer:"Advokatarvode", nie:"NIE-ansökan", bank:"Bankkonto & avgifter", gestoria:"Gestoría", survey:"Besiktning / Värdering", other:"Övrigt" }
+  },
+  en: {
+    h1:"Purchase Cost Calculator", subtitle:"Calculate all costs when buying a property in Spain – taxes, notary, legal fees and registration.",
+    step1num:"Step 1", step1label:"Property", step2num:"Step 2", step2label:"Taxes", step3num:"Step 3", step3label:"Services",
+    p1title:"About the property", p1sub:"Enter the purchase price and select the property type",
+    priceLabel:"Purchase Price", typeLabel:"Property Type",
+    secondName:"Resale Property", secondDesc:"ITP – Transfer Tax",
+    newName:"New Build", newDesc:"VAT + AJD (stamp duty)",
+    regionTitle:"Region", regionSub:"Transfer tax (ITP) varies by region. Select the autonomous community where the property is located.",
+    regionNote:"* Tax rates are indicative and may be subject to legislative changes.",
+    p2title:"Purchase Taxes", p2sub:"Estimated taxes based on price and region. You can adjust the amounts manually.",
+    itpFieldLabel:"ITP – Transfer Tax", ivaLabel:"VAT", ivaHint:"10% on new builds",
+    ajdLabel:"AJD – Stamp Duty", ajdHint:"1.5% on new builds (Valencia region)",
+    p3title:"Notary, Registry & Services", p3sub:"Standard costs are calculated automatically. You can adjust or add your own figures.",
+    notaryLabel:"Notary fees", notaryHint:"Approx. 0.1–0.4% of purchase price",
+    registryLabel:"Land Registry", registryHint:"Approx. 0.1–0.2% of purchase price",
+    lawyerLabel:"Legal fees", lawyerHint:"Approx. 1% of purchase price",
+    nieLabel:"NIE Application", nieHint:"Government fee approx. €10",
+    extraToggle:"+ Other costs (bank account, gestoría, etc.)",
+    bankLabel:"Bank account & fees", gestoriaLabel:"Gestoría",
+    surveyLabel:"Survey / Valuation", otherLabel:"Other",
+    nextBtn:"Next →", backBtn:"←", calcBtn:"Calculate costs",
+    heroLabel:"Summary", heroTitle:"Estimated total costs for your purchase",
+    heroPrice:"Purchase Price", heroCosts:"Additional Costs", heroTotal:"Total Investment", heroPercent:"Costs %",
+    taxBreakTitle:"Taxes", svcBreakTitle:"Notary, Registry & Services",
+    taxTotal:"Total taxes", svcTotal:"Total service costs",
+    sumPrice:"Purchase Price", sumTaxes:"Taxes", sumServices:"Services", sumTotal:"Total",
+    ctaTitle:"Ready to take the next step?",
+    ctaText:"We guide you through the entire purchase process in English – from due diligence and NIE to notary signing and registration.",
+    ctaContact:"Contact us", ctaWA:"💬 WhatsApp",
+    resetBtn:"← New calculation",
+    disclaimer:"Calculations are estimates and may vary depending on specific circumstances and legislative changes. Contact Colás Abogados for an exact cost analysis of your specific case.",
+    taxNames:{ itp:"ITP – Transfer Tax", iva:"VAT", ajd:"AJD – Stamp Duty" },
+    svcNames:{ notary:"Notary fees", registry:"Land Registry", lawyer:"Legal fees", nie:"NIE Application", bank:"Bank account & fees", gestoria:"Gestoría", survey:"Survey / Valuation", other:"Other" }
+  },
+  es: {
+    h1:"Calculadora de costes de compra", subtitle:"Calcula todos los costes al comprar un inmueble en España: impuestos, notaría, abogado y registro.",
+    step1num:"Paso 1", step1label:"Inmueble", step2num:"Paso 2", step2label:"Impuestos", step3num:"Paso 3", step3label:"Servicios",
+    p1title:"Sobre el inmueble", p1sub:"Indica el precio de compra y el tipo de inmueble",
+    priceLabel:"Precio de compra", typeLabel:"Tipo de inmueble",
+    secondName:"Segunda mano", secondDesc:"ITP – Impuesto de Transmisiones Patrimoniales",
+    newName:"Obra nueva", newDesc:"IVA + AJD (actos jurídicos documentados)",
+    regionTitle:"Comunidad Autónoma", regionSub:"El ITP varía según la comunidad autónoma. Selecciona la región donde se ubica el inmueble.",
+    regionNote:"* Los tipos impositivos son orientativos y pueden variar.",
+    p2title:"Impuestos en la compra", p2sub:"Impuestos calculados según el precio y la región. Puedes ajustar los importes manualmente.",
+    itpFieldLabel:"ITP – Impuesto de Transmisiones", ivaLabel:"IVA", ivaHint:"10% en obra nueva",
+    ajdLabel:"AJD – Actos Jurídicos Documentados", ajdHint:"1,5% en obra nueva (Comunidad Valenciana)",
+    p3title:"Notaría, registro y servicios", p3sub:"Los costes estándar se calculan automáticamente. Puedes ajustarlos o añadir importes propios.",
+    notaryLabel:"Honorarios notariales", notaryHint:"Aprox. 0,1–0,4% del precio de compra",
+    registryLabel:"Inscripción en el Registro", registryHint:"Aprox. 0,1–0,2% del precio de compra",
+    lawyerLabel:"Honorarios de abogado", lawyerHint:"Aprox. 1% del precio de compra",
+    nieLabel:"Solicitud NIE", nieHint:"Tasa pública aprox. 10 €",
+    extraToggle:"+ Otros costes (cuenta bancaria, gestoría, etc.)",
+    bankLabel:"Cuenta bancaria y comisiones", gestoriaLabel:"Gestoría",
+    surveyLabel:"Tasación / Informe técnico", otherLabel:"Otros",
+    nextBtn:"Siguiente →", backBtn:"←", calcBtn:"Calcular costes",
+    heroLabel:"Resumen", heroTitle:"Costes totales estimados de tu compra",
+    heroPrice:"Precio de compra", heroCosts:"Costes adicionales", heroTotal:"Inversión total", heroPercent:"Costes en %",
+    taxBreakTitle:"Impuestos", svcBreakTitle:"Notaría, registro y servicios",
+    taxTotal:"Total impuestos", svcTotal:"Total servicios",
+    sumPrice:"Precio de compra", sumTaxes:"Impuestos", sumServices:"Servicios", sumTotal:"Total",
+    ctaTitle:"¿Listo para el siguiente paso?",
+    ctaText:"Te acompañamos en todo el proceso de compra: due diligence, NIE, firma notarial y registro.",
+    ctaContact:"Contáctanos", ctaWA:"💬 WhatsApp",
+    resetBtn:"← Nuevo cálculo",
+    disclaimer:"Los cálculos son estimaciones y pueden variar según las circunstancias específicas y cambios legislativos. Contacta con Colás Abogados para un análisis detallado de tu caso.",
+    taxNames:{ itp:"ITP – Transmisiones Patrimoniales", iva:"IVA", ajd:"AJD – Actos Jurídicos Documentados" },
+    svcNames:{ notary:"Honorarios notariales", registry:"Inscripción en el Registro", lawyer:"Honorarios de abogado", nie:"Solicitud NIE", bank:"Cuenta bancaria y comisiones", gestoria:"Gestoría", survey:"Tasación / Informe técnico", other:"Otros" }
+  }
+};
+
+let lang = 'sv';
+let currentStep = 1;
+
+function setLang(l) {
+  lang = l;
+  ['sv','en','es'].forEach(x => document.getElementById('lb-'+x).classList.remove('active'));
+  document.getElementById('lb-'+l).classList.add('active');
+  const t = T[l];
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const k = el.getAttribute('data-t');
+    if (t[k]) el.textContent = t[k];
+  });
+  updateItpDisplay();
+}
+
+function updateItpDisplay() {
+  const isNew = document.querySelector('input[name="proptype"]:checked').value === 'new';
+  const rate = parseInt(document.getElementById('region').value);
+  document.getElementById('itp-rate-display').textContent = rate + '%';
+  if (!isNew) {
+    document.getElementById('field-itp').style.display = '';
+    document.getElementById('field-iva').style.display = 'none';
+    document.getElementById('field-ajd').style.display = 'none';
+  } else {
+    document.getElementById('field-itp').style.display = 'none';
+    document.getElementById('field-iva').style.display = '';
+    document.getElementById('field-ajd').style.display = '';
+  }
+}
+
+function selectType(radio, optId) {
+  document.querySelectorAll('.type-opt').forEach(o => o.classList.remove('selected'));
+  document.getElementById(optId).classList.add('selected');
+  updateItpDisplay();
+}
+
+function toggleExtra() {
+  const f = document.getElementById('extra-fields');
+  const b = document.getElementById('extra-toggle');
+  f.classList.toggle('open');
+  b.classList.toggle('open');
+}
+
+function goStep(n) {
+  if (n > currentStep) return; // only go back freely
+  showStep(n);
+}
+
+function nextStep(from) {
+  const price = parseFloat(document.getElementById('price').value) || 0;
+  if (from === 1) {
+    if (!price) { alert(lang==='en'?'Please enter the purchase price.':lang==='no'?'Vennligst oppgi kjøpesummen.':'Fyll i köpepriset.'); return; }
+    prefillTaxes(price);
+  }
+  if (from === 2) {
+    prefillServices(price);
+  }
+  showStep(from + 1);
+}
+
+function showStep(n) {
+  currentStep = n;
+  for (let i = 1; i <= 3; i++) {
+    document.getElementById('panel-' + i).classList.toggle('active', i === n);
+    const pill = document.getElementById('pill-' + i);
+    pill.classList.remove('active','done');
+    if (i === n) pill.classList.add('active');
+    else if (i < n) pill.classList.add('done');
+  }
+  document.getElementById('results').classList.remove('visible');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function prefillTaxes(price) {
+  const isNew = document.querySelector('input[name="proptype"]:checked').value === 'new';
+  const itpRate = parseInt(document.getElementById('region').value) / 100;
+  if (!isNew) {
+    document.getElementById('itp').value = Math.round(price * itpRate);
+  } else {
+    document.getElementById('iva').value = Math.round(price * 0.10);
+    document.getElementById('ajd').value = Math.round(price * 0.015);
+  }
+}
+
+function prefillServices(price) {
+  if (!document.getElementById('notary').value)
+    document.getElementById('notary').value = Math.round(Math.min(Math.max(price * 0.0025, 600), 2500));
+  if (!document.getElementById('registry').value)
+    document.getElementById('registry').value = Math.round(Math.min(Math.max(price * 0.002, 400), 1500));
+  if (!document.getElementById('lawyer').value)
+    document.getElementById('lawyer').value = Math.round(price * 0.01);
+  if (!document.getElementById('nie').value)
+    document.getElementById('nie').value = 10;
+}
+
+function v(id) { return parseFloat(document.getElementById(id).value) || 0; }
+
+function fmt(n) {
+  return new Intl.NumberFormat('sv-SE', { minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(Math.round(n)) + ' €';
+}
+
+function pct(n, total) { return total ? (n / total * 100).toFixed(1) + '%' : '—'; }
+
+function makeRow(label, value, sub) {
+  return `<div class="breakdown-row">
+    <div class="br-label">${label}${sub ? '<span class="br-sub">'+sub+'</span>' : ''}</div>
+    <div class="br-value accent">${fmt(value)}</div>
+  </div>`;
+}
+
+function calculate() {
+  const price = v('price');
+  const isNew = document.querySelector('input[name="proptype"]:checked').value === 'new';
+  const t = T[lang];
+
+  // Taxes
+  const taxes = {};
+  if (!isNew) {
+    taxes.itp = v('itp');
+  } else {
+    taxes.iva = v('iva');
+    taxes.ajd = v('ajd');
+  }
+
+  // Services
+  const svcs = {
+    notary: v('notary'),
+    registry: v('registry'),
+    lawyer: v('lawyer'),
+    nie: v('nie'),
+    bank: v('bank'),
+    gestoria: v('gestoria'),
+    survey: v('survey'),
+    other: v('other')
+  };
+
+  const totalTaxes = Object.values(taxes).reduce((a,b)=>a+b,0);
+  const totalSvcs  = Object.values(svcs).reduce((a,b)=>a+b,0);
+  const totalCosts = totalTaxes + totalSvcs;
+  const grandTotal = price + totalCosts;
+
+  // Hero
+  document.getElementById('h-price').textContent  = fmt(price);
+  document.getElementById('h-costs').textContent  = fmt(totalCosts);
+  document.getElementById('h-total').textContent  = fmt(grandTotal);
+  document.getElementById('h-pct').textContent    = pct(totalCosts, price);
+
+  // Tax rows
+  let taxHtml = '';
+  for (const [k,val] of Object.entries(taxes)) {
+    if (val > 0) taxHtml += makeRow(t.taxNames[k] || k, val);
+  }
+  document.getElementById('tax-rows').innerHTML = taxHtml || `<div class="breakdown-row"><span class="br-label">—</span></div>`;
+  document.getElementById('tax-total-val').textContent = fmt(totalTaxes);
+  document.getElementById('tax-badge').textContent = fmt(totalTaxes);
+
+  // Service rows
+  let svcHtml = '';
+  for (const [k,val] of Object.entries(svcs)) {
+    if (val > 0) svcHtml += makeRow(t.svcNames[k] || k, val);
+  }
+  document.getElementById('svc-rows').innerHTML = svcHtml || `<div class="breakdown-row"><span class="br-label">—</span></div>`;
+  document.getElementById('svc-total-val').textContent = fmt(totalSvcs);
+  document.getElementById('svc-badge').textContent = fmt(totalSvcs);
+
+  // Summary bar
+  document.getElementById('s-price').textContent    = fmt(price);
+  document.getElementById('s-taxes').textContent    = fmt(totalTaxes);
+  document.getElementById('s-services').textContent = fmt(totalSvcs);
+  document.getElementById('s-total').textContent    = fmt(grandTotal);
+
+  // Mark step 3 done, show results
+  document.getElementById('panel-3').classList.remove('active');
+  ['pill-1','pill-2','pill-3'].forEach(id => {
+    document.getElementById(id).classList.remove('active');
+    document.getElementById(id).classList.add('done');
+  });
+
+  const rw = document.getElementById('results');
+  rw.classList.add('visible');
+  rw.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function resetCalc() {
+  document.querySelectorAll('input[type="number"]').forEach(i => i.value = '');
+  document.getElementById('results').classList.remove('visible');
+  showStep(1);
+}
+
+// Init
+updateItpDisplay();
+</script>
+</body>
+</html>

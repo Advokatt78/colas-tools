@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arvsskattesimulator – Spanien (Valenciaregionen)</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:    #1C1C1E;
+    --ink2:   #2E2E30;
+    --stone:  #F4F1EC;
+    --white:  #FFFFFF;
+    --border: #DDD8D0;
+    --muted:  #7C7870;
+    --gold:   #A8843C;
+    --gold-l: #D4B878;
+    --green:  #2E6E4E;
+    --red:    #8B3535;
+    --blue:   #2B5278;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--stone);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  .wrap { max-width: 820px; margin: 0 auto; padding: 52px 24px 88px; }
+
+  /* Lang */
+  .lang-row { display: flex; justify-content: flex-end; gap: 6px; margin-bottom: 36px; }
+  .lb { padding: 5px 14px; border-radius: 20px; border: 1px solid var(--border); background: transparent; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; cursor: pointer; color: var(--muted); transition: all .18s; }
+  .lb.active { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+  /* Header */
+  .hdr { text-align: center; margin-bottom: 48px; }
+  .hdr .eyebrow { font-size: 10px; letter-spacing: 3.5px; text-transform: uppercase; color: var(--gold); font-weight: 500; display: block; margin-bottom: 14px; }
+  .hdr h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(28px,5vw,42px); font-weight: 700; color: var(--ink); line-height: 1.15; margin-bottom: 14px; }
+  .hdr p { font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 540px; margin: 0 auto; }
+  .hdr-line { width: 40px; height: 1.5px; background: var(--gold); margin: 20px auto 0; }
+
+  /* Info banner */
+  .info-banner {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--blue);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .info-banner strong { color: var(--ink); }
+
+  /* Card */
+  .card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 32px; margin-bottom: 18px; }
+  .card-title { font-family: 'Libre Baskerville', serif; font-size: 19px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .card-sub { font-size: 13px; color: var(--muted); margin-bottom: 26px; line-height: 1.5; }
+
+  /* Field grid */
+  .fg { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media(max-width:560px){ .fg{ grid-template-columns:1fr; } .card{ padding:24px 18px; } }
+  .f { display: flex; flex-direction: column; gap: 6px; }
+  .f.full { grid-column: 1/-1; }
+  .fl { font-size: 11px; font-weight: 500; letter-spacing: .8px; text-transform: uppercase; color: var(--muted); }
+  .iw { position: relative; }
+  .iw .sym { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 13px; color: var(--muted); pointer-events: none; }
+  input[type=number] {
+    width: 100%; padding: 11px 36px 11px 14px;
+    border: 1.5px solid var(--border); border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--ink);
+    background: var(--white); transition: border-color .2s;
+    -moz-appearance: textfield; appearance: textfield;
+  }
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
+  input[type=number]:focus { outline: none; border-color: var(--gold); }
+  .fhint { font-size: 11px; color: var(--muted); font-style: italic; }
+
+  select.styled {
+    width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink);
+    background: var(--white); cursor: pointer; transition: border-color .2s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237C7870' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 14px center;
+  }
+  select.styled:focus { outline: none; border-color: var(--gold); }
+
+  /* Kinship grid */
+  .kin-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  @media(max-width:480px){ .kin-grid{ grid-template-columns:1fr 1fr; } }
+  .kin-opt { border: 1.5px solid var(--border); border-radius: 10px; padding: 14px 10px; cursor: pointer; text-align: center; transition: all .2s; }
+  .kin-opt:hover { border-color: var(--gold-l); }
+  .kin-opt.selected { border-color: var(--gold); background: #FDF8EE; }
+  .kin-opt input { display: none; }
+  .kin-icon { font-size: 22px; display: block; margin-bottom: 6px; }
+  .kin-name { font-size: 12px; font-weight: 500; color: var(--ink); display: block; }
+  .kin-group { font-size: 10px; color: var(--muted); display: block; margin-top: 2px; }
+
+  /* Asset breakdown */
+  .asset-toggle { display: flex; align-items: center; gap: 8px; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: var(--gold); padding: 0; margin-top: 8px; transition: opacity .2s; }
+  .asset-toggle:hover { opacity: .7; }
+  .asset-toggle .arr { transition: transform .22s; font-size: 10px; }
+  .asset-toggle.open .arr { transform: rotate(180deg); }
+  .asset-fields { display: none; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; padding-top: 18px; border-top: 1px dashed var(--border); }
+  @media(max-width:560px){ .asset-fields{ grid-template-columns:1fr; } }
+  .asset-fields.open { display: grid; }
+
+  /* Button */
+  .btn-calc { width: 100%; padding: 15px; background: var(--ink); color: #fff; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; cursor: pointer; transition: all .2s; margin-top: 8px; }
+  .btn-calc:hover { background: var(--ink2); transform: translateY(-1px); }
+
+  /* Results */
+  .results { display: none; margin-top: 8px; }
+  .results.visible { display: block; animation: fadeUp .4s ease; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+  /* Hero result */
+  .res-hero { background: var(--ink); border-radius: 14px; padding: 36px; margin-bottom: 18px; overflow: hidden; position: relative; }
+  .res-hero::before { content:''; position:absolute; top:-50px; right:-50px; width:200px; height:200px; border-radius:50%; background:rgba(168,132,60,.08); }
+  .res-hero-eyebrow { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 10px; }
+  .res-hero-title { font-family: 'Libre Baskerville', serif; font-size: clamp(16px,3vw,22px); color: #fff; font-weight: 400; margin-bottom: 28px; line-height: 1.3; }
+
+  .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media(max-width:480px){ .res-grid{ grid-template-columns:1fr; } }
+
+  .res-box { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; padding: 16px 20px; }
+  .res-box-label { font-size: 11px; color: rgba(255,255,255,.4); margin-bottom: 6px; }
+  .res-box-val { font-family: 'Libre Baskerville', serif; font-size: 26px; font-weight: 700; color: #fff; }
+  .res-box-val.gold { color: var(--gold-l); }
+  .res-box-val.green { color: #7ECBA1; }
+  .res-box-val.red { color: #F08080; }
+
+  /* Breakdown */
+  .bk-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 18px; }
+  .bk-head { padding: 18px 26px; border-bottom: 1px solid var(--border); }
+  .bk-head-title { font-family: 'Libre Baskerville', serif; font-size: 17px; font-weight: 700; color: var(--ink); }
+  .bk-row { display: flex; justify-content: space-between; align-items: baseline; padding: 13px 26px; border-bottom: 1px solid #F4F1EC; gap: 12px; }
+  .bk-row:last-child { border-bottom: none; }
+  .bk-label { font-size: 14px; color: var(--ink); line-height: 1.4; flex: 1; }
+  .bk-sub { font-size: 11px; color: var(--muted); display: block; margin-top: 2px; }
+  .bk-val { font-size: 15px; font-weight: 500; white-space: nowrap; text-align: right; }
+  .bk-val.pos { color: var(--green); }
+  .bk-val.neg { color: var(--red); }
+  .bk-val.neutral { color: var(--ink); }
+  .bk-total { display: flex; justify-content: space-between; align-items: center; padding: 16px 26px; background: #F8F5EF; border-top: 1.5px solid var(--border); }
+  .bk-total-label { font-family: 'Libre Baskerville', serif; font-size: 16px; font-weight: 700; color: var(--ink); }
+  .bk-total-val { font-family: 'Libre Baskerville', serif; font-size: 22px; font-weight: 700; color: var(--ink); }
+
+  /* Bonus box */
+  .bonus-box { background: #EFF7F3; border: 1px solid #B0D9C5; border-radius: 10px; padding: 18px 22px; margin-bottom: 18px; }
+  .bonus-box.warning { background: #FDF3ED; border-color: #F0C4A0; }
+  .bonus-title { font-size: 13px; font-weight: 500; color: var(--green); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .bonus-box.warning .bonus-title { color: #A05020; }
+  .bonus-text { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+  /* Tax table */
+  .tax-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
+  .tax-table th { text-align: left; padding: 8px 12px; background: #F8F5EF; font-weight: 500; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
+  .tax-table td { padding: 9px 12px; border-bottom: 1px solid #F4F1EC; color: var(--ink); }
+  .tax-table tr.active-row td { background: #FDF8EE; font-weight: 500; }
+  .tax-table tr:last-child td { border-bottom: none; }
+
+  /* CTA */
+  .cta { background: linear-gradient(135deg, var(--ink) 0%, #2E3E54 100%); border-radius: 12px; padding: 36px 32px; text-align: center; margin-bottom: 18px; }
+  .cta h3 { font-family: 'Libre Baskerville', serif; font-size: 22px; color: #fff; font-weight: 400; margin-bottom: 10px; }
+  .cta p { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.6; margin-bottom: 22px; max-width: 440px; margin-left: auto; margin-right: auto; }
+  .cta-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .cta-link { padding: 12px 22px; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; text-decoration: none; transition: all .2s; display: inline-flex; align-items: center; gap: 6px; }
+  .cta-link.primary { background: var(--gold); color: var(--ink); }
+  .cta-link.primary:hover { background: var(--gold-l); }
+  .cta-link.secondary { border: 1px solid rgba(255,255,255,.25); color: #fff; }
+  .cta-link.secondary:hover { border-color: rgba(255,255,255,.5); }
+
+  .btn-reset { display: block; margin: 4px auto 0; background: none; border: none; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--muted); text-decoration: underline; cursor: pointer; }
+
+  .disclaimer { font-size: 11px; color: var(--muted); text-align: center; line-height: 1.6; margin-top: 28px; max-width: 580px; margin-left: auto; margin-right: auto; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Lang -->
+  <div class="lang-row">
+    <button class="lb active" onclick="setLang('sv')" id="lb-sv">Svenska</button>
+    <button class="lb" onclick="setLang('en')" id="lb-en">English</button>
+    <button class="lb" onclick="setLang('es')" id="lb-es">Español</button>
+  </div>
+
+  <!-- Header -->
+  <div class="hdr">
+    <span class="eyebrow">Colás Abogados</span>
+    <h1 data-t="h1">Arvsskattesimulator – Spanien</h1>
+    <p data-t="subtitle">Beräkna arvsskatten för tillgångar i Spanien (Comunidad Valenciana) som icke-resident arvinge – med faktiska skattereduktioner och koefficienter.</p>
+    <div class="hdr-line"></div>
+  </div>
+
+  <!-- Info banner -->
+  <div class="info-banner" data-t="infoBanner">
+    <strong>Comunidad Valenciana:</strong> Sedan EU-domstolens dom 2015 har icke-residenter från EU/EES rätt att tillämpa regionens förmånliga regler. Denna simulator använder den aktuella lagstiftningen för Valenciaregionen.
+  </div>
+
+  <!-- Form -->
+  <div class="card">
+    <div class="card-title" data-t="formTitle">Arvsdata</div>
+    <p class="card-sub" data-t="formSub">Fyll i uppgifter om arvet och din relation till den avlidne</p>
+
+    <div class="fg" style="margin-bottom:20px">
+      <div class="f full">
+        <label class="fl" data-t="totalLabel">Totalt arvsvärde (netto)</label>
+        <div class="iw">
+          <input type="number" id="totalValue" placeholder="200 000" min="0">
+          <span class="sym">€</span>
+        </div>
+        <span class="fhint" data-t="totalHint">Fastighetsvärde + bankkonton + övriga tillgångar, efter avdrag för skulder och begravningskostnader</span>
+      </div>
+    </div>
+
+    <!-- Asset breakdown toggle -->
+    <button class="asset-toggle" onclick="toggleAssets()" id="asset-btn">
+      <span data-t="assetToggle">+ Specificera tillgångarna (valfritt)</span>
+      <span class="arr">▼</span>
+    </button>
+    <div class="asset-fields" id="asset-fields">
+      <div class="f">
+        <label class="fl" data-t="realEstateLabel">Fastighet (valor catastral × 2)</label>
+        <div class="iw"><input type="number" id="realEstate" placeholder="0" min="0"><span class="sym">€</span></div>
+      </div>
+      <div class="f">
+        <label class="fl" data-t="bankLabel">Bankkonton & sparande</label>
+        <div class="iw"><input type="number" id="bankAssets" placeholder="0" min="0"><span class="sym">€</span></div>
+      </div>
+      <div class="f">
+        <label class="fl" data-t="otherAssetsLabel">Övriga tillgångar</label>
+        <div class="iw"><input type="number" id="otherAssets" placeholder="0" min="0"><span class="sym">€</span></div>
+      </div>
+      <div class="f">
+        <label class="fl" data-t="debtsLabel">Skulder & avdragsgilla kostnader</label>
+        <div class="iw"><input type="number" id="debts" placeholder="0" min="0"><span class="sym">€</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kinship -->
+  <div class="card">
+    <div class="card-title" data-t="kinTitle">Släktskap med den avlidne</div>
+    <p class="card-sub" data-t="kinSub">Avgör vilka reduktioner och koefficienter som tillämpas</p>
+
+    <div class="kin-grid">
+      <label class="kin-opt selected" id="kin-child" onclick="selectKin('child','kin-child')">
+        <input type="radio" name="kin" value="child" checked>
+        <span class="kin-icon">👨‍👧</span>
+        <span class="kin-name" data-t="kinChild">Barn/barnbarn</span>
+        <span class="kin-group">Grupp I / II</span>
+      </label>
+      <label class="kin-opt" id="kin-spouse" onclick="selectKin('spouse','kin-spouse')">
+        <input type="radio" name="kin" value="spouse">
+        <span class="kin-icon">💑</span>
+        <span class="kin-name" data-t="kinSpouse">Make/maka/partner</span>
+        <span class="kin-group">Grupp II</span>
+      </label>
+      <label class="kin-opt" id="kin-parent" onclick="selectKin('parent','kin-parent')">
+        <input type="radio" name="kin" value="parent">
+        <span class="kin-icon">👨‍👩‍👦</span>
+        <span class="kin-name" data-t="kinParent">Förälder/far-/morförälder</span>
+        <span class="kin-group">Grupp II</span>
+      </label>
+      <label class="kin-opt" id="kin-sibling" onclick="selectKin('sibling','kin-sibling')">
+        <input type="radio" name="kin" value="sibling">
+        <span class="kin-icon">🤝</span>
+        <span class="kin-name" data-t="kinSibling">Syskon / Faster/farbror</span>
+        <span class="kin-group">Grupp III</span>
+      </label>
+      <label class="kin-opt" id="kin-nephew" onclick="selectKin('nephew','kin-nephew')">
+        <input type="radio" name="kin" value="nephew">
+        <span class="kin-icon">👥</span>
+        <span class="kin-name" data-t="kinNephew">Kusin / Syskonbarn</span>
+        <span class="kin-group">Grupp III</span>
+      </label>
+      <label class="kin-opt" id="kin-other" onclick="selectKin('other','kin-other')">
+        <input type="radio" name="kin" value="other">
+        <span class="kin-icon">👤</span>
+        <span class="kin-name" data-t="kinOther">Ingen släkt / Annan</span>
+        <span class="kin-group">Grupp IV</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Residency -->
+  <div class="card">
+    <div class="card-title" data-t="resTitle">Arvtagarens hemvist</div>
+    <p class="card-sub" data-t="resSub">Avgör vilka regionala regler som kan tillämpas</p>
+    <div class="fg">
+      <div class="f">
+        <label class="fl" data-t="resLabel">Skattemässig hemvist</label>
+        <select class="styled" id="residency">
+          <option value="eu" selected data-t-opt="resEU">EU / EES (Sverige, Norge, Danmark m.fl.)</option>
+          <option value="noneu" data-t-opt="resNonEU">Utanför EU / EES</option>
+        </select>
+      </div>
+      <div class="f">
+        <label class="fl" data-t="priorLabel">Tidigare förmögenhet (arvtagaren)</label>
+        <div class="iw">
+          <input type="number" id="priorWealth" placeholder="0" min="0">
+          <span class="sym">€</span>
+        </div>
+        <span class="fhint" data-t="priorHint">Påverkar multiplikatorn om &gt; 402 678 €</span>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-calc" onclick="calculate()" data-t="calcBtn">Simulera arvsskatt</button>
+
+  <!-- RESULTS -->
+  <div class="results" id="results">
+
+    <div class="res-hero">
+      <div class="res-hero-eyebrow" data-t="resEyebrow">Simuleringsresultat</div>
+      <div class="res-hero-title" data-t="resTitle2">Beräknad arvsskatt – Comunidad Valenciana</div>
+      <div class="res-grid">
+        <div class="res-box">
+          <div class="res-box-label" data-t="rNetBase">Skattepliktig bas (netto)</div>
+          <div class="res-box-val" id="r-net-base">—</div>
+        </div>
+        <div class="res-box">
+          <div class="res-box-label" data-t="rTaxBase">Beskattningsbar bas (efter reduktion)</div>
+          <div class="res-box-val gold" id="r-tax-base">—</div>
+        </div>
+        <div class="res-box">
+          <div class="res-box-label" data-t="rGrossTax">Skatt före koefficient</div>
+          <div class="res-box-val" id="r-gross-tax">—</div>
+        </div>
+        <div class="res-box">
+          <div class="res-box-label" data-t="rFinalTax">Arvsskatt att betala</div>
+          <div class="res-box-val red" id="r-final-tax">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bonus box (filled dynamically) -->
+    <div id="bonus-section"></div>
+
+    <!-- Calculation steps -->
+    <div class="bk-card">
+      <div class="bk-head"><div class="bk-head-title" data-t="stepsTitle">Beräkningssteg</div></div>
+      <div id="calc-steps"></div>
+    </div>
+
+    <!-- Tax scale table -->
+    <div class="bk-card">
+      <div class="bk-head"><div class="bk-head-title" data-t="scaleTitle">Progressiv skatteskala (statlig)</div></div>
+      <div style="padding:0 0 4px">
+        <table class="tax-table" id="scale-table">
+          <tr><th data-t="scaleBand">Skattepliktigt belopp</th><th data-t="scalePct">Skattesats</th><th data-t="scaleTax">Skatt</th></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+      <h3 data-t="ctaTitle">Behöver du hjälp med arvsskiftet?</h3>
+      <p data-t="ctaText">Vi hanterar hela arvsprocessen i Spanien på svenska – från boutredning och arvsskatt till fastighetsöverlåtelse och registrering. Boka en kostnadsfri inledande konsultation.</p>
+      <div class="cta-btns">
+        <a href="https://colas-abogados.com/kontakt-advokat-alicante/" class="cta-link primary" data-t="ctaContact">Kontakta oss</a>
+        <a href="https://wa.me/34629549430" class="cta-link secondary" data-t="ctaWA">💬 WhatsApp</a>
+      </div>
+    </div>
+
+    <button class="btn-reset" onclick="resetCalc()" data-t="resetBtn">← Ny simulering</button>
+
+    <p class="disclaimer" data-t="disclaimer">Simuleringen är baserad på aktuell lagstiftning för Comunidad Valenciana och är avsedd som en vägledande uppskattning. Faktisk skatt kan variera beroende på specifika omständigheter. Kontakta Colás Abogados för en fullständig juridisk och skattemässig analys.</p>
+  </div>
+
+</div>
+
+<script>
+// ── Translations ────────────────────────────────────────────────────────────
+const T = {
+  sv: {
+    h1:"Arvsskattesimulator – Spanien",
+    subtitle:"Beräkna arvsskatten för tillgångar i Spanien (Comunidad Valenciana) som icke-resident arvinge – med faktiska skattereduktioner och koefficienter.",
+    infoBanner:"<strong>Comunidad Valenciana:</strong> Sedan EU-domstolens dom 2015 har icke-residenter från EU/EES rätt att tillämpa regionens förmånliga regler. Denna simulator använder den aktuella lagstiftningen för Valenciaregionen.",
+    formTitle:"Arvsdata", formSub:"Fyll i uppgifter om arvet och din relation till den avlidne",
+    totalLabel:"Totalt arvsvärde (netto)", totalHint:"Fastighetsvärde + bankkonton + övriga tillgångar, efter avdrag för skulder och begravningskostnader",
+    assetToggle:"+ Specificera tillgångarna (valfritt)",
+    realEstateLabel:"Fastighet", bankLabel:"Bankkonton & sparande", otherAssetsLabel:"Övriga tillgångar", debtsLabel:"Skulder & avdragsgilla kostnader",
+    kinTitle:"Släktskap med den avlidne", kinSub:"Avgör vilka reduktioner och koefficienter som tillämpas",
+    kinChild:"Barn/barnbarn", kinSpouse:"Make/maka/partner", kinParent:"Förälder/far-/morförälder",
+    kinSibling:"Syskon / Faster/farbror", kinNephew:"Kusin / Syskonbarn", kinOther:"Ingen släkt / Annan",
+    resTitle:"Arvtagarens hemvist", resSub:"Avgör vilka regionala regler som kan tillämpas",
+    resLabel:"Skattemässig hemvist", priorLabel:"Tidigare förmögenhet (arvtagaren)", priorHint:"Påverkar multiplikatorn om > 402 678 €",
+    calcBtn:"Simulera arvsskatt",
+    resEyebrow:"Simuleringsresultat", resTitle2:"Beräknad arvsskatt – Comunidad Valenciana",
+    rNetBase:"Skattepliktig bas (netto)", rTaxBase:"Beskattningsbar bas (efter reduktion)",
+    rGrossTax:"Skatt före koefficient", rFinalTax:"Arvsskatt att betala",
+    stepsTitle:"Beräkningssteg", scaleTitle:"Progressiv skatteskala (statlig)",
+    scaleBand:"Skattepliktigt belopp", scalePct:"Skattesats", scaleTax:"Skatt på detta intervall",
+    ctaTitle:"Behöver du hjälp med arvsskiftet?",
+    ctaText:"Vi hanterar hela arvsprocessen i Spanien på svenska – från boutredning och arvsskatt till fastighetsöverlåtelse och registrering. Boka en kostnadsfri inledande konsultation.",
+    ctaContact:"Kontakta oss", ctaWA:"💬 WhatsApp",
+    resetBtn:"← Ny simulering",
+    disclaimer:"Simuleringen är baserad på aktuell lagstiftning för Comunidad Valenciana och är avsedd som en vägledande uppskattning. Faktisk skatt kan variera beroende på specifika omständigheter. Kontakta Colás Abogados för en fullständig juridisk och skattemässig analys.",
+    stepNetBase:"Skattepliktig bas (arvsvärde netto)", stepReduction:"Personlig reduktion", stepTaxBase:"Beskattningsbar bas", stepGrossTax:"Progresiv skatt (tarifa)", stepCoeff:"Koefficient (grupp + förmögenhet)", stepFinalTax:"Arvsskatt att betala",
+    bonusEU:"✅ EU/EES-arvinge – regionala regler gäller", bonusEUtext:"Som EU/EES-medborgare har du rätt att tillämpa Comunidad Valencias förmånliga regler, inklusive reduktioner och bonifikationer.",
+    bonusNonEU:"⚠️ Icke EU/EES-arvinge – statliga regler gäller", bonusNonEUtext:"Som arvinge utanför EU/EES tillämpas de statliga reglerna, som generellt är mindre förmånliga. Kontakta oss för en fullständig analys.",
+    bonusChild:"✅ 99% bonifikation – Grupp I/II (barn/make)", bonusChildtext:"Barn, barnbarn och makar i Comunidad Valenciana åtnjuter en bonifikation på 99% på den beräknade skatten – i praktiken betalar de nästan ingen arvsskatt. Simuleringen inkluderar denna reduktion.",
+    noBonus:"ℹ️ Ingen regionala bonifikation tillämplig för detta släktskapsled."
+  },
+  en: {
+    h1:"Inheritance Tax Simulator – Spain",
+    subtitle:"Calculate inheritance tax on Spanish assets (Comunidad Valenciana) as a non-resident heir – with actual tax reductions and coefficients.",
+    infoBanner:"<strong>Comunidad Valenciana:</strong> Since the ECJ ruling of 2015, non-residents from EU/EEA countries are entitled to apply the region's favourable rules. This simulator uses current legislation for the Valencia region.",
+    formTitle:"Inheritance Data", formSub:"Enter details about the estate and your relationship to the deceased",
+    totalLabel:"Total estate value (net)", totalHint:"Property value + bank accounts + other assets, after deducting debts and funeral expenses",
+    assetToggle:"+ Break down the assets (optional)",
+    realEstateLabel:"Real estate", bankLabel:"Bank accounts & savings", otherAssetsLabel:"Other assets", debtsLabel:"Debts & deductible costs",
+    kinTitle:"Relationship to the deceased", kinSub:"Determines which reductions and coefficients apply",
+    kinChild:"Child / Grandchild", kinSpouse:"Spouse / Partner", kinParent:"Parent / Grandparent",
+    kinSibling:"Sibling / Aunt/Uncle", kinNephew:"Cousin / Nephew/Niece", kinOther:"No relation / Other",
+    resTitle:"Heir's place of residence", resSub:"Determines which regional rules may apply",
+    resLabel:"Tax residence", priorLabel:"Heir's prior wealth", priorHint:"Affects multiplier if > €402,678",
+    calcBtn:"Simulate Inheritance Tax",
+    resEyebrow:"Simulation Result", resTitle2:"Estimated Inheritance Tax – Comunidad Valenciana",
+    rNetBase:"Taxable base (net)", rTaxBase:"Tax base (after reduction)",
+    rGrossTax:"Tax before coefficient", rFinalTax:"Inheritance tax to pay",
+    stepsTitle:"Calculation Steps", scaleTitle:"Progressive Tax Scale (State)",
+    scaleBand:"Taxable amount", scalePct:"Rate", scaleTax:"Tax on this band",
+    ctaTitle:"Need help with the estate?",
+    ctaText:"We handle the entire inheritance process in Spain in English – from estate inventory and tax to property transfer and registration. Book a free initial consultation.",
+    ctaContact:"Contact us", ctaWA:"💬 WhatsApp",
+    resetBtn:"← New simulation",
+    disclaimer:"The simulation is based on current legislation for Comunidad Valenciana and is intended as a guidance estimate. Actual tax may vary depending on specific circumstances. Contact Colás Abogados for a full legal and tax analysis.",
+    stepNetBase:"Taxable base (net estate value)", stepReduction:"Personal reduction", stepTaxBase:"Tax base", stepGrossTax:"Progressive tax (tarifa)", stepCoeff:"Coefficient (group + prior wealth)", stepFinalTax:"Inheritance tax to pay",
+    bonusEU:"✅ EU/EEA heir – regional rules apply", bonusEUtext:"As an EU/EEA citizen you are entitled to apply Comunidad Valencia's favourable rules, including reductions and bonifications.",
+    bonusNonEU:"⚠️ Non-EU/EEA heir – state rules apply", bonusNonEUtext:"As an heir outside the EU/EEA, the state rules apply, which are generally less favourable. Contact us for a full analysis.",
+    bonusChild:"✅ 99% bonification – Group I/II (child/spouse)", bonusChildtext:"Children, grandchildren and spouses in Comunidad Valenciana benefit from a 99% bonification on the calculated tax – in practice they pay almost no inheritance tax. This simulation includes this reduction.",
+    noBonus:"ℹ️ No regional bonification applicable for this kinship group."
+  },
+  es: {
+    h1:"Simulador del impuesto de sucesiones – España",
+    subtitle:"Calcula el impuesto de sucesiones sobre bienes en España (Comunidad Valenciana) como heredero no residente, con las deducciones y coeficientes reales.",
+    infoBanner:"<strong>Comunidad Valenciana:</strong> Desde la sentencia del TJUE de 2015, los no residentes de la UE/EEE tienen derecho a aplicar las ventajosas normas autonómicas. Este simulador utiliza la legislación vigente de la Comunidad Valenciana.",
+    formTitle:"Datos de la herencia", formSub:"Introduce los datos de la herencia y tu parentesco con el fallecido",
+    totalLabel:"Valor total de la herencia (neto)", totalHint:"Valor del inmueble + cuentas bancarias + otros activos, menos deudas y gastos deducibles",
+    assetToggle:"+ Desglosar los activos (opcional)",
+    realEstateLabel:"Inmueble", bankLabel:"Cuentas bancarias y ahorros", otherAssetsLabel:"Otros activos", debtsLabel:"Deudas y gastos deducibles",
+    kinTitle:"Parentesco con el fallecido", kinSub:"Determina las reducciones y coeficientes aplicables",
+    kinChild:"Hijo/a · Nieto/a", kinSpouse:"Cónyuge · Pareja de hecho", kinParent:"Padre/Madre · Abuelo/a",
+    kinSibling:"Hermano/a · Tío/a", kinNephew:"Primo/a · Sobrino/a", kinOther:"Sin parentesco · Otros",
+    resTitle:"Residencia del heredero", resSub:"Determina qué normativa autonómica puede aplicarse",
+    resLabel:"Residencia fiscal", priorLabel:"Patrimonio previo del heredero", priorHint:"Afecta al coeficiente multiplicador si supera 402.678 €",
+    calcBtn:"Simular impuesto de sucesiones",
+    resEyebrow:"Resultado de la simulación", resTitle2:"Impuesto de sucesiones estimado – Comunidad Valenciana",
+    rNetBase:"Base imponible (neto)", rTaxBase:"Base liquidable (tras reducción)",
+    rGrossTax:"Cuota íntegra (antes del coeficiente)", rFinalTax:"Impuesto de sucesiones a pagar",
+    stepsTitle:"Pasos del cálculo", scaleTitle:"Tarifa progresiva estatal",
+    scaleBand:"Base liquidable", scalePct:"Tipo", scaleTax:"Cuota en este tramo",
+    ctaTitle:"¿Necesitas ayuda con la herencia?",
+    ctaText:"Gestionamos todo el proceso sucesorio en España: aceptación de herencia, liquidación del impuesto, escritura de adjudicación y registro. Solicita una primera consulta.",
+    ctaContact:"Contáctanos", ctaWA:"💬 WhatsApp",
+    resetBtn:"← Nueva simulación",
+    disclaimer:"Esta simulación se basa en la legislación vigente de la Comunidad Valenciana y tiene carácter orientativo. La cuota real puede variar según las circunstancias específicas. Contacta con Colás Abogados para un análisis jurídico y fiscal completo.",
+    stepNetBase:"Base imponible (masa hereditaria neta)", stepReduction:"Reducción personal", stepTaxBase:"Base liquidable", stepGrossTax:"Cuota íntegra (tarifa progresiva)", stepCoeff:"Coeficiente multiplicador (grupo + patrimonio)", stepFinalTax:"Impuesto de sucesiones a pagar",
+    bonusEU:"✅ Heredero UE/EEE – se aplican las normas autonómicas", bonusEUtext:"Como ciudadano de la UE/EEE, tienes derecho a aplicar las ventajosas normas de la Comunidad Valenciana, incluidas reducciones y bonificaciones.",
+    bonusNonEU:"⚠️ Heredero fuera de la UE/EEE – se aplican las normas estatales", bonusNonEUtext:"Como heredero fuera de la UE/EEE, se aplica la normativa estatal, generalmente menos favorable. Contáctanos para un análisis completo.",
+    bonusChild:"✅ Bonificación del 99% – Grupo I/II (hijos/cónyuge)", bonusChildtext:"Los hijos, nietos y cónyuges en la Comunidad Valenciana se benefician de una bonificación del 99% sobre la cuota resultante: en la práctica, casi no pagan impuesto de sucesiones. Esta simulación incluye dicha reducción.",
+    noBonus:"ℹ️ No se aplica ninguna bonificación autonómica para este grado de parentesco."
+  }
+};
+
+let lang = 'sv';
+
+function setLang(l) {
+  lang = l;
+  ['sv','en','es'].forEach(x => document.getElementById('lb-'+x).classList.remove('active'));
+  document.getElementById('lb-'+l).classList.add('active');
+  const t = T[l];
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const k = el.getAttribute('data-t');
+    if (t[k] !== undefined) {
+      if (el.tagName === 'DIV' || el.tagName === 'P' || el.tagName === 'SPAN') {
+        el.innerHTML = t[k];
+      } else {
+        el.textContent = t[k];
+      }
+    }
+  });
+}
+
+function selectKin(val, optId) {
+  document.querySelectorAll('.kin-opt').forEach(o => o.classList.remove('selected'));
+  document.getElementById(optId).classList.add('selected');
+  document.querySelector(`input[name=kin][value="${val}"]`).checked = true;
+}
+
+function toggleAssets() {
+  const f = document.getElementById('asset-fields');
+  const b = document.getElementById('asset-btn');
+  f.classList.toggle('open'); b.classList.toggle('open');
+}
+
+function v(id) { return parseFloat(document.getElementById(id).value)||0; }
+function fmt(n) { return new Intl.NumberFormat('sv-SE',{minimumFractionDigits:0,maximumFractionDigits:0}).format(Math.round(n))+' €'; }
+function fmtPct(n) { return (n*100).toFixed(2)+'%'; }
+
+// ── Spanish State Tax Scale (Ley 29/1987) ─────────────────────────────────
+const SCALE = [
+  {from:0,       to:7993.46,   rate:0.0765, flat:0},
+  {from:7993.46, to:15980.91,  rate:0.085,  flat:611.50},
+  {from:15980.91,to:23968.36,  rate:0.0935, flat:1290.43},
+  {from:23968.36,to:31955.81,  rate:0.102,  flat:2037.26},
+  {from:31955.81,to:39943.26,  rate:0.1105, flat:2851.98},
+  {from:39943.26,to:47930.72,  rate:0.119,  flat:3734.59},
+  {from:47930.72,to:55918.17,  rate:0.1275, flat:4685.10},
+  {from:55918.17,to:63905.62,  rate:0.136,  flat:5703.50},
+  {from:63905.62,to:71893.07,  rate:0.1445, flat:6789.79},
+  {from:71893.07,to:79880.52,  rate:0.153,  flat:7943.98},
+  {from:79880.52,to:119792.21, rate:0.1615, flat:9166.06},
+  {from:119792.21,to:159703.91,rate:0.1700, flat:15606.22},
+  {from:159703.91,to:239527.30,rate:0.1870, flat:22511.92},
+  {from:239527.30,to:398778.83,rate:0.2040, flat:37445.68},
+  {from:398778.83,to:797555.08,rate:0.2210, flat:69922.21},
+  {from:797555.08,to:Infinity, rate:0.2550, flat:157952.74},
+];
+
+function calcTax(base) {
+  if (base <= 0) return { tax:0, band:0 };
+  let band = 0;
+  for (let i=0;i<SCALE.length;i++) {
+    if (base > SCALE[i].from) band=i;
+    else break;
+  }
+  const s = SCALE[band];
+  const tax = s.flat + (base - s.from) * s.rate;
+  return { tax, band };
+}
+
+// ── Reductions (Comunidad Valenciana) ────────────────────────────────────
+const REDUCTIONS = {
+  child:   100000, // descendientes y cónyuge: 100.000 €
+  spouse:  100000,
+  parent:  100000,
+  sibling:   8000,
+  nephew:    8000,
+  other:        0,
+};
+
+// ── Multiplier coefficients ───────────────────────────────────────────────
+// Groups I-II: 1.0 (up to 402.678€ prior wealth)
+// Group III: 1.5882 / IV: 2.0
+const COEFF = {
+  child:   { low:1.0,   high:1.0500 },
+  spouse:  { low:1.0,   high:1.0500 },
+  parent:  { low:1.0,   high:1.0500 },
+  sibling: { low:1.5882,high:1.6676 },
+  nephew:  { low:1.5882,high:1.6676 },
+  other:   { low:2.0000,high:2.1000 },
+};
+
+// Regional bonification Comunidad Valenciana (Grupos I y II): 99%
+// Ley 13/1997 de la Generalitat Valenciana (modificada)
+const BONIFICATION = {
+  child:0.99, spouse:0.99, parent:0.99,
+  sibling:0, nephew:0, other:0,
+};
+
+function calculate() {
+  const totalVal   = v('totalValue');
+  if (!totalVal) { alert(lang==='en'?'Please enter the estate value.':lang==='es'?'Por favor, introduce el valor de la herencia.':'Fyll i arvsvärdet.'); return; }
+
+  const kin        = document.querySelector('input[name=kin]:checked').value;
+  const residency  = document.getElementById('residency').value;
+  const priorWealth= v('priorWealth');
+  const t          = T[lang];
+
+  // 1. Net taxable base
+  const netBase = totalVal;
+
+  // 2. Personal reduction (only EU/EES can apply Valencia rules)
+  const reduction = residency === 'eu' ? (REDUCTIONS[kin] || 0) : 0;
+  const taxBase = Math.max(0, netBase - reduction);
+
+  // 3. Gross tax from scale
+  const { tax:grossTax, band } = calcTax(taxBase);
+
+  // 4. Coefficient
+  const highWealth = priorWealth > 402678;
+  const coeff = highWealth ? COEFF[kin].high : COEFF[kin].low;
+  const taxAfterCoeff = grossTax * coeff;
+
+  // 5. Regional bonification (Valencia, EU/EES only)
+  const bonPct = residency === 'eu' ? (BONIFICATION[kin] || 0) : 0;
+  const bonAmount = taxAfterCoeff * bonPct;
+  const finalTax = Math.max(0, taxAfterCoeff - bonAmount);
+
+  // ── Populate hero ─────────────────────────────────────────────────────
+  document.getElementById('r-net-base').textContent  = fmt(netBase);
+  document.getElementById('r-tax-base').textContent  = fmt(taxBase);
+  document.getElementById('r-gross-tax').textContent = fmt(grossTax);
+  document.getElementById('r-final-tax').textContent = fmt(finalTax);
+
+  // ── Bonus box ─────────────────────────────────────────────────────────
+  let bonusHtml = '';
+  if (residency === 'noneu') {
+    bonusHtml = `<div class="bonus-box warning"><div class="bonus-title">${t.bonusNonEU}</div><div class="bonus-text">${t.bonusNonEUtext}</div></div>`;
+  } else {
+    bonusHtml = `<div class="bonus-box"><div class="bonus-title">${t.bonusEU}</div><div class="bonus-text">${t.bonusEUtext}</div></div>`;
+    if (bonPct > 0) {
+      bonusHtml += `<div class="bonus-box"><div class="bonus-title">${t.bonusChild}</div><div class="bonus-text">${t.bonusChildtext}</div></div>`;
+    } else {
+      bonusHtml += `<div class="bonus-box warning"><div class="bonus-title">${t.noBonus}</div></div>`;
+    }
+  }
+  document.getElementById('bonus-section').innerHTML = bonusHtml;
+
+  // ── Calculation steps ─────────────────────────────────────────────────
+  const steps = [
+    { label: t.stepNetBase,   val: fmt(netBase),        cls:'neutral' },
+    { label: t.stepReduction, val: reduction > 0 ? '− '+fmt(reduction) : '0 €', cls:'pos' },
+    { label: t.stepTaxBase,   val: fmt(taxBase),        cls:'neutral' },
+    { label: t.stepGrossTax,  val: fmt(grossTax),       cls:'neg' },
+    { label: t.stepCoeff,     val: '× ' + coeff.toFixed(4), cls:'neutral' },
+  ];
+  if (bonPct > 0) {
+    steps.push({ label: `Bonifikation Valencia (${(bonPct*100).toFixed(0)}%)`, val: '− '+fmt(bonAmount), cls:'pos' });
+  }
+  steps.push({ label: t.stepFinalTax, val: fmt(finalTax), cls:'neg' });
+
+  let stepsHtml = steps.map(s =>
+    `<div class="bk-row"><span class="bk-label">${s.label}</span><span class="bk-val ${s.cls}">${s.val}</span></div>`
+  ).join('');
+  document.getElementById('calc-steps').innerHTML = stepsHtml;
+
+  // ── Tax scale table ───────────────────────────────────────────────────
+  let tableHtml = `<tr><th>${t.scaleBand}</th><th>${t.scalePct}</th><th>${t.scaleTax}</th></tr>`;
+  SCALE.forEach((s,i) => {
+    const isLast = i === SCALE.length-1;
+    const from = fmt(s.from).replace(' €','');
+    const to   = isLast ? '∞' : fmt(s.to).replace(' €','');
+    const bandTax = s.flat + (Math.min(taxBase, s.to) - s.from) * s.rate;
+    const rowTax  = taxBase > s.from ? fmt(Math.min(bandTax, (s.to-s.from)*s.rate)) : '—';
+    const active  = i === band && taxBase > 0 ? 'active-row' : '';
+    tableHtml += `<tr class="${active}"><td>${from} – ${to} €</td><td>${(s.rate*100).toFixed(2)}%</td><td>${rowTax}</td></tr>`;
+    if (taxBase <= s.to) return;
+  });
+  document.getElementById('scale-table').innerHTML = tableHtml;
+
+  // Show results
+  const res = document.getElementById('results');
+  res.classList.add('visible');
+  res.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function resetCalc() {
+  document.querySelectorAll('input[type=number]').forEach(i => i.value='');
+  document.getElementById('results').classList.remove('visible');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
