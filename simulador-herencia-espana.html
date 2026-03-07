@@ -188,7 +188,7 @@
 
   <!-- Lang -->
   <div class="lang-row">
-    <button class="lb active" onclick="setLang('sv')" id="lb-sv">Svenska</button>
+    <button class="lb active" onclick="setLang('en')" id="lb-sv">Svenska</button>
     <button class="lb" onclick="setLang('en')" id="lb-en">English</button>
     <button class="lb" onclick="setLang('es')" id="lb-es">Español</button>
   </div>
@@ -478,7 +478,7 @@ let lang = 'sv';
 
 function setLang(l) {
   lang = l;
-  ['sv','en','es'].forEach(x => document.getElementById('lb-'+x).classList.remove('active'));
+  ['en','sv','es'].forEach(x => document.getElementById('lb-'+x).classList.remove('active'));
   document.getElementById('lb-'+l).classList.add('active');
   const t = T[l];
   document.querySelectorAll('[data-t]').forEach(el => {
@@ -684,14 +684,8 @@ function resetCalc() {
   <div>
     📱 <a href="tel:+34629549430" style="color:#e88;text-decoration:none;">+34 629 549 430</a>
     &nbsp;·&nbsp;
-    ✉️ <a href="mailto:info@colas-abogados.com" style="color:#e88;text-decoration:none;">info@colas-abogados.com</a>
+    ✉️ <a href="/cdn-cgi/l/email-protection#a6cfc8c0c9e6c5c9cac7d58bc7c4c9c1c7c2c9d588c5c9cb" style="color:#e88;text-decoration:none;"><span class="__cf_email__" data-cfemail="f49d9a929bb4979b989587d995969b9395909b87da979b99">[email&#160;protected]</span></a>
     &nbsp;·&nbsp;
     🌐 <a href="https://www.colas-abogados.com" style="color:#e88;text-decoration:none;">www.colas-abogados.com</a>
   </div>
-  <div style="margin-top:5px;font-size:11px;color:#888;">
-    Herramienta creada por Colás Abogados · Costa Blanca · España
-  </div>
-</div>
-<!-- FIN FOOTER AUTOR -->
-</body>
-</html>
+  <div style="margin-top:5px;font-size:11px
