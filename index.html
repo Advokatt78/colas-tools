@@ -677,7 +677,6 @@
   <div class="lang-bar">
     <button class="lang-btn active" onclick="setLang('sv')" id="lb-sv">🇸🇪 SV</button>
     <button class="lang-btn" onclick="setLang('en')" id="lb-en">🇬🇧 EN</button>
-    <button class="lang-btn" onclick="setLang('no')" id="lb-no">🇳🇴 NO</button>
     <button class="lang-btn" onclick="setLang('es')" id="lb-es">🇪🇸 ES</button>
   </div>
 
@@ -929,7 +928,7 @@ const CALC_FILES = {
 
 function setLang(l) {
   lang = l;
-  ['sv','en','no','es'].forEach(x => document.getElementById('lb-'+x).classList.remove('active'));
+  ['sv','en','es'].forEach(x => document.getElementById('lb-'+x).classList.remove('active'));
   document.getElementById('lb-'+l).classList.add('active');
   const t = T[l];
 
