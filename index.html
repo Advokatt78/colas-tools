@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Colás Abogados – Juridisk rådgivning på Costa Blanca</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<!-- QR Code: self-contained, no external dependency -->
 <style>
   :root {
     --gold: #CC0B20;
@@ -726,19 +726,19 @@
   </div>
 
   <div class="calc-grid">
-    <div class="calc-card" onclick="openCalc('buy')">
+    <div class="calc-card" onclick="window.open('calculadora-compra-espana.html','_blank')">
       <div class="calc-card-icon">🏠</div>
       <div class="calc-card-title" id="c1-title">Köpkostnader</div>
       <div class="calc-card-desc" id="c1-desc">Skatter, notarie och avgifter vid köp av bostad i Spanien</div>
       <div class="calc-card-arrow">→</div>
     </div>
-    <div class="calc-card" onclick="openCalc('sell')">
+    <div class="calc-card" onclick="window.open('calculadora-venta-noresidente.html','_blank')">
       <div class="calc-card-icon">📊</div>
       <div class="calc-card-title" id="c2-title">Vinstskatt vid försäljning</div>
       <div class="calc-card-desc" id="c2-desc">Modelo 210 – kapitalvinstskatt för icke-residenter</div>
       <div class="calc-card-arrow">→</div>
     </div>
-    <div class="calc-card" onclick="openCalc('inherit')">
+    <div class="calc-card" onclick="window.open('simulador-herencia-espana.html','_blank')">
       <div class="calc-card-icon">⚖️</div>
       <div class="calc-card-title" id="c3-title">Arvsskatt</div>
       <div class="calc-card-desc" id="c3-desc">Simulera arvsskatten i Spanien (Comunidad Valenciana)</div>
@@ -936,6 +936,17 @@ function closeModalOutside(e) {
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-// Generate QR code
+// QR code embedded as base64 - no external dependency
 window.addEventListener('load', () => {
-  n
+  const wrap = document.getElementById('qr-code');
+  const img = document.createElement('img');
+  img.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAIAAADeJhTwAAADLElEQVR4nO2dSW4cMQwA48AvyMGA//84Az7kC5NjdCFAgmR3dVJ1tKVWYwoUR+u8vV6vH8Lg590vIH9RBghlgFAGCGWAUAYIZYB4j/7x6+NzvLHf318jbZ3POetGz8+0NfVuGaK2jAwQygChDBBhzjjJ9MURUZ8b9fWZHNDJE1FbmWdufA4nRgYIZYBQBohUzjjJ9H2ZvjXqu6O2zvLVXFJ9nwxTn8OJkQFCGSCUAaKcMwhkckNmbEHDyAChDBDKAHFbzsisK5D79w2MDBDKAKEMEOWc0ZnTj54TrSucdMYN1TIbc1kZjAwQygChDBCpnLHxfb+6Bl5dP9h4/va4x8gAoQwQygDxRjvTV90LG9Xd3ou1gZEBQhkglAEidT5j6vt7tb/u7IXdHjds5CEjA4QyQCgDRGucsZ1XpuaXOmf9IjbGMUYGCGWAUAaIMGdsrzdETJ3rrr5DZx/X1OdgZIBQBghlgEiNM65cl+5AyGGdukYGCGWAUAaI8jgjw/b38U5bnXulOusxmecYGSCUAUIZIMI18Kl5oerdTdv7Wa88h1HNkUYGCGWAUAaI1vmM6p1REdW7pKK6HTZyWLWukQFCGSCUAaK81zYqE7G9Tzd6n43ynTUY1zMehjJAKANEaw08KpOhsx/prt/JcD3jP0IZIJQBonVH4fa56427p7bpvJuRAUIZIJQBYuV8xsYczkae2L5HxHHGg1EGCGWAGJub6pTP1O2snURlNt6nM59mZIBQBghlgLh0nLFx/8eV5zMipvZuGRkglAFCGSDK5zOm/l5ttzN22Sg/tbf4xMgAoQwQygCR2ms7ReZ3WKvlp+5Ir9adev6JkQFCGSCUASK1b2pjHbjD1F6sjfWPTl0jA4QyQCgDRHmv7fbdf9X9tVG7d92LHj3HNfCHoQwQygDROp/RoXPvyMZc01Qu6ay7GBkglAFCGSBuyxnbZyBOpvYHR/nJ31z6B1EGCGWAKOeMK+8E7Ox3yvTp1XFD1FamrnNTD0MZIJQBonWvbYfMHFG13anf7ZhqKyrvOOMBKAOEMkC0fg9cZjEyQCgDhDJAKAOEMkAoA4QyQPwBjS9fZHhWT98AAAAASUVORK5CYII=';
+  img.width = 94;
+  img.height = 94;
+  img.alt = 'QR Colas Abogados Telegram';
+  img.style.display = 'block';
+  wrap.appendChild(img);
+});
+</script>
+</body>
+</html>
