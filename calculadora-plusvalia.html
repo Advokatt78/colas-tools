@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora Plusvalía Municipal 2025 — Costa Blanca y Valencia | Colás Abogados</title>
+<meta name="description" content="Calcula la plusvalía municipal (IIVTNU) para Alicante, Benidorm, Altea, Jávea, Torrevieja, Dénia, Calpe, Valencia y más. Método objetivo y real. Bonificaciones por herencia. Resultado en segundos.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Colás Abogados / Advokater">
+<link rel="canonical" href="https://advokatt78.github.io/colas-tools/calculadora-plusvalia.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculadora Plusvalía Municipal 2025 — Costa Blanca y Valencia">
+<meta property="og:description" content="Calcula gratis el IIVTNU para 14 municipios de la Costa Blanca. Método objetivo y real con comparativa automática. Bonificaciones por herencia incluidas.">
+<meta property="og:url" content="https://advokatt78.github.io/colas-tools/calculadora-plusvalia.html">
+<meta property="og:site_name" content="Colás Abogados — Herramientas Fiscales">
+<meta property="og:locale" content="es_ES">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Calculadora Plusvalía Municipal 2025 — Costa Blanca">
+<meta name="twitter:description" content="Calcula el IIVTNU para Alicante, Benidorm, Jávea, Torrevieja y más. Gratis, sin registro.">
+
+<!-- Schema.org: WebApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Calculadora Plusvalía Municipal Costa Blanca",
+  "description": "Calculadora del Impuesto sobre el Incremento de Valor de los Terrenos de Naturaleza Urbana (IIVTNU) para 14 municipios de la provincia de Alicante y Valencia.",
+  "url": "https://advokatt78.github.io/colas-tools/calculadora-plusvalia.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "author": {
+    "@type": "LegalService",
+    "name": "Colás Abogados / Advokater",
+    "url": "https://www.colas-abogados.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle Mozart 9",
+      "addressLocality": "L'Alfàs del Pi",
+      "postalCode": "03581",
+      "addressCountry": "ES"
+    }
+  }
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1A1A2E;
+    --red: #CC0B20;
+    --gold: #B8973A;
+    --gold-light: #d4b15a;
+    --cream: #F8F4EE;
+    --cream-dark: #EDE7DC;
+    --text: #2C2C3A;
+    --text-muted: #6B6B7A;
+    --border: rgba(184,151,58,0.25);
+    --shadow: 0 4px 24px rgba(26,26,46,0.10);
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', Georgia, serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ─────────────────────────────────────── */
+  header {
+    background: var(--navy);
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content:'';
+    position:absolute;inset:0;
+    background: repeating-linear-gradient(
+      -55deg,
+      transparent,transparent 40px,
+      rgba(184,151,58,.04) 40px,rgba(184,151,58,.04) 41px
+    );
+  }
+  .header-inner {
+    position:relative;z-index:1;
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+  }
+  .logo-line {
+    display:flex;align-items:center;gap:14px;
+  }
+  .logo-icon {
+    width:44px;height:44px;
+    background: linear-gradient(135deg,var(--gold),var(--gold-light));
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;
+    box-shadow:0 2px 12px rgba(184,151,58,.4);
+  }
+  .firm-name {
+    font-family:'Playfair Display',serif;
+    font-size:22px;font-weight:700;
+    color:#fff;letter-spacing:.5px;
+  }
+  .firm-name span { color:var(--gold-light); }
+  .tool-title {
+    font-size:13px;font-weight:300;
+    color:rgba(255,255,255,.6);
+    letter-spacing:3px;text-transform:uppercase;
+    margin-top:2px;
+  }
+  .gold-bar {
+    width:60px;height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+    margin-top:8px;
+  }
+
+  /* ── LAYOUT ─────────────────────────────────────── */
+  .container {
+    max-width:920px;margin:0 auto;
+    padding:36px 20px 60px;
+  }
+
+  .intro {
+    text-align:center;margin-bottom:32px;
+  }
+  .intro h1 {
+    font-family:'Playfair Display',serif;
+    font-size:28px;font-weight:600;
+    color:var(--navy);margin-bottom:8px;
+  }
+  .intro h1 span { color:var(--red); }
+  .intro p {
+    font-size:15px;color:var(--text-muted);
+    line-height:1.6;max-width:640px;margin:0 auto;
+  }
+
+  /* ── CARD ────────────────────────────────────────── */
+  .card {
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:32px;
+    margin-bottom:24px;
+  }
+  .card-title {
+    font-family:'Playfair Display',serif;
+    font-size:17px;font-weight:600;
+    color:var(--navy);
+    margin-bottom:22px;
+    padding-bottom:12px;
+    border-bottom:1px solid var(--border);
+    display:flex;align-items:center;gap:10px;
+  }
+  .card-title::before {
+    content:'';width:4px;height:18px;
+    background:var(--gold);border-radius:2px;
+    display:block;
+  }
+
+  /* ── FORM GRID ───────────────────────────────────── */
+  .form-grid {
+    display:grid;gap:20px;
+  }
+  .form-row { display:grid;grid-template-columns:1fr 1fr;gap:20px; }
+  @media(max-width:600px){ .form-row{grid-template-columns:1fr;} }
+
+  .field { display:flex;flex-direction:column;gap:6px; }
+  label {
+    font-size:12px;font-weight:600;
+    text-transform:uppercase;letter-spacing:.8px;
+    color:var(--text-muted);
+  }
+  select, input[type="number"], input[type="date"] {
+    width:100%;
+    padding:11px 14px;
+    border:1.5px solid #DDD8CF;
+    border-radius:8px;
+    font-family:'Source Sans 3',sans-serif;
+    font-size:15px;color:var(--text);
+    background:#fff;
+    transition:border-color .2s,box-shadow .2s;
+    appearance:none;
+    -webkit-appearance:none;
+  }
+  select {
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8973A' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 14px center;
+    padding-right:38px;
+  }
+  select:focus, input:focus {
+    outline:none;
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(184,151,58,.15);
+  }
+
+  .field-note {
+    font-size:11.5px;color:var(--text-muted);
+    line-height:1.4;
+  }
+
+  /* ── METHOD TOGGLE ───────────────────────────────── */
+  .method-toggle {
+    display:flex;gap:0;
+    border:1.5px solid var(--border);
+    border-radius:8px;overflow:hidden;
+    width:100%;
+  }
+  .method-toggle label {
+    flex:1;text-align:center;
+    padding:10px 8px;cursor:pointer;
+    font-size:12px;font-weight:600;
+    text-transform:uppercase;letter-spacing:.6px;
+    color:var(--text-muted);
+    background:#fff;
+    transition:all .2s;
+    border-right:1px solid var(--border);
+  }
+  .method-toggle label:last-child{border-right:none;}
+  .method-toggle input[type=radio]{display:none;}
+  .method-toggle input[type=radio]:checked + label {
+    background:var(--navy);
+    color:#fff;
+  }
+
+  /* ── HERENCIA TOGGLE ─────────────────────────────── */
+  .herencia-toggle {
+    display:flex;align-items:center;gap:12px;
+    padding:14px;
+    background:var(--cream);
+    border-radius:8px;
+    border:1px solid var(--border);
+  }
+  .toggle-switch {
+    position:relative;width:44px;height:24px;flex-shrink:0;
+  }
+  .toggle-switch input{display:none;}
+  .toggle-switch .slider {
+    position:absolute;inset:0;
+    background:#CCC;border-radius:24px;cursor:pointer;
+    transition:.3s;
+  }
+  .toggle-switch .slider::before {
+    content:'';position:absolute;
+    width:18px;height:18px;
+    border-radius:50%;background:#fff;
+    left:3px;top:3px;
+    transition:.3s;
+    box-shadow:0 1px 4px rgba(0,0,0,.2);
+  }
+  .toggle-switch input:checked + .slider{background:var(--gold);}
+  .toggle-switch input:checked + .slider::before{transform:translateX(20px);}
+  .herencia-toggle-text{font-size:14px;font-weight:500;color:var(--text);}
+  .herencia-toggle-sub{font-size:12px;color:var(--text-muted);margin-top:1px;}
+
+  /* ── BTN ─────────────────────────────────────────── */
+  .btn-calc {
+    width:100%;padding:16px;
+    background:linear-gradient(135deg,var(--navy),#2a2a4a);
+    color:#fff;border:none;
+    border-radius:8px;cursor:pointer;
+    font-family:'Source Sans 3',sans-serif;
+    font-size:15px;font-weight:600;letter-spacing:.5px;
+    text-transform:uppercase;
+    transition:all .25s;
+    position:relative;overflow:hidden;
+  }
+  .btn-calc::after {
+    content:'';position:absolute;
+    top:0;left:-100%;width:100%;height:100%;
+    background:linear-gradient(90deg,transparent,rgba(184,151,58,.25),transparent);
+    transition:left .5s;
+  }
+  .btn-calc:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(26,26,46,.25);}
+  .btn-calc:hover::after{left:100%;}
+  .btn-calc:active{transform:translateY(0);}
+
+  /* ── RESULT BOX ──────────────────────────────────── */
+  #result {display:none;}
+
+  .result-header {
+    display:flex;justify-content:space-between;align-items:flex-start;
+    margin-bottom:20px;flex-wrap:wrap;gap:10px;
+  }
+  .result-municipality {
+    font-family:'Playfair Display',serif;
+    font-size:20px;color:var(--navy);font-weight:600;
+  }
+  .result-method-badge {
+    font-size:11px;font-weight:700;letter-spacing:1px;
+    text-transform:uppercase;
+    padding:4px 12px;border-radius:20px;
+    background:var(--cream-dark);color:var(--navy);
+  }
+
+  .result-amounts {
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;
+    margin-bottom:24px;
+  }
+  @media(max-width:600px){.result-amounts{grid-template-columns:1fr;}}
+
+  .amount-box {
+    padding:18px;border-radius:10px;text-align:center;
+  }
+  .amount-box.main {
+    background:var(--navy);
+    grid-column:1/-1;
+  }
+  @media(max-width:600px){.amount-box.main{grid-column:1;}}
+  .amount-box.secondary{background:var(--cream);}
+  .amount-box.accent {
+    background:linear-gradient(135deg,#f9f3e8,#f2e8cd);
+    border:1px solid var(--border);
+  }
+
+  .amount-label {
+    font-size:11px;font-weight:700;letter-spacing:1px;
+    text-transform:uppercase;margin-bottom:6px;
+  }
+  .amount-box.main .amount-label{color:rgba(255,255,255,.6);}
+  .amount-box.secondary .amount-label{color:var(--text-muted);}
+  .amount-box.accent .amount-label{color:var(--gold);}
+
+  .amount-value {
+    font-family:'Playfair Display',serif;
+    font-size:28px;font-weight:700;
+  }
+  .amount-box.main .amount-value{color:#fff;}
+  .amount-box.secondary .amount-value{color:var(--text);}
+  .amount-box.accent .amount-value{color:var(--navy);}
+
+  .amount-note {
+    font-size:11px;margin-top:4px;
+  }
+  .amount-box.main .amount-note{color:rgba(255,255,255,.5);}
+  .amount-box.secondary .amount-note{color:var(--text-muted);}
+  .amount-box.accent .amount-note{color:var(--gold);}
+
+  /* ── BREAKDOWN TABLE ─────────────────────────────── */
+  .breakdown-title {
+    font-size:12px;font-weight:700;letter-spacing:.8px;
+    text-transform:uppercase;color:var(--text-muted);
+    margin-bottom:12px;
+  }
+  table {
+    width:100%;border-collapse:collapse;font-size:14px;
+  }
+  th {
+    text-align:left;padding:8px 10px;
+    font-size:11px;font-weight:700;letter-spacing:.6px;
+    text-transform:uppercase;color:var(--text-muted);
+    border-bottom:2px solid var(--cream-dark);
+  }
+  td {
+    padding:10px 10px;border-bottom:1px solid #F0EBE2;
+    color:var(--text);
+  }
+  tr:last-child td{border-bottom:none;}
+  .td-num{text-align:right;font-family:'Playfair Display',serif;font-weight:600;}
+
+  /* ── HERENCIA ALERT ──────────────────────────────── */
+  .herencia-alert {
+    background:linear-gradient(135deg,#f9f3e8,#f2e8cd);
+    border:1px solid var(--gold);
+    border-radius:10px;
+    padding:16px 20px;
+    display:flex;gap:14px;align-items:flex-start;
+    margin-top:20px;
+  }
+  .herencia-alert-icon{font-size:22px;flex-shrink:0;margin-top:2px;}
+  .herencia-alert-text h4{
+    font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;
+  }
+  .herencia-alert-text p{font-size:13px;color:var(--text-muted);line-height:1.5;}
+
+  /* ── DISCLAIMER ──────────────────────────────────── */
+  .disclaimer {
+    margin-top:32px;
+    padding:16px 20px;
+    background:var(--cream-dark);
+    border-radius:10px;
+    border-left:3px solid var(--gold);
+    font-size:12.5px;color:var(--text-muted);line-height:1.6;
+  }
+  .disclaimer strong{color:var(--navy);}
+
+  /* ── FOOTER ──────────────────────────────────────── */
+  footer {
+    text-align:center;padding:24px;
+    font-size:12px;color:var(--text-muted);
+    border-top:1px solid var(--border);
+    margin-top:20px;
+  }
+  footer a{color:var(--gold);text-decoration:none;}
+  footer a:hover{text-decoration:underline;}
+
+  /* ── COMPARISON BADGE ────────────────────────────── */
+  .comparison-badge {
+    display:inline-flex;align-items:center;gap:6px;
+    padding:6px 14px;border-radius:20px;
+    font-size:12px;font-weight:600;
+    margin-bottom:16px;
+  }
+  .comparison-badge.using-real{background:#e8f5e9;color:#2e7d32;}
+  .comparison-badge.using-objective{background:#e3f2fd;color:#1565c0;}
+
+  .error-msg {
+    color:var(--red);font-size:14px;
+    padding:14px;background:#fff0f0;
+    border-radius:8px;border:1px solid #ffcdd2;
+    margin-top:12px;display:none;
+  }
+
+  /* ── SEO SECTIONS ────────────────────────────────── */
+  .seo-section {
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:40px;
+    margin-bottom:24px;
+  }
+  .seo-section h2 {
+    font-family:'Playfair Display',serif;
+    font-size:22px;font-weight:600;
+    color:var(--navy);
+    margin-bottom:18px;
+    padding-bottom:12px;
+    border-bottom:1px solid var(--border);
+    display:flex;align-items:center;gap:10px;
+  }
+  .seo-section h2::before {
+    content:'';width:4px;height:20px;
+    background:var(--gold);border-radius:2px;
+    display:block;flex-shrink:0;
+  }
+  .seo-section h3 {
+    font-family:'Playfair Display',serif;
+    font-size:16px;font-weight:600;
+    color:var(--navy);margin:20px 0 8px;
+  }
+  .seo-section p {
+    font-size:15px;line-height:1.75;
+    color:var(--text);margin-bottom:14px;
+  }
+  .seo-section ul, .seo-section ol {
+    margin:0 0 16px 20px;
+  }
+  .seo-section li {
+    font-size:15px;line-height:1.7;
+    color:var(--text);margin-bottom:6px;
+  }
+  .seo-section .legal-ref {
+    font-size:12.5px;color:var(--text-muted);
+    background:var(--cream);
+    border-left:3px solid var(--gold);
+    padding:10px 14px;border-radius:0 6px 6px 0;
+    margin:16px 0;line-height:1.6;
+  }
+  .example-box {
+    background:var(--cream);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:22px 24px;
+    margin:18px 0;
+  }
+  .example-grid {
+    display:grid;grid-template-columns:1fr 1fr;gap:12px;
+    margin-bottom:16px;
+  }
+  @media(max-width:600px){.example-grid{grid-template-columns:1fr;}}
+  .example-item {
+    background:#fff;border-radius:8px;padding:12px 16px;
+    border:1px solid var(--border);
+  }
+  .example-item .ek{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:3px;}
+  .example-item .ev{font-size:16px;font-weight:600;color:var(--navy);font-family:'Playfair Display',serif;}
+  .example-steps {
+    counter-reset:step;
+    list-style:none;margin:0;padding:0;
+  }
+  .example-steps li {
+    counter-increment:step;
+    display:flex;gap:12px;margin-bottom:12px;
+    align-items:flex-start;
+  }
+  .example-steps li::before {
+    content:counter(step);
+    flex-shrink:0;
+    width:24px;height:24px;border-radius:50%;
+    background:var(--navy);color:#fff;
+    font-size:12px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+    margin-top:2px;
+  }
+  .btn-load-example {
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 20px;
+    background:var(--navy);color:#fff;
+    border:none;border-radius:8px;cursor:pointer;
+    font-family:'Source Sans 3',sans-serif;
+    font-size:13px;font-weight:600;letter-spacing:.4px;
+    transition:all .2s;margin-top:8px;
+  }
+  .btn-load-example:hover{background:var(--gold);color:var(--navy);}
+  .faq-item {
+    border-bottom:1px solid var(--border);
+    padding:18px 0;
+  }
+  .faq-item:last-child{border-bottom:none;}
+  .faq-q {
+    font-size:15px;font-weight:600;color:var(--navy);
+    margin-bottom:8px;
+    display:flex;align-items:flex-start;gap:10px;
+  }
+  .faq-q::before {
+    content:'P';flex-shrink:0;
+    width:22px;height:22px;border-radius:50%;
+    background:var(--gold);color:#fff;
+    font-size:11px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+    margin-top:1px;
+  }
+  .faq-a {
+    font-size:14px;line-height:1.7;color:var(--text);
+    padding-left:32px;
+  }
+  .muni-grid {
+    display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+    margin-top:16px;
+  }
+  @media(max-width:600px){.muni-grid{grid-template-columns:1fr 1fr;}}
+  .muni-link {
+    display:flex;align-items:center;gap:8px;
+    padding:14px 16px;
+    background:var(--cream);
+    border:1px solid var(--border);border-radius:8px;
+    cursor:pointer;
+    font-size:14px;font-weight:500;color:var(--navy);
+    text-decoration:none;
+    transition:all .2s;
+  }
+  .muni-link:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .muni-link::before{content:'📍';font-size:14px;}
+  .cta-card {
+    background:linear-gradient(135deg,var(--navy),#2a2a4a);
+    border-radius:12px;padding:32px;
+    display:flex;justify-content:space-between;align-items:center;
+    gap:24px;flex-wrap:wrap;
+    margin-bottom:24px;
+  }
+  .cta-card-text h3 {
+    font-family:'Playfair Display',serif;
+    font-size:20px;font-weight:600;color:#fff;
+    margin-bottom:8px;
+  }
+  .cta-card-text p {
+    font-size:14px;color:rgba(255,255,255,.7);line-height:1.6;
+  }
+  .cta-card-btns {display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0;}
+  .cta-btn {
+    padding:12px 20px;border-radius:8px;
+    font-family:'Source Sans 3',sans-serif;
+    font-size:13px;font-weight:600;
+    text-decoration:none;display:inline-block;
+    transition:all .2s;
+  }
+  .cta-btn-gold{background:var(--gold);color:var(--navy);}
+  .cta-btn-gold:hover{background:#d4b15a;}
+  .cta-btn-outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3);}
+  .cta-btn-outline:hover{border-color:#fff;}
+
+
+  .lang-btn {
+    padding:5px 12px;border-radius:20px;
+    border:1px solid rgba(184,151,58,.4);
+    background:transparent;
+    font-family:'Source Sans 3',sans-serif;
+    font-size:11px;font-weight:600;letter-spacing:.5px;
+    cursor:pointer;color:rgba(255,255,255,.6);
+    transition:all .2s;
+  }
+  .lang-btn.active, .lang-btn:hover {
+    background:var(--gold);border-color:var(--gold);color:var(--navy);
+  }
+
+</style>
+
+<!-- Schema.org FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Quién paga la plusvalía municipal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En las ventas, el vendedor (transmitente) es el sujeto pasivo del IIVTNU. En herencias y donaciones, lo paga el heredero o donatario (adquirente). Si el vendedor no reside en España, el comprador puede quedar obligado como sustituto del contribuyente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Se paga plusvalía municipal si se vende con pérdidas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Desde la STC 182/2021 del Tribunal Constitucional, si no existe incremento real de valor del terreno, la transmisión está no sujeta al IIVTNU. Debe acreditarse la ausencia de ganancia aportando los títulos de adquisición y transmisión."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué ocurre con la plusvalía municipal en una herencia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En transmisiones mortis causa, muchos municipios aplican bonificaciones de hasta el 95% sobre la cuota. El plazo de presentación es de 6 meses desde el fallecimiento, prorrogables a 1 año. En municipios como L'Alfàs del Pi, Calpe, Dénia, Finestrat y Valencia la bonificación es del 95%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es el plazo para pagar la plusvalía municipal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En transmisiones inter vivos (ventas y donaciones) el plazo es de 30 días hábiles desde la transmisión. En transmisiones mortis causa (herencias) el plazo es de 6 meses desde el fallecimiento, prorrogables a 1 año previa solicitud."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Se puede reclamar la plusvalía municipal pagada?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, si se pagó la plusvalía en una operación sin incremento real de valor, puede solicitarse la rectificación de la autoliquidación. El plazo general es de 4 años. En algunos casos pueden reclamarse plusvalías pagadas entre mayo 2017 y noviembre 2021, antes de la reforma legal."
+      }
+    }
+  ]
+}
+</script>
+
+</head>
+<body>
+
+<!-- HEADER -->
+<header style="position:relative;">
+
+  <!-- LANG BUTTONS -->
+  <div style="position:absolute;top:16px;right:20px;display:flex;gap:6px;z-index:10;">
+    <button class="lang-btn active" id="lb-sv" onclick="setLang('sv')">SV</button>
+    <button class="lang-btn" id="lb-en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="lb-es" onclick="setLang('es')">ES</button>
+  </div>
+  <div class="header-inner">
+    <div class="logo-line">
+      <div class="logo-icon">⚖️</div>
+      <div class="firm-name">Colás <span>Abogados</span> / Advokater</div>
+    </div>
+    <div class="tool-title">Calculadora de Plusvalía Municipal · IIVTNU</div>
+    <div class="gold-bar"></div>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="intro">
+    <h1 data-t="h1">Plusvalía <span data-t="h1span">Municipal</span></h1>
+    <p data-t="subtitle">Calcule el IIVTNU por los dos métodos legales (objetivo y real) y obtenga automáticamente la cuota más favorable. Disponible para 14 municipios de la Costa Blanca y Valencia.</p>
+  </div>
+
+  <!-- INPUT CARD -->
+  <div class="card" id="calculadora">
+    <div class="card-title" data-t="cardTitle">Datos del inmueble</div>
+
+    <div class="form-grid">
+      <div class="field">
+        <label data-t="lblMunicipio">Municipio</label>
+        <select id="municipio" onchange="onMunicipioChange()">
+          <option value="" data-t-opt="selectMuni">— Seleccione municipio —</option>
+          <option value="alicante">Alicante</option>
+          <option value="alfas">L'Alfàs del Pi</option>
+          <option value="altea">Altea</option>
+          <option value="benidorm">Benidorm</option>
+          <option value="calpe">Calpe / Calp</option>
+          <option value="denia">Dénia</option>
+          <option value="finestrat">Finestrat</option>
+          <option value="javea">Jávea / Xàbia</option>
+          <option value="lanucia">La Nucía</option>
+          <option value="orihuela">Orihuela (Orihuela Costa)</option>
+          <option value="teulada">Teulada (Moraira)</option>
+          <option value="torrevieja">Torrevieja</option>
+          <option value="villajoyosa">Villajoyosa / La Vila Joiosa</option>
+          <option value="valencia">Valencia</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label data-t="lblVC">Valor catastral del suelo (€)</label>
+        <input type="number" id="valorCatastral" placeholder="Ej: 45.000" min="0" step="1">
+        <span class="field-note" data-t="vcNote">Figura en el recibo del IBI. Si el inmueble está edificado, use sólo la parte del suelo.</span>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label data-t="lblFechaAdq">Fecha de adquisición</label>
+          <input type="date" id="fechaAdquisicion">
+        </div>
+        <div class="field">
+          <label data-t="lblFechaTrans">Fecha de transmisión</label>
+          <input type="date" id="fechaTransmision">
+        </div>
+      </div>
+
+      <!-- MÉTODO -->
+      <div class="field">
+        <label data-t="lblMetodo">Método de cálculo</label>
+        <div class="method-toggle">
+          <input type="radio" name="metodo" id="m-auto" value="auto" checked>
+          <label for="m-auto" data-t="metodoAuto">Automático (más favorable)</label>
+          <input type="radio" name="metodo" id="m-obj" value="objetivo">
+          <label for="m-obj" data-t="metodoObj">Sólo objetivo</label>
+          <input type="radio" name="metodo" id="m-real" value="real">
+          <label for="m-real" data-t="metodoReal">Sólo real</label>
+        </div>
+      </div>
+
+      <!-- MÉTODO REAL: campos adicionales -->
+      <div id="camposReal" style="display:none;">
+        <div class="form-row">
+          <div class="field">
+            <label data-t="lblPrecioCompra">Precio de adquisición (€)</label>
+            <input type="number" id="precioCompra" placeholder="Precio de compra" min="0" step="1">
+          </div>
+          <div class="field">
+            <label data-t="lblPrecioVenta">Precio de transmisión (€)</label>
+            <input type="number" id="precioVenta" placeholder="Precio de venta" min="0" step="1">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label data-t="lblVCTotal">Valor catastral total del inmueble (€)</label>
+            <input type="number" id="valorCatastralTotal" placeholder="Valor catastral total (suelo + construcción)" min="0" step="1">
+            <span class="field-note" data-t="vcTotalNote">Necesario para calcular el % del suelo.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HERENCIA -->
+      <div class="herencia-toggle">
+        <label class="toggle-switch">
+          <input type="checkbox" id="esHerencia">
+          <div class="slider"></div>
+        </label>
+        <div>
+          <div class="herencia-toggle-text" data-t="herenciaLabel">¿Transmisión mortis causa (herencia)?</div>
+          <div class="herencia-toggle-sub" data-t="herenciaSub">Activa si puede aplicarse bonificación por herencia en línea directa</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="error-msg" id="errorMsg"></div>
+
+    <div style="margin-top:24px;">
+      <button class="btn-calc" onclick="calcular()" data-t="calcBtn">✦ Calcular Plusvalía</button>
+    </div>
+  </div>
+
+  <!-- RESULT CARD -->
+  <div class="card" id="result">
+    <div class="card-title" data-t="resultTitle">Resultado del cálculo</div>
+    <div id="resultContent"></div>
+  </div>
+
+  <div class="disclaimer">
+    <strong data-t="disclaimerTitle">Aviso legal:</strong> Esta calculadora ofrece una estimación orientativa con fines informativos. El resultado puede diferir del importe liquidado por el Ayuntamiento por variaciones en el valor catastral vigente, reducciones adicionales del 15% previstas en el art. 107.3 TRLHL, o modificaciones de ordenanza posteriores a la fecha de actualización de esta herramienta. <strong>Colás Abogados / Advokater</strong> no asume responsabilidad por decisiones tomadas basándose exclusivamente en esta estimación. Consulte siempre con un profesional.
+  </div>
+
+</div>
+
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECCIÓN 1: EDUCATIVA — QUÉ ES LA PLUSVALÍA
+  ═══════════════════════════════════════════════════ -->
+  <section class="seo-section" id="que-es-plusvalia">
+    <h2 data-t="seoH2_1">Cómo se calcula la plusvalía municipal en España</h2>
+
+    <div id="seo-content-1"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECCIÓN 2: MÉTODO OBJETIVO VS MÉTODO REAL
+  ═══════════════════════════════════════════════════ -->
+  <section class="seo-section" id="metodo-objetivo-vs-real">
+    <h2 data-t="seoH2_2">Método objetivo vs. método real (incremento real)</h2>
+
+    <div id="seo-content-2"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECCIÓN 3: EJEMPLO PRÁCTICO CON BOTÓN
+  ═══════════════════════════════════════════════════ -->
+  <section class="seo-section" id="ejemplo-calculo">
+    <h2 data-t="seoH2_3">Ejemplo de cálculo de plusvalía municipal</h2>
+
+    <div id="seo-content-3"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECCIÓN 4: FAQ
+  ═══════════════════════════════════════════════════ -->
+  <section class="seo-section" id="faq-plusvalia">
+    <h2 data-t="seoH2_4">Preguntas frecuentes sobre la plusvalía municipal</h2>
+
+    <div id="seo-content-4"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       CTA — REVISIÓN JURÍDICA
+  ═══════════════════════════════════════════════════ -->
+  <div class="cta-card">
+    <div class="cta-card-text">
+      <h3 data-t="ctaTitle">¿Necesita una revisión jurídica exacta?</h3>
+      <p data-t="ctaText">Colás Abogados verifica la ordenanza municipal vigente, calcula el método más favorable antes de la presentación y gestiona la no sujeción cuando corresponde.</p>
+    </div>
+    <div class="cta-card-btns">
+      <a href="https://www.colas-abogados.com" class="cta-btn cta-btn-gold" data-t="ctaContact">Contactar</a>
+      <a href="https://wa.me/34629549430" class="cta-btn cta-btn-outline">WhatsApp</a>
+      <a href="https://t.me/Colasabogadosbot" class="cta-btn cta-btn-outline">Telegram</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECCIÓN 5: MUNICIPIOS SEO
+  ═══════════════════════════════════════════════════ -->
+  <section class="seo-section" id="municipios-costa-blanca">
+    <h2 data-t="seoH2_5">Cálculo de plusvalía municipal en la Costa Blanca</h2>
+
+    <p id="seo-content-5-intro"></p>
+
+    <div class="muni-grid">
+      <a class="muni-link" href="#calculadora" onclick="seleccionarMunicipio('alicante')">Alicante</a>
+      <a class="muni-link" href="#calculadora" onclick="seleccionarMunicipio('benidorm')">Benidorm</a>
+      <a class="muni-link" href="#calculadora" onclick="seleccionarMunicipio('alfas')">L'Alfàs del Pi</a>
+      <a class="muni-link" href="#calculadora" onclick="seleccionarMunicipio('altea')">Altea</a>
+      <a class="muni-link" href="#calculadora" onclick="seleccionarMunicipio('calpe')">Calpe / Calp</a>
+      <a class="muni-link" href="#calculadora" onclick="seleccionarMunicipio('denia')">Dénia</a>
+      <a class="muni-link" href="#calculadora" onclick="seleccionarMunicipio('finestrat')">Finestrat</a>
+      <a class="muni-link" href="#calculadora" onclick="seleccionarMunicipio('javea')">Jávea / Xàbia</a>
+      <a class="muni-link" href="#calculadora" onclick="seleccionarMunicipio('lanucia')">La Nucía</a>
+      <a class="muni-link" href="#calculadora" onclick="seleccionarMunicipio('orihuela')">Orihuela Costa</a>
+      <a class="muni-link" href="#calculadora" onclick="seleccionarMunicipio('teulada')">Teulada · Moraira</a>
+      <a class="muni-link" href="#calculadora" onclick="seleccionarMunicipio('torrevieja')">Torrevieja</a>
+      <a class="muni-link" href="#calculadora" onclick="seleccionarMunicipio('villajoyosa')">Villajoyosa</a>
+      <a class="muni-link" href="#calculadora" onclick="seleccionarMunicipio('valencia')">Valencia</a>
+    </div>
+
+    <p style="margin-top:20px;font-size:14px;color:var(--text-muted);" id="seo-content-5-note"></p>
+  </section>
+
+
+<footer>
+  <strong>Colás Abogados / Advokater</strong> · Calle Mozart 9, 03581 L'Alfàs del Pi · 
+  <a href="tel:+34966868492">+34 966 868 492</a> · 
+  <a href="/cdn-cgi/l/email-protection#e78e898188a784888b8694ca8685888086838894c984888a"><span class="__cf_email__" data-cfemail="3b52555d547b5854575a48165a59545c5a5f544815585456">[email&#160;protected]</span></a> · 
+  <a href="https://www.colas-abogados.com">www.colas-abogados.com</a>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ═══════════════════════════════════════════════════════════════════
+   DATOS FISCALES POR MUNICIPIO
+   Fuente: Ministerio de Hacienda (PDF 3N-IVTNU 2024), Diputación de
+   Alicante, ordenanzas municipales en BOP.
+   Última actualización: Marzo 2025
+═══════════════════════════════════════════════════════════════════ */
+const MUNICIPIOS = {
+
+  alicante: {
+    nombre: "Alicante",
+    /* Tipo único 30% para todos los períodos */
+    tipos: [30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30],
+    /* Coeficientes: máximos estatales 2024 (tabla "alta") */
+    coefs: [0.15,0.15,0.14,0.14,0.16,0.18,0.19,0.18,0.15,0.12,0.10,0.09,0.09,0.09,0.09,0.09,0.10,0.13,0.17,0.23,0.40],
+    bonificacionHerencia: 60,  // 60% vivienda habitual causante
+    notaHerencia: "60% sobre vivienda habitual del causante (art. ordenanza). Requiere presentación en plazo de 6 meses.",
+    fuente: "Ordenanza fiscal Alicante / Hacienda 2024"
+  },
+
+  alfas: {
+    nombre: "L'Alfàs del Pi",
+    /* 27% para <1–5 años; 30% para 6 años en adelante */
+    tipos: [27,27,27,27,27,27,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30],
+    /* Coeficientes máximos estatales 2024 (tabla "alta") — remisión automática */
+    coefs: [0.15,0.15,0.14,0.15,0.17,0.18,0.19,0.18,0.15,0.12,0.10,0.09,0.09,0.09,0.09,0.10,0.13,0.17,0.23,0.29,0.45],
+    bonificacionHerencia: 95,
+    notaHerencia: "95% para 1er grado consanguinidad y afines. 90% para 2º grado por representación. (BOP Alicante 29/11/2023).",
+    fuente: "BOP Alicante nº 229, 29/11/2023"
+  },
+
+  altea: {
+    nombre: "Altea",
+    /* Tipo muy reducido: 8% todos los períodos */
+    tipos: [8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8],
+    /* Coeficientes propios (más reducidos que tabla estatal) */
+    coefs: [0.01,0.01,0.03,0.04,0.06,0.07,0.08,0.09,0.10,0.09,0.08,0.08,0.08,0.08,0.09,0.09,0.10,0.13,0.17,0.23,0.26],
+    bonificacionHerencia: 0,
+    notaHerencia: "Consulte la ordenanza vigente para posibles bonificaciones por herencia.",
+    fuente: "Diputación de Alicante / Ministerio de Hacienda 2024"
+  },
+
+  benidorm: {
+    nombre: "Benidorm",
+    tipos: [30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30],
+    coefs: [0.14,0.13,0.14,0.14,0.16,0.17,0.16,0.12,0.10,0.09,0.08,0.08,0.08,0.08,0.09,0.09,0.09,0.10,0.13,0.17,0.40],
+    bonificacionHerencia: 0,
+    notaHerencia: "Consulte la ordenanza vigente para posibles bonificaciones por herencia.",
+    fuente: "Ministerio de Hacienda PDF 3N-IVTNU 2024"
+  },
+
+  calpe: {
+    nombre: "Calpe / Calp",
+    tipos: [29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29],
+    coefs: [0.14,0.13,0.14,0.14,0.16,0.17,0.16,0.12,0.10,0.09,0.08,0.08,0.08,0.08,0.09,0.09,0.10,0.13,0.17,0.23,0.40],
+    bonificacionHerencia: 95,
+    notaHerencia: "95% para todos los grados de consanguinidad/afinidad. (BOP Alicante 9/02/2022).",
+    fuente: "Diputación de Alicante / BOP 9/02/2022"
+  },
+
+  denia: {
+    nombre: "Dénia",
+    /* 30% para 1-5 años; 28% para 6 años en adelante */
+    tipos: [30,30,30,30,30,30,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28],
+    coefs: [0.15,0.15,0.14,0.14,0.16,0.18,0.19,0.18,0.15,0.12,0.10,0.09,0.09,0.09,0.09,0.09,0.10,0.13,0.17,0.23,0.40],
+    bonificacionHerencia: 95,
+    notaHerencia: "95% para todos los grados de consanguinidad/afinidad sobre todos los inmuebles.",
+    fuente: "Ministerio de Hacienda 2024 / ordenanza Dénia 2022"
+  },
+
+  finestrat: {
+    nombre: "Finestrat",
+    tipos: [29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29],
+    coefs: [0.14,0.13,0.14,0.14,0.16,0.17,0.16,0.12,0.10,0.09,0.08,0.08,0.08,0.08,0.09,0.09,0.10,0.10,0.10,0.10,0.10],
+    bonificacionHerencia: 95,
+    notaHerencia: "95% bonificación mortis causa. (SUMA municipio 69, página informativa Finestrat).",
+    fuente: "Diputación de Alicante / SUMA 2024"
+  },
+
+  javea: {
+    nombre: "Jávea / Xàbia",
+    tipos: [30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30],
+    coefs: [0.15,0.15,0.14,0.14,0.16,0.18,0.19,0.20,0.19,0.15,0.12,0.10,0.09,0.09,0.09,0.09,0.10,0.13,0.17,0.23,0.40],
+    bonificacionHerencia: 0,
+    notaHerencia: "Consulte la ordenanza vigente del Ayuntamiento de Jávea.",
+    fuente: "Diputación de Alicante / Ministerio de Hacienda 2024"
+  },
+
+  lanucia: {
+    nombre: "La Nucía",
+    tipos: [28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28],
+    coefs: [0.14,0.13,0.14,0.14,0.16,0.17,0.16,0.12,0.10,0.09,0.08,0.08,0.08,0.08,0.09,0.09,0.10,0.13,0.17,0.23,0.40],
+    bonificacionHerencia: 0,
+    notaHerencia: "Consulte la ordenanza vigente del Ayuntamiento de La Nucía.",
+    fuente: "Diputación de Alicante / Ministerio de Hacienda 2024"
+  },
+
+  orihuela: {
+    nombre: "Orihuela (Orihuela Costa)",
+    tipos: [28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28],
+    coefs: [0.14,0.13,0.14,0.14,0.16,0.17,0.16,0.12,0.10,0.09,0.08,0.08,0.08,0.08,0.09,0.09,0.10,0.13,0.17,0.23,0.40],
+    bonificacionHerencia: 0,
+    notaHerencia: "Consulte la ordenanza vigente del Ayuntamiento de Orihuela.",
+    fuente: "Ministerio de Hacienda PDF 3N-IVTNU 2024"
+  },
+
+  teulada: {
+    nombre: "Teulada (Moraira)",
+    tipos: [30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30],
+    coefs: [0.15,0.15,0.14,0.14,0.16,0.18,0.19,0.18,0.15,0.12,0.10,0.09,0.09,0.09,0.09,0.09,0.10,0.13,0.17,0.23,0.40],
+    bonificacionHerencia: 0,
+    notaHerencia: "Consulte la ordenanza vigente del Ayuntamiento de Teulada.",
+    fuente: "Diputación de Alicante / Ministerio de Hacienda 2024"
+  },
+
+  torrevieja: {
+    nombre: "Torrevieja",
+    tipos: [30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30],
+    coefs: [0.14,0.10,0.14,0.14,0.16,0.17,0.16,0.12,0.10,0.09,0.08,0.08,0.08,0.08,0.09,0.09,0.10,0.13,0.17,0.23,0.40],
+    bonificacionHerencia: 0,
+    notaHerencia: "Consulte la ordenanza vigente del Ayuntamiento de Torrevieja.",
+    fuente: "Ministerio de Hacienda PDF 3N-IVTNU 2024"
+  },
+
+  villajoyosa: {
+    nombre: "Villajoyosa / La Vila Joiosa",
+    tipos: [25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25],
+    coefs: [0.15,0.15,0.14,0.14,0.16,0.18,0.19,0.20,0.19,0.15,0.12,0.10,0.09,0.09,0.09,0.09,0.10,0.13,0.17,0.23,0.40],
+    bonificacionHerencia: 0,
+    notaHerencia: "Consulte la ordenanza vigente del Ayuntamiento de Villajoyosa.",
+    fuente: "Diputación de Alicante / Ministerio de Hacienda 2024"
+  },
+
+  valencia: {
+    nombre: "Valencia",
+    tipos: [29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7,29.7],
+    /* Coeficientes máximos estatales 2024 (tabla "alta") */
+    coefs: [0.15,0.15,0.14,0.14,0.16,0.18,0.19,0.18,0.15,0.12,0.10,0.09,0.09,0.09,0.09,0.09,0.10,0.13,0.17,0.23,0.40],
+    bonificacionHerencia: 95,
+    notaHerencia: "95% en transmisiones mortis causa a favor de descendientes, ascendientes y cónyuge. Sin requisito de convivencia desde 2024. (Ordenanza fiscal Valencia 2024/2026).",
+    fuente: "Ordenanza fiscal Valencia / Hacienda 2024 · Tipo: 29,70%"
+  }
+};
+
+/* Años indexados: 0=<1año, 1=1año, 2=2años, … 20=≥20años */
+function getAnioIndex(anios, meses) {
+  if (anios === 0) return 0; // < 1 año → índice 0
+  return Math.min(anios, 20);
+}
+
+function calcularPeriodo(fechaAdq, fechaTrans) {
+  const d1 = new Date(fechaAdq);
+  const d2 = new Date(fechaTrans);
+  if (d2 <= d1) return null;
+  let anios = d2.getFullYear() - d1.getFullYear();
+  let meses = d2.getMonth() - d1.getMonth();
+  if (meses < 0) { anios--; meses += 12; }
+  if (d2.getDate() < d1.getDate()) meses--;
+  if (anios < 0) return null;
+  if (anios === 0 && meses === 0) return null;
+  return { anios, meses };
+}
+
+function fmt(n) {
+  return n.toLocaleString('es-ES', { minimumFractionDigits:2, maximumFractionDigits:2 }) + ' €';
+}
+function fmtPct(n) {
+  return n.toLocaleString('es-ES', { minimumFractionDigits:2, maximumFractionDigits:2 }) + '%';
+}
+
+function showError(msg) {
+  const el = document.getElementById('errorMsg');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+function hideError() {
+  document.getElementById('errorMsg').style.display = 'none';
+}
+
+function onMunicipioChange() { /* noop */ }
+
+document.querySelectorAll('input[name="metodo"]').forEach(r => {
+  r.addEventListener('change', function() {
+    document.getElementById('camposReal').style.display =
+      (this.value === 'real' || this.value === 'auto') ? 'block' : 'none';
+  });
+});
+// Init: auto mode shows real fields
+document.getElementById('camposReal').style.display = 'block';
+
+function calcular() {
+  hideError();
+  document.getElementById('result').style.display = 'none';
+
+  const munKey = document.getElementById('municipio').value;
+  if (!munKey) { showError('Por favor seleccione un municipio.'); return; }
+
+  const valorCatastral = parseFloat(document.getElementById('valorCatastral').value);
+  if (isNaN(valorCatastral) || valorCatastral <= 0) {
+    showError('Introduzca un valor catastral del suelo válido.'); return;
+  }
+
+  const fechaAdq = document.getElementById('fechaAdquisicion').value;
+  const fechaTrans = document.getElementById('fechaTransmision').value;
+  if (!fechaAdq || !fechaTrans) {
+    showError('Introduzca las fechas de adquisición y transmisión.'); return;
+  }
+
+  const periodo = calcularPeriodo(fechaAdq, fechaTrans);
+  if (!periodo) {
+    showError('La fecha de transmisión debe ser posterior a la de adquisición y el período mínimo es de 1 mes.'); return;
+  }
+
+  const metodo = document.querySelector('input[name="metodo"]:checked').value;
+  const esHerencia = document.getElementById('esHerencia').checked;
+  const mun = MUNICIPIOS[munKey];
+
+  /* ── MÉTODO OBJETIVO ─────────────────────────────── */
+  const idx = getAnioIndex(periodo.anios, periodo.meses);
+  let coef = mun.coefs[idx];
+  
+  // Si período < 1 año, prorratear por meses
+  if (periodo.anios === 0) {
+    const mesesCompletos = periodo.meses;
+    // Coeficiente anual del período < 1 año, prorrateado
+    coef = (mun.coefs[0] * mesesCompletos) / 11;
+  }
+
+  const baseObjetiva = valorCatastral * coef;
+  const tipoObj = mun.tipos[idx] / 100;
+  const cuotaObjetiva = baseObjetiva * tipoObj;
+
+  /* ── MÉTODO REAL ─────────────────────────────────── */
+  let cuotaReal = null;
+  let baseReal = null;
+  let porcSuelo = null;
+  let ganancia = null;
+  let puedeReal = false;
+
+  const precioCompra = parseFloat(document.getElementById('precioCompra').value);
+  const precioVenta = parseFloat(document.getElementById('precioVenta').value);
+  const vcTotal = parseFloat(document.getElementById('valorCatastralTotal').value);
+
+  if (!isNaN(precioCompra) && !isNaN(precioVenta) && !isNaN(vcTotal) && vcTotal > 0) {
+    ganancia = precioVenta - precioCompra;
+    if (ganancia > 0) {
+      porcSuelo = valorCatastral / vcTotal;
+      baseReal = ganancia * porcSuelo;
+      cuotaReal = baseReal * tipoObj;
+      puedeReal = true;
+    } else {
+      // No incremento → no sujeción
+      puedeReal = true;
+      ganancia = ganancia;
+      baseReal = 0;
+      cuotaReal = 0;
+    }
+  }
+
+  /* ── DETERMINAR CUOTA A APLICAR ──────────────────── */
+  let cuotaElegida, metodoElegido, baseElegida;
+  if (metodo === 'objetivo') {
+    cuotaElegida = cuotaObjetiva;
+    metodoElegido = 'Objetivo';
+    baseElegida = baseObjetiva;
+  } else if (metodo === 'real') {
+    if (!puedeReal) { showError('Para el método real, introduzca precios de compra/venta y valor catastral total.'); return; }
+    cuotaElegida = cuotaReal;
+    metodoElegido = 'Real / Directo';
+    baseElegida = baseReal;
+  } else {
+    // auto: el más favorable
+    if (puedeReal && cuotaReal !== null && cuotaReal < cuotaObjetiva) {
+      cuotaElegida = cuotaReal;
+      metodoElegido = 'Real / Directo';
+      baseElegida = baseReal;
+    } else {
+      cuotaElegida = cuotaObjetiva;
+      metodoElegido = 'Objetivo';
+      baseElegida = baseObjetiva;
+    }
+  }
+
+  /* ── BONIFICACIÓN HERENCIA ───────────────────────── */
+  let cuotaBonif = cuotaElegida;
+  let bonPct = 0;
+  let bonImporte = 0;
+  if (esHerencia && mun.bonificacionHerencia > 0) {
+    bonPct = mun.bonificacionHerencia;
+    bonImporte = cuotaElegida * bonPct / 100;
+    cuotaBonif = cuotaElegida - bonImporte;
+  }
+
+  /* ── NO SUJECIÓN ─────────────────────────────────── */
+  const noSujecion = puedeReal && ganancia !== null && ganancia <= 0;
+
+  /* ── RENDER ──────────────────────────────────────── */
+  const autoLabel = (metodo === 'auto' && puedeReal && cuotaReal !== null)
+    ? `<span class="comparison-badge ${metodoElegido === 'Real / Directo' ? 'using-real' : 'using-objective'}">
+        ✓ Método seleccionado automáticamente: <strong>${metodoElegido}</strong>
+       </span><br>`
+    : '';
+
+  let html = `
+    <div class="result-header">
+      <div class="result-municipality">${mun.nombre}</div>
+      <div class="result-method-badge">Período: ${periodo.anios} años${periodo.meses > 0 ? ' y '+periodo.meses+' meses' : ''}</div>
+    </div>
+    ${autoLabel}
+  `;
+
+  if (noSujecion) {
+    html += `
+      <div class="herencia-alert" style="background:linear-gradient(135deg,#f1f8f1,#e4f4e4);border-color:#4caf50;">
+        <div class="herencia-alert-icon">✅</div>
+        <div class="herencia-alert-text">
+          <h4>No sujeción al impuesto</h4>
+          <p>El precio de venta (${fmt(precioVenta)}) es igual o inferior al de compra (${fmt(precioCompra)}). No existe incremento de valor real, por lo que el impuesto no es exigible. Debe solicitarse expresamente la no sujeción aportando los títulos de adquisición y transmisión.</p>
+        </div>
+      </div>
+    `;
+  } else {
+    html += `
+    <div class="result-amounts">
+      <div class="amount-box main">
+        <div class="amount-label">Cuota líquida a pagar</div>
+        <div class="amount-value">${fmt(cuotaBonif)}</div>
+        <div class="amount-note">${bonPct > 0 ? `Después de bonificación del ${bonPct}% por herencia` : `Cuota íntegra — sin bonificaciones`}</div>
+      </div>
+      <div class="amount-box secondary">
+        <div class="amount-label">Base imponible</div>
+        <div class="amount-value">${fmt(baseElegida)}</div>
+        <div class="amount-note">Método ${metodoElegido}</div>
+      </div>
+      <div class="amount-box secondary">
+        <div class="amount-label">Cuota íntegra</div>
+        <div class="amount-value">${fmt(cuotaElegida)}</div>
+        <div class="amount-note">Antes de bonificaciones</div>
+      </div>
+      ${bonPct > 0 ? `
+      <div class="amount-box accent">
+        <div class="amount-label">Bonificación herencia</div>
+        <div class="amount-value">−${fmt(bonImporte)}</div>
+        <div class="amount-note">${bonPct}% de la cuota íntegra</div>
+      </div>` : ''}
+    </div>
+
+    <div class="breakdown-title">Detalle del cálculo</div>
+    <table>
+      <tr>
+        <th>Concepto</th>
+        <th style="text-align:right">Valor</th>
+      </tr>
+      <tr><td>Valor catastral del suelo</td><td class="td-num">${fmt(valorCatastral)}</td></tr>
+      <tr><td>Período de tenencia</td><td class="td-num">${periodo.anios} años${periodo.meses>0?' y '+periodo.meses+' meses':''}</td></tr>
+      <tr><td>Coeficiente aplicado (método objetivo)</td><td class="td-num">${coef.toFixed(4)}</td></tr>
+      <tr><td>Base imponible objetiva</td><td class="td-num">${fmt(baseObjetiva)}</td></tr>
+      ${puedeReal && ganancia !== null ? `
+      <tr><td>Ganancia real (precio venta − compra)</td><td class="td-num">${fmt(ganancia)}</td></tr>
+      <tr><td>% suelo sobre valor catastral total</td><td class="td-num">${(porcSuelo*100).toFixed(2)}%</td></tr>
+      <tr><td>Base imponible real</td><td class="td-num">${fmt(baseReal)}</td></tr>
+      ` : ''}
+      <tr><td>Tipo de gravamen</td><td class="td-num">${fmtPct(mun.tipos[idx])}</td></tr>
+      <tr><td>Cuota íntegra <em>(${metodoElegido})</em></td><td class="td-num">${fmt(cuotaElegida)}</td></tr>
+      ${bonPct > 0 ? `<tr><td>Bonificación herencia (${bonPct}%)</td><td class="td-num">−${fmt(bonImporte)}</td></tr>` : ''}
+      <tr style="font-weight:700;background:#f8f4ee;">
+        <td>Cuota líquida a pagar</td>
+        <td class="td-num" style="color:var(--navy)">${fmt(cuotaBonif)}</td>
+      </tr>
+    </table>
+    `;
+
+    if (puedeReal && metodo === 'auto') {
+      html += `
+      <table style="margin-top:16px;">
+        <tr>
+          <th>Comparativa de métodos</th>
+          <th style="text-align:right">Base imponible</th>
+          <th style="text-align:right">Cuota íntegra</th>
+          <th style="text-align:right">Cuota líquida</th>
+        </tr>
+        <tr ${metodoElegido==='Objetivo'?'style="background:#f8f9fa;font-weight:600;"':''}>
+          <td>Método objetivo ${metodoElegido==='Objetivo'?'<span style="color:var(--gold);font-size:11px"> ← ELEGIDO</span>':''}</td>
+          <td class="td-num">${fmt(baseObjetiva)}</td>
+          <td class="td-num">${fmt(cuotaObjetiva)}</td>
+          <td class="td-num">${fmt(cuotaObjetiva - cuotaObjetiva*bonPct/100)}</td>
+        </tr>
+        <tr ${metodoElegido==='Real / Directo'?'style="background:#f8f9fa;font-weight:600;"':''}>
+          <td>Método real ${metodoElegido==='Real / Directo'?'<span style="color:var(--gold);font-size:11px"> ← ELEGIDO</span>':''}</td>
+          <td class="td-num">${fmt(baseReal)}</td>
+          <td class="td-num">${fmt(cuotaReal)}</td>
+          <td class="td-num">${fmt(cuotaReal - cuotaReal*bonPct/100)}</td>
+        </tr>
+      </table>
+      `;
+    }
+  }
+
+  /* Bonificación herencia info */
+  if (mun.bonificacionHerencia > 0 || mun.notaHerencia) {
+    html += `
+    <div class="herencia-alert" style="margin-top:20px;">
+      <div class="herencia-alert-icon">ℹ️</div>
+      <div class="herencia-alert-text">
+        <h4>Bonificaciones por herencia en ${mun.nombre}</h4>
+        <p>${mun.notaHerencia}</p>
+        <p style="margin-top:6px;font-size:11px;color:#999;">Fuente: ${mun.fuente}</p>
+      </div>
+        </div>
+  </div>
+  `;
+  }
+
+  document.getElementById('resultContent').innerHTML = html;
+  const result = document.getElementById('result');
+  result.style.display = 'block';
+  result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ── HELPER FUNCTIONS for SEO sections ────────────── */
+function seleccionarMunicipio(key) {
+  const sel = document.getElementById('municipio');
+  if (sel) {
+    sel.value = key;
+    // Scroll suave a la calculadora
+    setTimeout(function(){
+      document.getElementById('calculadora').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+}
+
+function cargarEjemplo() {
+  // Benidorm, 8 años, precio compra 200k, venta 260k, VC suelo 50k, VC total 80k
+  const fechaVenta = new Date();
+  const fechaCompra = new Date(fechaVenta);
+  fechaCompra.setFullYear(fechaCompra.getFullYear() - 8);
+
+  function fmtDate(d) {
+    return d.toISOString().split('T')[0];
+  }
+
+  document.getElementById('municipio').value = 'benidorm';
+  document.getElementById('valorCatastral').value = 50000;
+  document.getElementById('fechaAdquisicion').value = fmtDate(fechaCompra);
+  document.getElementById('fechaTransmision').value = fmtDate(fechaVenta);
+  document.getElementById('precioCompra').value = 200000;
+  document.getElementById('precioVenta').value = 260000;
+  document.getElementById('valorCatastralTotal').value = 80000;
+
+  // Seleccionar método auto
+  document.querySelector('input[name="metodo"][value="auto"]').checked = true;
+  document.getElementById('camposReal').style.display = 'block';
+
+  // Scroll a la calculadora y calcular
+  document.getElementById('calculadora').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  setTimeout(calcular, 400);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   TRADUCCIONES — ES / EN / SV
+═══════════════════════════════════════════════════════════════════ */
+const LANG_DATA = {
+  es: {
+    h1: "Plusvalía", h1span: "Municipal",
+    subtitle: "Calcule el IIVTNU por los dos métodos legales (objetivo y real) y obtenga automáticamente la cuota más favorable. Disponible para 14 municipios de la Costa Blanca y Valencia.",
+    cardTitle: "Datos del inmueble",
+    lblMunicipio: "Municipio", selectMuni: "— Seleccione municipio —",
+    lblVC: "Valor catastral del suelo (€)",
+    vcNote: "Figura en el recibo del IBI. Si el inmueble está edificado, use sólo la parte del suelo.",
+    lblFechaAdq: "Fecha de adquisición", lblFechaTrans: "Fecha de transmisión",
+    lblMetodo: "Método de cálculo",
+    metodoAuto: "Automático (más favorable)", metodoObj: "Sólo objetivo", metodoReal: "Sólo real",
+    lblPrecioCompra: "Precio de adquisición (€)", lblPrecioVenta: "Precio de transmisión (€)",
+    lblVCTotal: "Valor catastral total del inmueble (€)",
+    vcTotalNote: "Necesario para calcular el % del suelo.",
+    herenciaLabel: "¿Transmisión mortis causa (herencia)?",
+    herenciaSub: "Activa si puede aplicarse bonificación por herencia en línea directa",
+    calcBtn: "✦ Calcular Plusvalía",
+    resultTitle: "Resultado del cálculo",
+    disclaimerTitle: "Aviso legal:",
+    // SEO sections
+    seoH2_1: "Cómo se calcula la plusvalía municipal en España",
+    seoH2_2: "Método objetivo vs. método real (incremento real)",
+    seoH2_3: "Ejemplo de cálculo de plusvalía municipal",
+    seoH2_4: "Preguntas frecuentes sobre la plusvalía municipal",
+    seoH2_5: "Cálculo de plusvalía municipal en la Costa Blanca",
+    ctaTitle: "¿Necesita una revisión jurídica exacta?",
+    ctaText: "Colás Abogados verifica la ordenanza municipal vigente, calcula el método más favorable antes de la presentación y gestiona la no sujeción cuando corresponde.",
+    ctaContact: "Contactar",
+    exampleBtn: "▶ Cargar este ejemplo en la calculadora",
+    // SEO content blocks (rendered via JS)
+    seo1_p1: "El <strong>Impuesto sobre el Incremento de Valor de los Terrenos de Naturaleza Urbana (IIVTNU)</strong>, conocido popularmente como <em>plusvalía municipal</em>, es un tributo local que grava el aumento de valor que experimenta el suelo urbano desde su adquisición hasta su transmisión. Lo gestiona y recauda el ayuntamiento donde se sitúa el inmueble.",
+    seo1_p2: "El impuesto se devenga en el momento de la transmisión, ya sea por compraventa, donación o herencia. El hecho imponible no es la ganancia global del inmueble, sino el incremento específico del <strong>valor del suelo</strong> durante el período de tenencia.",
+    seo1_legal: "<strong>Marco legal:</strong> Arts. 104 a 110 del Real Decreto Legislativo 2/2004 (TRLHL). La base imponible puede calcularse por el método objetivo (art. 107.1 y 107.2) o por el método real (art. 107.5). El tipo de gravamen máximo es el 30% (art. 108).",
+    seo1_h3: "La reforma tras la STC 182/2021",
+    seo1_p3: "En octubre de 2021, el Tribunal Constitucional declaró inconstitucional el anterior sistema de cálculo al exigir tributar incluso cuando no existía incremento real de valor (STC 182/2021). El legislador respondió con el Real Decreto-ley 26/2021, en vigor desde el 10 de noviembre de 2021, que introdujo el <strong>método de incremento real</strong> como alternativa al método objetivo, garantizando que la no sujeción al impuesto queda acreditada cuando no existe ganancia en el suelo.",
+    seo1_p4: "Desde entonces, el contribuyente tiene derecho a elegir el método que resulte <strong>más favorable</strong>: objetivo o real. Esta calculadora compara ambos automáticamente y aplica el menor.",
+    seo2_h3a: "Método objetivo",
+    seo2_p1: "Se aplica sobre el <strong>valor catastral del suelo</strong> en el momento de la transmisión, multiplicado por un coeficiente que determina el ayuntamiento (dentro de los máximos estatales) en función del número de años de tenencia. El resultado es la base imponible, a la que se aplica el tipo de gravamen municipal.",
+    seo2_li1: "<strong>Ventaja:</strong> cálculo sencillo; no requiere conocer el precio de compra ni de venta.",
+    seo2_li2: "<strong>Inconveniente:</strong> puede resultar más elevado si la revalorización real del suelo fue modesta.",
+    seo2_h3b: "Método real (incremento de valor)",
+    seo2_p2: "La base imponible se calcula como la diferencia entre el valor de transmisión y el de adquisición, multiplicada por la <strong>proporción que representa el valor catastral del suelo sobre el valor catastral total</strong> del inmueble. Permite acreditar la no sujeción cuando no hay ganancia real.",
+    seo2_li3: "<strong>Ventaja:</strong> más favorable en inmuebles con poca revalorización o adquiridos a precio elevado.",
+    seo2_li4: "<strong>Requiere:</strong> precio de compra, precio de venta y valor catastral total del inmueble.",
+    seo2_legal: "<strong>Derecho del contribuyente:</strong> El art. 107.5 TRLHL reconoce expresamente el derecho a optar por el método de incremento real. El ayuntamiento no puede imponer el método objetivo si el contribuyente demuestra que la base real es inferior.",
+    seo3_intro: "Suponga un inmueble en Benidorm con los siguientes datos. Puede cargar este ejemplo directamente en la calculadora:",
+    seo3_step1: "<strong>Método objetivo:</strong> V. catastral suelo (50.000 €) × coeficiente 8 años Benidorm (0,10) = base 5.000 € × tipo 30% = <strong>cuota 1.500 €</strong>",
+    seo3_step2: "<strong>Método real:</strong> Ganancia total (260.000 − 200.000 = 60.000 €) × proporción suelo (50.000 / 80.000 = 62,5%) = base real 37.500 € × tipo 30% = <strong>cuota 11.250 €</strong>",
+    seo3_step3: "<strong>Método más favorable:</strong> el objetivo (1.500 €) es significativamente inferior al real (11.250 €) en este caso, por lo que la calculadora lo selecciona automáticamente.",
+    seo3_step4: "Si la transmisión fuera por herencia y Benidorm tuviera bonificación, se aplicaría sobre los 1.500 €.",
+    seo3_note: "* Este ejemplo usa los coeficientes y tipos aplicables en 2024/2025. Los valores catastrales varían por inmueble.",
+    faq1_q: "¿Quién paga la plusvalía municipal?",
+    faq1_a: "En compraventas, el obligado es el <strong>vendedor</strong> (transmitente). En herencias y donaciones, lo paga el <strong>heredero o donatario</strong>. Si el vendedor no reside en España, el comprador queda como responsable subsidiario y normalmente retiene o ingresa el importe directamente en el ayuntamiento.",
+    faq2_q: "¿Se paga plusvalía municipal si se vende con pérdidas?",
+    faq2_a: "No. Desde la STC 182/2021 y la reforma del RDL 26/2021, si no existe incremento real de valor del terreno, la transmisión queda <strong>no sujeta</strong> al impuesto. Para acreditarlo es necesario presentar los títulos de adquisición y transmisión ante el ayuntamiento y solicitar expresamente la no sujeción.",
+    faq3_q: "¿Qué ocurre con la plusvalía municipal en una herencia?",
+    faq3_a: "El plazo de presentación en herencias es de <strong>6 meses</strong> desde el fallecimiento, prorrogables a 1 año previa solicitud. Muchos municipios de la Costa Blanca aplican <strong>bonificaciones de hasta el 95%</strong> para transmisiones en línea directa (padres-hijos, cónyuge). Esta calculadora refleja las bonificaciones conocidas para cada municipio.",
+    faq4_q: "¿Cuál es el plazo para pagar la plusvalía municipal tras una venta?",
+    faq4_a: "En transmisiones inter vivos (ventas y donaciones), el plazo es de <strong>30 días hábiles</strong> desde la firma de la escritura. El incumplimiento genera recargos por extemporaneidad del 5%, 10%, 15% o 20% según el tiempo transcurrido, más intereses de demora.",
+    faq5_q: "¿Se puede reclamar la plusvalía municipal pagada en años anteriores?",
+    faq5_a: "Sí, si la transmisión no generó incremento real de valor. El plazo general para solicitar la rectificación de la autoliquidación es de <strong>4 años</strong>. Se recomienda consultar con un abogado para analizar la viabilidad de cada caso concreto.",
+    faq6_q: "¿Qué pasa con la plusvalía si el inmueble fue adquirido como herencia y ahora se vende?",
+    faq6_a: "El período de tenencia computa desde la fecha de adquisición por el causante (fallecido), no desde la fecha de la herencia. Es uno de los supuestos más complejos y es recomendable asesoramiento profesional.",
+    seo5_intro: "Esta calculadora incluye datos fiscales específicos de los principales municipios de la Costa Blanca y Valencia: tipos de gravamen reales según ordenanza, coeficientes oficiales y bonificaciones por herencia. Haga clic en un municipio para seleccionarlo directamente:",
+    seo5_note: "Los datos fiscales se han obtenido del Ministerio de Hacienda (PDF 3N-IVTNU 2024), la Diputación de Alicante, SUMA y los Boletines Oficiales de la Provincia correspondientes. Última revisión: marzo 2025.",
+  },
+
+  en: {
+    h1: "Municipal", h1span: "Capital Gains Tax",
+    subtitle: "Calculate the IIVTNU using both legal methods (objective and real) and automatically obtain the most favourable result. Available for 14 municipalities on the Costa Blanca and Valencia.",
+    cardTitle: "Property details",
+    lblMunicipio: "Municipality", selectMuni: "— Select municipality —",
+    lblVC: "Land cadastral value (€)",
+    vcNote: "Shown on your IBI (council tax) bill. For built properties, use only the land portion.",
+    lblFechaAdq: "Acquisition date", lblFechaTrans: "Transfer date",
+    lblMetodo: "Calculation method",
+    metodoAuto: "Automatic (most favourable)", metodoObj: "Objective only", metodoReal: "Real only",
+    lblPrecioCompra: "Acquisition price (€)", lblPrecioVenta: "Transfer price (€)",
+    lblVCTotal: "Total cadastral value of property (€)",
+    vcTotalNote: "Required to calculate the land percentage.",
+    herenciaLabel: "Mortis causa transfer (inheritance)?",
+    herenciaSub: "Enable if an inheritance relief may apply",
+    calcBtn: "✦ Calculate Tax",
+    resultTitle: "Calculation result",
+    disclaimerTitle: "Legal notice:",
+    seoH2_1: "How municipal capital gains tax is calculated in Spain",
+    seoH2_2: "Objective method vs. real increase method",
+    seoH2_3: "Practical calculation example",
+    seoH2_4: "Frequently asked questions about plusvalía municipal",
+    seoH2_5: "Municipal capital gains tax on the Costa Blanca",
+    ctaTitle: "Need an exact legal review?",
+    ctaText: "Colás Abogados verifies the applicable municipal ordinance, calculates the most favourable method before filing and manages non-taxation applications where applicable.",
+    ctaContact: "Contact us",
+    exampleBtn: "▶ Load this example into the calculator",
+    seo1_p1: "The <strong>Tax on the Increase in Value of Urban Land (IIVTNU)</strong>, commonly known as <em>plusvalía municipal</em>, is a local tax that applies to the increase in value of urban land between the acquisition and transfer dates. It is administered and collected by the municipality where the property is located.",
+    seo1_p2: "The tax arises at the moment of the transfer, whether by sale, gift or inheritance. The taxable event is not the overall gain on the property, but the specific increase in the <strong>land value</strong> during the holding period.",
+    seo1_legal: "<strong>Legal framework:</strong> Articles 104 to 110 of the Consolidated Local Finance Act (TRLHL). The tax base can be calculated using the objective method (art. 107.1 and 107.2) or the real increase method (art. 107.5). The maximum tax rate is 30% (art. 108).",
+    seo1_h3: "Reform following Constitutional Court ruling STC 182/2021",
+    seo1_p3: "In October 2021, the Constitutional Court declared the previous calculation system unconstitutional, as it required taxpayers to pay the tax even when there was no real increase in value (STC 182/2021). The legislature responded with Royal Decree-Law 26/2021, in force from 10 November 2021, which introduced the <strong>real increase method</strong> as an alternative to the objective method, ensuring that non-taxation can be established where there is no actual gain on the land.",
+    seo1_p4: "Since then, taxpayers have the right to choose whichever method is <strong>more favourable</strong>: objective or real. This calculator compares both automatically and applies the lower result.",
+    seo2_h3a: "Objective method",
+    seo2_p1: "Applied to the <strong>cadastral land value</strong> at the time of transfer, multiplied by a coefficient set by the municipality (within national maximums) based on the number of years of ownership. The result is the tax base, to which the municipal tax rate is applied.",
+    seo2_li1: "<strong>Advantage:</strong> simple calculation; does not require knowledge of purchase or sale prices.",
+    seo2_li2: "<strong>Disadvantage:</strong> may be higher if the actual land appreciation was modest.",
+    seo2_h3b: "Real increase method",
+    seo2_p2: "The tax base is calculated as the difference between the transfer and acquisition values, multiplied by the <strong>proportion that the cadastral land value represents of the total cadastral value</strong> of the property. It allows non-taxation to be established when there is no real gain.",
+    seo2_li3: "<strong>Advantage:</strong> more favourable for properties with modest appreciation or acquired at high prices.",
+    seo2_li4: "<strong>Requires:</strong> purchase price, sale price and total cadastral value of the property.",
+    seo2_legal: "<strong>Taxpayer right:</strong> Art. 107.5 TRLHL expressly recognises the right to opt for the real increase method. The municipality cannot impose the objective method if the taxpayer demonstrates that the real base is lower.",
+    seo3_intro: "Consider a property in Benidorm with the following data. You can load this example directly into the calculator:",
+    seo3_step1: "<strong>Objective method:</strong> Land cadastral value (€50,000) × Benidorm 8-year coefficient (0.10) = base €5,000 × rate 30% = <strong>tax €1,500</strong>",
+    seo3_step2: "<strong>Real method:</strong> Total gain (260,000 − 200,000 = €60,000) × land ratio (50,000 / 80,000 = 62.5%) = real base €37,500 × rate 30% = <strong>tax €11,250</strong>",
+    seo3_step3: "<strong>Most favourable method:</strong> the objective (€1,500) is significantly lower than the real (€11,250) in this case, so the calculator selects it automatically.",
+    seo3_step4: "If the transfer were an inheritance and Benidorm had a relief, it would be applied to the €1,500.",
+    seo3_note: "* This example uses the coefficients and rates applicable in 2024/2025. Cadastral values vary per property.",
+    faq1_q: "Who pays the municipal capital gains tax?",
+    faq1_a: "In sales, the obligation falls on the <strong>seller</strong> (transferor). In inheritances and gifts, it is paid by the <strong>heir or donee</strong>. If the seller is not resident in Spain, the buyer becomes a subsidiary liable party and typically withholds or pays the amount directly to the municipality.",
+    faq2_q: "Is the tax payable if selling at a loss?",
+    faq2_a: "No. Since STC 182/2021 and the reform of RDL 26/2021, if there is no real increase in land value, the transfer is <strong>not subject</strong> to the tax. To establish this, the acquisition and transfer deeds must be submitted to the municipality with a formal non-taxation request.",
+    faq3_q: "What happens with the municipal capital gains tax in an inheritance?",
+    faq3_a: "The filing deadline for inheritances is <strong>6 months</strong> from the date of death, extendable to 1 year on request. Many Costa Blanca municipalities apply <strong>reliefs of up to 95%</strong> for direct-line transfers (parent-child, spouse). This calculator reflects the known reliefs for each municipality.",
+    faq4_q: "What is the deadline for paying the tax after a sale?",
+    faq4_a: "For inter vivos transfers (sales and gifts), the deadline is <strong>30 working days</strong> from the signing of the deed. Late filing triggers surcharges of 5%, 10%, 15% or 20% depending on the delay, plus interest.",
+    faq5_q: "Can previously paid plusvalía municipal be reclaimed?",
+    faq5_a: "Yes, if the transfer did not generate a real increase in land value. The general time limit for requesting rectification of a self-assessment is <strong>4 years</strong>. We recommend consulting a lawyer to assess the viability of each individual case.",
+    faq6_q: "What if the property was acquired by inheritance and is now being sold?",
+    faq6_a: "The holding period runs from the date of acquisition by the deceased, not from the date of the inheritance. This is one of the most complex scenarios and professional legal advice is strongly recommended.",
+    seo5_intro: "This calculator includes specific tax data for the main municipalities on the Costa Blanca (Alicante province) and Valencia: actual tax rates per ordinance, official coefficients and inheritance reliefs. Click a municipality to select it directly:",
+    seo5_note: "Tax data sourced from the Ministry of Finance (PDF 3N-IVTNU 2024), Diputación de Alicante, SUMA and the relevant Official Provincial Gazettes. Last updated: March 2025.",
+  },
+
+  sv: {
+    h1: "Plusvalía", h1span: "kommunalskatt",
+    subtitle: "Beräkna IIVTNU med båda lagliga metoderna (objektiv och real) och få automatiskt det mest förmånliga resultatet. Tillgänglig för 14 kommuner på Costa Blanca och Valencia.",
+    cardTitle: "Fastighetsuppgifter",
+    lblMunicipio: "Kommun", selectMuni: "— Välj kommun —",
+    lblVC: "Fastighetsskattvärde suelo (€)",
+    vcNote: "Anges på IBI-avin. Vid bebyggd fastighet, ange endast markvärdet.",
+    lblFechaAdq: "Förvärvsdatum", lblFechaTrans: "Överlåtelsedatum",
+    lblMetodo: "Beräkningsmetod",
+    metodoAuto: "Automatisk (mest förmånlig)", metodoObj: "Endast objektiv", metodoReal: "Endast real",
+    lblPrecioCompra: "Förvärvspris (€)", lblPrecioVenta: "Överlåtelsepris (€)",
+    lblVCTotal: "Totalt fastighetsskattvärde (€)",
+    vcTotalNote: "Krävs för att beräkna markandelen.",
+    herenciaLabel: "Mortis causa-överlåtelse (arv)?",
+    herenciaSub: "Aktivera om arvsskattelättnad kan tillämpas",
+    calcBtn: "✦ Beräkna skatt",
+    resultTitle: "Beräkningsresultat",
+    disclaimerTitle: "Juridisk anmärkning:",
+    seoH2_1: "Hur beräknas kommunal plusvalía i Spanien",
+    seoH2_2: "Objektiv metod vs. real värdeökningsmetod",
+    seoH2_3: "Praktiskt beräkningsexempel",
+    seoH2_4: "Vanliga frågor om plusvalía municipal",
+    seoH2_5: "Kommunal plusvalía på Costa Blanca",
+    ctaTitle: "Behöver du en exakt juridisk genomgång?",
+    ctaText: "Colás Abogados kontrollerar tillämplig kommunal förordning, beräknar den mest förmånliga metoden före inlämning och hanterar ansökan om skattefrihet vid utebliven värdeökning.",
+    ctaContact: "Kontakta oss",
+    exampleBtn: "▶ Ladda detta exempel i kalkylatorn",
+    seo1_p1: "Skatten på ökning av värdet på urban mark (<strong>IIVTNU</strong>), populärt kallad <em>plusvalía municipal</em>, är en kommunalskatt som beräknas på den värdeökning som urban mark genomgår från förvärv till överlåtelse. Den förvaltas och uppbärs av den kommun där fastigheten är belägen.",
+    seo1_p2: "Skatten uppstår vid överlåtelsetillfället, oavsett om det sker genom köp, gåva eller arv. Det skattepliktiga händelsen är inte den totala vinsten på fastigheten, utan den specifika ökningen av <strong>markvärdet</strong> under innehavstiden.",
+    seo1_legal: "<strong>Rättslig ram:</strong> Artiklarna 104 till 110 i den konsoliderade lagen om lokal finansförvaltning (TRLHL). Skattebasen kan beräknas med den objektiva metoden (art. 107.1 och 107.2) eller den reala metoden (art. 107.5). Maximal skattesats är 30% (art. 108).",
+    seo1_h3: "Reform efter konstitutionsdomstolens avgörande STC 182/2021",
+    seo1_p3: "I oktober 2021 förklarade Konstitutionsdomstolen det tidigare beräkningssystemet grundlagsstridigt, eftersom det krävde skattebetalning även när ingen verklig värdeökning förelåg (STC 182/2021). Lagstiftaren svarade med kungligt dekretlag 26/2021, i kraft från den 10 november 2021, som introducerade den <strong>reala värdeökningsmetoden</strong> som ett alternativ till den objektiva metoden.",
+    seo1_p4: "Sedan dess har skattebetalaren rätt att välja den metod som är <strong>mest förmånlig</strong>: objektiv eller real. Denna kalkylator jämför båda automatiskt och tillämpar det lägre resultatet.",
+    seo2_h3a: "Objektiv metod",
+    seo2_p1: "Tillämpas på <strong>fastighetsskattvärdet för marken</strong> vid överlåtelsetillfället, multiplicerat med en koefficient som kommunen fastställer (inom statliga maximinivåer) baserat på antal år av innehav. Resultatet är skattebasen, på vilken den kommunala skattesatsen tillämpas.",
+    seo2_li1: "<strong>Fördel:</strong> enkel beräkning; kräver inte kännedom om köp- eller försäljningspris.",
+    seo2_li2: "<strong>Nackdel:</strong> kan bli högre om den faktiska markvärdeökningen var blygsam.",
+    seo2_h3b: "Real värdeökningsmetod",
+    seo2_p2: "Skattebasen beräknas som skillnaden mellan överlåtelse- och förvärvsvärdet, multiplicerat med den <strong>andel som fastighetsskattvärdet för marken utgör av det totala fastighetsskattvärdet</strong>. Möjliggör skattefrihet när ingen verklig vinst föreligger.",
+    seo2_li3: "<strong>Fördel:</strong> mer förmånlig för fastigheter med blygsam värdestegring eller förvärvade till högt pris.",
+    seo2_li4: "<strong>Kräver:</strong> köpepris, försäljningspris och totalt fastighetsskattvärde.",
+    seo2_legal: "<strong>Skattebetalarens rättighet:</strong> Art. 107.5 TRLHL erkänner uttryckligen rätten att välja den reala metoden. Kommunen kan inte påtvinga den objektiva metoden om skattebetalaren visar att den reala basen är lägre.",
+    seo3_intro: "Betrakta en fastighet i Benidorm med följande uppgifter. Du kan ladda detta exempel direkt i kalkylatorn:",
+    seo3_step1: "<strong>Objektiv metod:</strong> Markvärde (50 000 €) × Benidorm 8-årskoefficient (0,10) = bas 5 000 € × sats 30% = <strong>skatt 1 500 €</strong>",
+    seo3_step2: "<strong>Real metod:</strong> Total vinst (260 000 − 200 000 = 60 000 €) × markandel (50 000 / 80 000 = 62,5%) = real bas 37 500 € × sats 30% = <strong>skatt 11 250 €</strong>",
+    seo3_step3: "<strong>Mest förmånlig metod:</strong> den objektiva (1 500 €) är betydligt lägre än den reala (11 250 €) i detta fall, varför kalkylatorn väljer den automatiskt.",
+    seo3_step4: "Om överlåtelsen vore ett arv och Benidorm hade en skattelättnad, skulle den tillämpas på 1 500 €.",
+    seo3_note: "* Exemplet använder koefficienter och skattesatser som gäller 2024/2025. Fastighetsskattvärden varierar per fastighet.",
+    faq1_q: "Vem betalar kommunal plusvalía?",
+    faq1_a: "Vid försäljning är <strong>säljaren</strong> (överlåtaren) betalningsskyldig. Vid arv och gåvor betalas skatten av <strong>arvingen eller gåvotagaren</strong>. Om säljaren inte är bosatt i Spanien kan köparen bli subsidiärt ansvarig och håller normalt inne eller betalar beloppet direkt till kommunen.",
+    faq2_q: "Betalas skatten vid försäljning med förlust?",
+    faq2_a: "Nej. Sedan STC 182/2021 och reformen i RDL 26/2021 är överlåtelsen <strong>inte skattepliktig</strong> om ingen verklig värdeökning av marken föreligger. För att fastställa detta måste förvärvshandlingar och överlåtelsehandlingar lämnas in till kommunen med en formell begäran om skattefrihet.",
+    faq3_q: "Vad händer med skatten vid arv?",
+    faq3_a: "Fristen för att lämna in deklarationen vid arv är <strong>6 månader</strong> från dödsdatumet, med möjlighet till förlängning till 1 år. Många kommuner på Costa Blanca tillämpar <strong>skattelättnader på upp till 95%</strong> vid överlåtelser i rakt nedstigande led (förälder-barn, make/maka).",
+    faq4_q: "Vad är fristen för att betala skatten efter en försäljning?",
+    faq4_a: "Vid inter vivos-överlåtelser (försäljning och gåvor) är fristen <strong>30 arbetsdagar</strong> från undertecknandet av akten. Sen inlämning leder till tilläggsavgifter på 5%, 10%, 15% eller 20% beroende på fördröjningen, plus ränta.",
+    faq5_q: "Kan tidigare betald plusvalía återkrävas?",
+    faq5_a: "Ja, om överlåtelsen inte genererade någon verklig markvärdeökning. Den allmänna fristen för att begära rättelse av en självdeklaration är <strong>4 år</strong>. Vi rekommenderar att konsultera en advokat för att bedöma möjligheterna i varje enskilt fall.",
+    faq6_q: "Vad gäller om fastigheten förvärvades genom arv och nu säljs?",
+    faq6_a: "Innehavstiden räknas från arvlåtarens (den avlidnes) förvärvsdag, inte från arvsdatumet. Detta är ett av de mer komplicerade fallen och professionell juridisk rådgivning rekommenderas.",
+    seo5_intro: "Denna kalkylator innehåller specifika skatteuppgifter för de viktigaste kommunerna på Costa Blanca (provinsen Alicante) och Valencia: faktiska skattesatser per förordning, officiella koefficienter och arvsskattelättnader. Klicka på en kommun för att välja den direkt:",
+    seo5_note: "Skatteuppgifterna kommer från Finansministeriet (PDF 3N-IVTNU 2024), Diputación de Alicante, SUMA och respektive provinsiella officiella tidskrifter. Senast uppdaterad: mars 2025.",
+  }
+};
+
+let currentLang = 'es';
+
+function setLang(l) {
+  currentLang = l;
+  document.documentElement.lang = l;
+  // Update lang buttons
+  ['sv','en','es'].forEach(x => {
+    const btn = document.getElementById('lb-' + x);
+    if (btn) btn.classList.toggle('active', x === l);
+  });
+  const t = LANG_DATA[l];
+  // Apply data-t attributes
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const k = el.getAttribute('data-t');
+    if (t[k] !== undefined) el.innerHTML = t[k];
+  });
+  // Update select placeholder
+  const sel = document.getElementById('municipio');
+  if (sel && sel.options[0]) sel.options[0].text = t.selectMuni;
+  // Re-render SEO content blocks
+  renderSeoContent(t);
+  // Re-render result if visible
+  if (document.getElementById('result').style.display !== 'none') {
+    calcular();
+  }
+}
+
+function renderSeoContent(t) {
+  // Section 1
+  const s1 = document.getElementById('seo-content-1');
+  if (s1) s1.innerHTML = `
+    <p>${t.seo1_p1}</p>
+    <p>${t.seo1_p2}</p>
+    <div class="legal-ref">${t.seo1_legal}</div>
+    <h3>${t.seo1_h3}</h3>
+    <p>${t.seo1_p3}</p>
+    <p>${t.seo1_p4}</p>
+  `;
+  // Section 2
+  const s2 = document.getElementById('seo-content-2');
+  if (s2) s2.innerHTML = `
+    <h3>${t.seo2_h3a}</h3>
+    <p>${t.seo2_p1}</p>
+    <ul><li>${t.seo2_li1}</li><li>${t.seo2_li2}</li></ul>
+    <h3>${t.seo2_h3b}</h3>
+    <p>${t.seo2_p2}</p>
+    <ul><li>${t.seo2_li3}</li><li>${t.seo2_li4}</li></ul>
+    <div class="legal-ref">${t.seo2_legal}</div>
+  `;
+  // Section 3 - example
+  const s3 = document.getElementById('seo-content-3');
+  if (s3) s3.innerHTML = `
+    <p>${t.seo3_intro}</p>
+    <div class="example-box">
+      <div class="example-grid">
+        <div class="example-item"><div class="ek">Municipio / Municipality / Kommun</div><div class="ev">Benidorm</div></div>
+        <div class="example-item"><div class="ek">Compra / Purchase / Köp</div><div class="ev">200.000 €</div></div>
+        <div class="example-item"><div class="ek">Venta / Sale / Försäljning</div><div class="ev">260.000 €</div></div>
+        <div class="example-item"><div class="ek">V.C. Suelo / Land value / Markvärde</div><div class="ev">50.000 €</div></div>
+        <div class="example-item"><div class="ek">V.C. Total</div><div class="ev">80.000 €</div></div>
+        <div class="example-item"><div class="ek">Años / Years / År</div><div class="ev">8</div></div>
+      </div>
+      <button class="btn-load-example" onclick="cargarEjemplo()" data-t="exampleBtn">${t.exampleBtn}</button>
+    </div>
+    <ol class="example-steps">
+      <li>${t.seo3_step1}</li>
+      <li>${t.seo3_step2}</li>
+      <li>${t.seo3_step3}</li>
+      <li>${t.seo3_step4}</li>
+    </ol>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:8px;">${t.seo3_note}</p>
+  `;
+  // Section 4 - FAQ
+  const s4 = document.getElementById('seo-content-4');
+  if (s4) s4.innerHTML = [1,2,3,4,5,6].map(i => `
+    <div class="faq-item">
+      <div class="faq-q">${t['faq'+i+'_q']}</div>
+      <div class="faq-a">${t['faq'+i+'_a']}</div>
+    </div>
+  `).join('');
+  // Section 5 - municipalities
+  const s5intro = document.getElementById('seo-content-5-intro');
+  if (s5intro) s5intro.innerHTML = t.seo5_intro;
+  const s5note = document.getElementById('seo-content-5-note');
+  if (s5note) s5note.innerHTML = t.seo5_note;
+}
+
+
+// ── Inicialización de idioma ─────────────────────────
+window.addEventListener('DOMContentLoaded', function() {
+  setLang('es');
+});
+
+</script>
+</body>
+</html>

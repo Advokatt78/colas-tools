@@ -774,6 +774,12 @@
       <div class="calc-card-desc" id="c4-desc">Modelo 210 – kvartalsvis skatt på hyresinkomster</div>
       <div class="calc-card-arrow">→</div>
     </div>
+    <div class="calc-card" onclick="window.open('calculadora-plusvalia.html','_blank')">
+      <div class="calc-card-icon">📈</div>
+      <div class="calc-card-title" id="c5-title">Plusvalía municipal</div>
+      <div class="calc-card-desc" id="c5-desc">IIVTNU – mètode objectiu i real per a 14 municipis de la Costa Blanca</div>
+      <div class="calc-card-arrow">→</div>
+    </div>
   </div>
 
   <!-- Services -->
@@ -839,6 +845,8 @@ const T = {
     c3Title: "Arvsskatt",
     c3Desc: "Simulera arvsskatten i Spanien (Comunidad Valenciana)",
     c4Title: "Hyresinkomst – IRNR",
+    c5Title: "Plusvalía – kommunalskatt",
+    c5Desc: "IIVTNU – objektiv och real metod för 14 kommuner på Costa Blanca",
     c4Desc: "Modelo 210 – kvartalsvis skatt på hyresinkomster för icke-residenter",
     svcLabel: "Tjänster",
     services: ["Köp och försäljning av fastigheter","Modelo 210 och icke-residentskatt","Arv med tillgångar i Spanien","Hyresavtal och arrende","Bolagsrätt och företag","NIE och administrativa ärenden"],
@@ -862,6 +870,8 @@ const T = {
     c3Title: "Inheritance Tax",
     c3Desc: "Simulate inheritance tax in Spain (Comunidad Valenciana)",
     c4Title: "Rental Income – IRNR",
+    c5Title: "Municipal Capital Gains Tax",
+    c5Desc: "IIVTNU – objective and real method for 14 municipalities on the Costa Blanca",
     c4Desc: "Modelo 210 – quarterly tax on rental income for non-residents",
     svcLabel: "Services",
     services: ["Property purchase and sale","Modelo 210 and non-resident tax","Inheritance with assets in Spain","Rental agreements","Corporate law and companies","NIE and administrative matters"],
@@ -870,29 +880,6 @@ const T = {
     qrDesc: "Scan the code with your phone camera to access our legal assistant and calculators instantly.",
     disclaimer: "The information on this page and via our assistant is for general informational purposes only. It does not constitute legal advice and is not binding on the firm. All information must be validated by Hugo Gutiérrez Colás, Lawyer 6.539 ICALI, before making any legal or financial decision.",
     modalTitles: { buy: "Purchase Cost Calculator", sell: "Tax Calculator – Property Sale", inherit: "Inheritance Tax Simulator" }
-  },
-  no: {
-    tagline: "Juridisk spesialkompetanse for utenlandske eiendomseiere på Costa Blanca",
-    botLabel: "Assistent tilgjengelig 24/7",
-    botTitle: "Juridisk rådgivning på ditt språk",
-    botDesc: "Still ditt spørsmål direkte – vi svarer på norsk, svensk, dansk og engelsk.",
-    botBtn: "✈ Åpne i Telegram",
-    calcLabel: "Kalkulatorer",
-    c1Title: "Kjøpskostnader",
-    c1Desc: "Skatter, notarius og avgifter ved kjøp av bolig i Spania",
-    c2Title: "Gevinstskatt ved salg",
-    c2Desc: "Modelo 210 – kapitalgevinstskatt for ikke-residenter",
-    c3Title: "Arveavgift",
-    c3Desc: "Similer arveavgiften i Spania (Comunidad Valenciana)",
-    c4Title: "Leieinntekt – IRNR",
-    c4Desc: "Modelo 210 – kvartalsvis skatt på leieinntekter for ikke-bosatte",
-    svcLabel: "Tjenester",
-    services: ["Kjøp og salg av eiendom","Modelo 210 og ikke-residentskatt","Arv med eiendeler i Spania","Leiekontrakter og leieforhold","Selskapsrett og bedrifter","NIE og administrative saker"],
-    qrLabel: "QR-kode",
-    qrTitle: "Skann for direkte tilgang",
-    qrDesc: "Skann koden med mobilkameraet for å få direkte tilgang til vår juridiske assistent og kalkulatorer.",
-    disclaimer: "Informasjonen på denne siden og via vår assistent er utelukkende av generell og informativ karakter. Den utgjør ikke juridisk rådgivning og er ikke bindende for kontoret. All informasjon må bekreftes av Hugo Gutiérrez Colás, advokat 6.539 ICALI, før juridiske eller økonomiske beslutninger tas.",
-    modalTitles: { buy: "Kjøpskostnadskalkulator", sell: "Skattekalkulator – Salg", inherit: "Arveavgiftssimulator" }
   },
   es: {
     tagline: "Asesoramiento jurídico especializado para propietarios extranjeros en la Costa Blanca",
@@ -908,6 +895,8 @@ const T = {
     c3Title: "Impuesto de sucesiones",
     c3Desc: "Simula el impuesto de sucesiones en España (C. Valenciana)",
     c4Title: "Ingresos por alquiler – IRNR",
+    c5Title: "Plusvalía municipal",
+    c5Desc: "IIVTNU – método objetivo y real para 14 municipios de la Costa Blanca",
     c4Desc: "Modelo 210 – declaración trimestral de alquiler para no residentes",
     svcLabel: "Servicios",
     services: ["Compraventa de inmuebles","Modelo 210 e IRNR","Herencias con bienes en España","Arrendamientos","Derecho mercantil y sociedades","NIE y gestiones administrativas"],
@@ -946,6 +935,8 @@ function setLang(l) {
   document.getElementById('c3-desc').textContent = t.c3Desc;
   if(t.c4Title) document.getElementById('c4-title').textContent = t.c4Title;
   if(t.c4Desc) document.getElementById('c4-desc').textContent = t.c4Desc;
+  if(t.c5Title) document.getElementById('c5-title').textContent = t.c5Title;
+  if(t.c5Desc) document.getElementById('c5-desc').textContent = t.c5Desc;
   document.getElementById('svc-label').textContent = t.svcLabel;
   document.getElementById('qr-label').textContent = t.qrLabel;
   document.getElementById('qr-title').textContent = t.qrTitle;
