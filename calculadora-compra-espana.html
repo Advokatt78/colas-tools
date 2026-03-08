@@ -1,14 +1,25 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="description" content="Calculate the full costs of buying property in Spain: transfer tax (ITP), VAT, stamp duty, notary and legal fees. Free tool for non-residents on the Costa Blanca.">
+<link rel="canonical" href="https://advokatt78.github.io/colas-tools/calculadora-compra-espana.html">
+<meta property="og:title" content="Free Property Purchase Cost Calculator – Spain">
+<meta property="og:description" content="Calculate the full costs of buying property in Spain: transfer tax (ITP), VAT, stamp duty, notary and legal fees. Free tool for non-residents on the Costa Blanca.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://advokatt78.github.io/colas-tools/calculadora-compra-espana.html">
+<meta property="og:site_name" content="Colás Abogados / Advokater">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Hugo Gutiérrez Colás – Colás Abogados">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Köpkostnadskalkylator – Bostad i Spanien</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Property Purchase Cost Calculator Spain | Colás Abogados</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #162032;
-    --navy-mid: #1E2E42;
+    --navy: #1A1A2E;
+    --navy-mid: #252540;
+    --accent: #CC0B20;
+    --accent-dark: #A00918;
     --gold: #B8973A;
     --gold-light: #E2CFA0;
     --cream: #FAF7F2;
@@ -55,7 +66,7 @@
     color: var(--muted);
     transition: all 0.18s;
   }
-  .lang-btn.active { background: var(--navy); border-color: var(--navy); color: var(--white); }
+  .lang-btn.active { background: var(--accent); border-color: var(--accent); color: var(--white); }
 
   /* Header */
   .header { text-align: center; margin-bottom: 52px; }
@@ -69,7 +80,7 @@
     margin-bottom: 14px;
   }
   .header h1 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: clamp(30px, 5vw, 46px);
     font-weight: 500;
     color: var(--navy);
@@ -126,7 +137,7 @@
     color: var(--text);
   }
   .step-pill.active {
-    background: var(--navy);
+    background: var(--accent);
   }
   .step-pill.active .pill-num,
   .step-pill.active .pill-label { color: var(--white); }
@@ -156,7 +167,7 @@
   }
 
   .card-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 20px;
     font-weight: 500;
     color: var(--navy);
@@ -197,7 +208,7 @@
     margin-bottom: 4px;
   }
   .type-opt .type-tax {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 22px;
     font-weight: 500;
     color: var(--gold);
@@ -374,7 +385,7 @@
   }
 
   .results-hero-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: clamp(18px, 3vw, 24px);
     color: var(--white);
     font-weight: 400;
@@ -405,7 +416,7 @@
   }
 
   .hero-amt-value {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 28px;
     font-weight: 500;
     color: var(--white);
@@ -431,7 +442,7 @@
   }
 
   .breakdown-head-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 18px;
     font-weight: 500;
     color: var(--navy);
@@ -472,14 +483,14 @@
   }
 
   .bt-label {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 17px;
     font-weight: 500;
     color: var(--navy);
   }
 
   .bt-value {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 24px;
     font-weight: 600;
     color: var(--navy);
@@ -505,7 +516,7 @@
   .sum-item:last-child { border-right: none; }
 
   .sum-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
-  .sum-value { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; color: var(--navy); }
+  .sum-value { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 500; color: var(--navy); }
 
   @media (max-width: 560px) {
     .summary-bar { flex-direction: column; gap: 16px; }
@@ -523,7 +534,7 @@
   }
 
   .cta-card .cta-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 24px;
     font-weight: 500;
     color: var(--white);
@@ -578,6 +589,117 @@
     max-width: 580px;
     margin-left: auto; margin-right: auto;
   }
+
+  /* ── Educational Section ──────────────────────────────────── */
+  .edu-section {
+    max-width: 860px;
+    margin: 48px auto 0;
+    padding: 0 24px 64px;
+  }
+  .edu-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid var(--border, #E0D8CC);
+  }
+  .edu-icon { font-size: 28px; }
+  .edu-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 500;
+    color: var(--primary, #1A1A2E);
+    line-height: 1.2;
+  }
+  .edu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+  .edu-item {
+    background: var(--white, #fff);
+    border: 1px solid var(--border, #E0D8CC);
+    border-left: 4px solid var(--accent, #CC0B20);
+    border-radius: 8px;
+    padding: 18px 22px;
+  }
+  .edu-item-header {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary, #1A1A2E);
+    margin-bottom: 7px;
+  }
+  .edu-item-body {
+    font-size: 13.5px;
+    color: var(--muted, #7A7870);
+    line-height: 1.65;
+  }
+  .edu-item-body strong { color: var(--primary, #1A1A2E); }
+  .edu-cta {
+    background: linear-gradient(135deg, var(--primary, #1A1A2E) 0%, #2a2a4a 100%);
+    border-radius: 12px;
+    padding: 28px 32px;
+    text-align: center;
+  }
+  .edu-cta-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .edu-disclaimer-inline {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+    margin: 0 0 16px;
+    font-style: italic;
+  }
+  .edu-cta-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .edu-btn {
+    padding: 11px 24px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .edu-btn-primary {
+    background: var(--accent, #CC0B20);
+    color: #fff;
+  }
+  .edu-btn-primary:hover { background: #a00918; }
+  .edu-btn-secondary {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .edu-btn-secondary:hover { background: rgba(255,255,255,0.2); }
+
+  /* ── Disclaimer ─────────────────────────────────────────────── */
+  .legal-disclaimer {
+    background: #FFF8E7;
+    border: 1px solid #F0D080;
+    border-left: 4px solid #C9A000;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 12px;
+    color: #5a4a00;
+    line-height: 1.6;
+    margin: 24px 0 0;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
 </style>
 </head>
 <body>
@@ -585,7 +707,7 @@
 
   <!-- Lang -->
   <div class="lang-row">
-    <button class="lang-btn active" onclick="setLang('en')" id="lb-sv">Svenska</button>
+    <button class="lang-btn active" onclick=\"setLang('sv')\" id="lb-sv">Svenska</button>
     <button class="lang-btn" onclick="setLang('en')" id="lb-en">English</button>
     <button class="lang-btn" onclick="setLang('es')" id="lb-es">Español</button>
   </div>
@@ -797,7 +919,7 @@
   </div>
 
   <!-- ── RESULTS ── -->
-  <div class="results-wrap" id="results">
+  <div class="results-wrap" id="results" aria-live="polite">
 
     <div class="results-hero">
       <div class="results-hero-label" data-t="heroLabel">Sammanfattning</div>
@@ -996,6 +1118,7 @@ let lang = 'sv';
 let currentStep = 1;
 
 function setLang(l) {
+  document.documentElement.lang = l || arguments[0];
   lang = l;
   ['en','sv','es'].forEach(x => document.getElementById('lb-'+x).classList.remove('active'));
   document.getElementById('lb-'+l).classList.add('active');
@@ -1183,7 +1306,91 @@ function resetCalc() {
 
 // Init
 updateItpDisplay();
+
+const EDU_CONTENT = {
+  en: {
+    title: 'How property purchase tax works in Spain',
+    items: [
+      { h: 'Transfer Tax (ITP)', p: 'When buying a resale property, you pay ITP — a regional transfer tax. In the Comunidad Valenciana the rate is <strong>10%</strong> for most properties. New-build properties pay VAT (10%) and Stamp Duty (AJD, 1.5%) instead.' },
+      { h: 'Notary and registration fees', p: 'Notary fees are set by Spanish law based on the purchase price. Land Registry fees apply to register the deed. Together these typically add 1–2% of the purchase price.' },
+      { h: 'Legal fees', p: 'Using a property lawyer (abogado) is strongly recommended. Standard fees range from 1–1.5% of the purchase price. Your lawyer will check title, debts, planning status and represent you at signing.' },
+      { h: 'NIE number required', p: 'Every foreign buyer must obtain a Spanish tax identification number (NIE) before completing a purchase. Allow 2–4 weeks to obtain this through a consulate or in Spain.' },
+      { h: '3% withholding for non-residents', p: "If a non-resident buys from another non-resident seller, the buyer must withhold 3% of the price and pay it to the Spanish Tax Agency on the seller's behalf." },
+    ],
+    cta: 'This calculation is only an estimate. Property taxation in Spain depends on many individual factors. A qualified lawyer should review your specific situation before you make any decisions.',
+    btnWa: 'Request legal review',
+    btnTg: 'Quick query via Telegram',
+    disclaimer: '⚠️ This calculator provides an estimate for informational purposes only. Spanish tax calculations depend on individual circumstances. Professional legal advice is recommended before taking any financial decision.',
+  },
+  sv: {
+    title: 'Så fungerar fastighetsskatt vid köp i Spanien',
+    items: [
+      { h: 'Överlåtelseskatt (ITP)', p: 'Vid köp av begagnad bostad betalar du ITP — en regional överlåtelseskatt. I Comunidad Valenciana är normalskattesatsen <strong>10%</strong>. Nybyggnationer betalar moms (10%) och stämpelskatt (AJD, 1,5%).' },
+      { h: 'Notarie- och registreringsavgifter', p: 'Notarieavgifter regleras av spansk lag och beräknas på köpeskillingen. Inskrivningsavgifter tillkommer. Tillsammans brukar de uppgå till 1–2% av köpeskillingen.' },
+      { h: 'Juridiska kostnader', p: 'Det rekommenderas starkt att anlita en spansk advokat (abogado). Standardarvoden ligger på 1–1,5% av köpeskillingen. Advokaten kontrollerar lagfart, skulder och stadsplanestatus.' },
+      { h: 'NIE-nummer krävs', p: 'Alla utländska köpare måste ha ett spanskt skatteidentifikationsnummer (NIE) innan köpet slutförs. Räkna med 2–4 veckors handläggningstid.' },
+      { h: '3% källskatt för icke-residenter', p: 'Om en icke-resident köper från en icke-residentförsäljare måste köparen hålla inne 3% av priset och betala det till spanska skattemyndigheten å säljarens vägnar.' },
+    ],
+    cta: 'Detta resultat är en uppskattning. Fastighetsbeskattning i Spanien beror på många individuella faktorer. En kvalificerad advokat bör granska din specifika situation innan du fattar beslut.',
+    btnWa: 'Juridisk granskning',
+    btnTg: 'Snabbfråga via Telegram',
+    disclaimer: '⚠️ Denna kalkylator ger en uppskattning i informationssyfte. Spansk skatteberäkning beror på individuella förhållanden. Professionell juridisk rådgivning rekommenderas innan ekonomiska beslut fattas.',
+  },
+  es: {
+    title: 'Cómo funciona el impuesto en la compra de vivienda en España',
+    items: [
+      { h: 'Impuesto de Transmisiones Patrimoniales (ITP)', p: 'Al comprar una vivienda de segunda mano se paga el ITP. En la Comunitat Valenciana el tipo general es del <strong>10%</strong>. Las viviendas nuevas tributan por IVA (10%) y AJD (1,5%).' },
+      { h: 'Gastos de notaría y registro', p: 'Los aranceles notariales están regulados por ley. Los gastos de registro de la propiedad se añaden. En conjunto suponen entre el 1 y el 2% del precio.' },
+      { h: 'Honorarios de abogado', p: 'Se recomienda contar con un abogado especializado. Los honorarios habituales oscilan entre el 1 y el 1,5% del precio. El abogado verifica titularidad, cargas y licencias.' },
+      { h: 'Número NIE obligatorio', p: 'Todo comprador extranjero debe obtener un NIE antes de formalizar la compra. El trámite puede tardar entre 2 y 4 semanas.' },
+      { h: 'Retención del 3% para no residentes', p: 'Si un no residente compra a otro no residente vendedor, el comprador debe retener el 3% del precio e ingresarlo a la AEAT en nombre del vendedor.' },
+    ],
+    cta: 'Este resultado es una estimación orientativa. La fiscalidad inmobiliaria en España depende de muchos factores individuales. Un abogado cualificado debe revisar su situación concreta antes de tomar decisiones.',
+    btnWa: 'Solicitar revisión jurídica',
+    btnTg: 'Consulta rápida por Telegram',
+    disclaimer: '⚠️ Esta calculadora ofrece una estimación orientativa. Los cálculos fiscales en España dependen de las circunstancias individuales. Se recomienda asesoramiento jurídico profesional antes de tomar decisiones económicas.',
+  },
+};
+
+function updateEduSection(l) {
+  var d = EDU_CONTENT[l];
+  if (!d) return;
+  var tEl = document.getElementById('edu-title');
+  var iEl = document.getElementById('edu-items');
+  var cEl = document.getElementById('edu-cta-text');
+  var wEl = document.getElementById('edu-btn-wa');
+  var tgEl = document.getElementById('edu-btn-tg');
+  var dsEl = document.getElementById('edu-disclaimer');
+  if (tEl) tEl.textContent = d.title;
+  if (iEl) iEl.innerHTML = d.items.map(function(item) {
+    return '<div class="edu-item"><div class="edu-item-header">' + item.h + 
+           '</div><div class="edu-item-body">' + item.p + '</div></div>';
+  }).join('');
+  if (cEl) cEl.textContent = d.cta;
+  if (wEl) wEl.textContent = '💬 ' + d.btnWa;
+  if (tgEl) tgEl.textContent = '🤖 ' + d.btnTg;
+  if (dsEl) dsEl.textContent = d.disclaimer;
+}
+
 </script>
+
+
+<!-- EDUCATIONAL SECTION -->
+<div class="edu-section">
+  <div class="edu-header">
+    <div class="edu-icon">📖</div>
+    <h2 class="edu-title" id="edu-title"></h2>
+  </div>
+  <div class="edu-items" id="edu-items"></div>
+  <div class="edu-cta">
+    <p class="edu-cta-text" id="edu-cta-text"></p>
+    <p id="edu-disclaimer" class="edu-disclaimer-inline"></p>
+    <div class="edu-cta-btns">
+      <a href="https://wa.me/34629549430" class="edu-btn edu-btn-primary" id="edu-btn-wa">💬 Request legal review</a>
+      <a href="https://t.me/Colasabogadosbot" class="edu-btn edu-btn-secondary" id="edu-btn-tg">🤖 Quick query via Telegram</a>
+    </div>
+  </div>
+</div>
 
 <!-- FOOTER AUTOR -->
 <div style="

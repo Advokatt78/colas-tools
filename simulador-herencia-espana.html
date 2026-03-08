@@ -1,9 +1,18 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="description" content="Estimate inheritance and succession tax in Spain (Comunidad Valenciana). Includes reductions for direct heirs, spouses and non-residents. Free calculator.">
+<link rel="canonical" href="https://advokatt78.github.io/colas-tools/simulador-herencia-espana.html">
+<meta property="og:title" content="Inheritance Tax Calculator – Spain (Comunidad Valenciana)">
+<meta property="og:description" content="Estimate inheritance and succession tax in Spain (Comunidad Valenciana). Includes reductions for direct heirs, spouses and non-residents. Free calculator.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://advokatt78.github.io/colas-tools/simulador-herencia-espana.html">
+<meta property="og:site_name" content="Colás Abogados / Advokater">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Hugo Gutiérrez Colás – Colás Abogados">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arvsskattesimulator – Spanien (Valenciaregionen)</title>
+<title>Inheritance Tax Calculator Spain – Valencia | Colás Abogados</title>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -13,6 +22,8 @@
     --white:  #FFFFFF;
     --border: #DDD8D0;
     --muted:  #7C7870;
+    --accent: #CC0B20;
+    --accent-dark: #A00918;
     --gold:   #A8843C;
     --gold-l: #D4B878;
     --green:  #2E6E4E;
@@ -39,7 +50,7 @@
   /* Header */
   .hdr { text-align: center; margin-bottom: 48px; }
   .hdr .eyebrow { font-size: 10px; letter-spacing: 3.5px; text-transform: uppercase; color: var(--gold); font-weight: 500; display: block; margin-bottom: 14px; }
-  .hdr h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(28px,5vw,42px); font-weight: 700; color: var(--ink); line-height: 1.15; margin-bottom: 14px; }
+  .hdr h1 { font-family: 'Playfair Display', serif; font-size: clamp(28px,5vw,42px); font-weight: 700; color: var(--ink); line-height: 1.15; margin-bottom: 14px; }
   .hdr p { font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 540px; margin: 0 auto; }
   .hdr-line { width: 40px; height: 1.5px; background: var(--gold); margin: 20px auto 0; }
 
@@ -59,7 +70,7 @@
 
   /* Card */
   .card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 32px; margin-bottom: 18px; }
-  .card-title { font-family: 'Libre Baskerville', serif; font-size: 19px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .card-title { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
   .card-sub { font-size: 13px; color: var(--muted); margin-bottom: 26px; line-height: 1.5; }
 
   /* Field grid */
@@ -125,14 +136,14 @@
   .res-hero { background: var(--ink); border-radius: 14px; padding: 36px; margin-bottom: 18px; overflow: hidden; position: relative; }
   .res-hero::before { content:''; position:absolute; top:-50px; right:-50px; width:200px; height:200px; border-radius:50%; background:rgba(168,132,60,.08); }
   .res-hero-eyebrow { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 10px; }
-  .res-hero-title { font-family: 'Libre Baskerville', serif; font-size: clamp(16px,3vw,22px); color: #fff; font-weight: 400; margin-bottom: 28px; line-height: 1.3; }
+  .res-hero-title { font-family: 'Playfair Display', serif; font-size: clamp(16px,3vw,22px); color: #fff; font-weight: 400; margin-bottom: 28px; line-height: 1.3; }
 
   .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   @media(max-width:480px){ .res-grid{ grid-template-columns:1fr; } }
 
   .res-box { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; padding: 16px 20px; }
   .res-box-label { font-size: 11px; color: rgba(255,255,255,.4); margin-bottom: 6px; }
-  .res-box-val { font-family: 'Libre Baskerville', serif; font-size: 26px; font-weight: 700; color: #fff; }
+  .res-box-val { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: #fff; }
   .res-box-val.gold { color: var(--gold-l); }
   .res-box-val.green { color: #7ECBA1; }
   .res-box-val.red { color: #F08080; }
@@ -140,7 +151,7 @@
   /* Breakdown */
   .bk-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 18px; }
   .bk-head { padding: 18px 26px; border-bottom: 1px solid var(--border); }
-  .bk-head-title { font-family: 'Libre Baskerville', serif; font-size: 17px; font-weight: 700; color: var(--ink); }
+  .bk-head-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--ink); }
   .bk-row { display: flex; justify-content: space-between; align-items: baseline; padding: 13px 26px; border-bottom: 1px solid #F4F1EC; gap: 12px; }
   .bk-row:last-child { border-bottom: none; }
   .bk-label { font-size: 14px; color: var(--ink); line-height: 1.4; flex: 1; }
@@ -150,8 +161,8 @@
   .bk-val.neg { color: var(--red); }
   .bk-val.neutral { color: var(--ink); }
   .bk-total { display: flex; justify-content: space-between; align-items: center; padding: 16px 26px; background: #F8F5EF; border-top: 1.5px solid var(--border); }
-  .bk-total-label { font-family: 'Libre Baskerville', serif; font-size: 16px; font-weight: 700; color: var(--ink); }
-  .bk-total-val { font-family: 'Libre Baskerville', serif; font-size: 22px; font-weight: 700; color: var(--ink); }
+  .bk-total-label { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--ink); }
+  .bk-total-val { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--ink); }
 
   /* Bonus box */
   .bonus-box { background: #EFF7F3; border: 1px solid #B0D9C5; border-radius: 10px; padding: 18px 22px; margin-bottom: 18px; }
@@ -169,7 +180,7 @@
 
   /* CTA */
   .cta { background: linear-gradient(135deg, var(--ink) 0%, #2E3E54 100%); border-radius: 12px; padding: 36px 32px; text-align: center; margin-bottom: 18px; }
-  .cta h3 { font-family: 'Libre Baskerville', serif; font-size: 22px; color: #fff; font-weight: 400; margin-bottom: 10px; }
+  .cta h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #fff; font-weight: 400; margin-bottom: 10px; }
   .cta p { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.6; margin-bottom: 22px; max-width: 440px; margin-left: auto; margin-right: auto; }
   .cta-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
   .cta-link { padding: 12px 22px; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; text-decoration: none; transition: all .2s; display: inline-flex; align-items: center; gap: 6px; }
@@ -181,6 +192,117 @@
   .btn-reset { display: block; margin: 4px auto 0; background: none; border: none; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--muted); text-decoration: underline; cursor: pointer; }
 
   .disclaimer { font-size: 11px; color: var(--muted); text-align: center; line-height: 1.6; margin-top: 28px; max-width: 580px; margin-left: auto; margin-right: auto; }
+
+  /* ── Educational Section ──────────────────────────────────── */
+  .edu-section {
+    max-width: 860px;
+    margin: 48px auto 0;
+    padding: 0 24px 64px;
+  }
+  .edu-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid var(--border, #E0D8CC);
+  }
+  .edu-icon { font-size: 28px; }
+  .edu-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 500;
+    color: var(--primary, #1A1A2E);
+    line-height: 1.2;
+  }
+  .edu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+  .edu-item {
+    background: var(--white, #fff);
+    border: 1px solid var(--border, #E0D8CC);
+    border-left: 4px solid var(--accent, #CC0B20);
+    border-radius: 8px;
+    padding: 18px 22px;
+  }
+  .edu-item-header {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary, #1A1A2E);
+    margin-bottom: 7px;
+  }
+  .edu-item-body {
+    font-size: 13.5px;
+    color: var(--muted, #7A7870);
+    line-height: 1.65;
+  }
+  .edu-item-body strong { color: var(--primary, #1A1A2E); }
+  .edu-cta {
+    background: linear-gradient(135deg, var(--primary, #1A1A2E) 0%, #2a2a4a 100%);
+    border-radius: 12px;
+    padding: 28px 32px;
+    text-align: center;
+  }
+  .edu-cta-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .edu-disclaimer-inline {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+    margin: 0 0 16px;
+    font-style: italic;
+  }
+  .edu-cta-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .edu-btn {
+    padding: 11px 24px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .edu-btn-primary {
+    background: var(--accent, #CC0B20);
+    color: #fff;
+  }
+  .edu-btn-primary:hover { background: #a00918; }
+  .edu-btn-secondary {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .edu-btn-secondary:hover { background: rgba(255,255,255,0.2); }
+
+  /* ── Disclaimer ─────────────────────────────────────────────── */
+  .legal-disclaimer {
+    background: #FFF8E7;
+    border: 1px solid #F0D080;
+    border-left: 4px solid #C9A000;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 12px;
+    color: #5a4a00;
+    line-height: 1.6;
+    margin: 24px 0 0;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
 </style>
 </head>
 <body>
@@ -188,7 +310,7 @@
 
   <!-- Lang -->
   <div class="lang-row">
-    <button class="lb active" onclick="setLang('en')" id="lb-sv">Svenska</button>
+    <button class="lb active" onclick=\"setLang('sv')\" id="lb-sv">Svenska</button>
     <button class="lb" onclick="setLang('en')" id="lb-en">English</button>
     <button class="lb" onclick="setLang('es')" id="lb-es">Español</button>
   </div>
@@ -318,7 +440,7 @@
   <button class="btn-calc" onclick="calculate()" data-t="calcBtn">Simulera arvsskatt</button>
 
   <!-- RESULTS -->
-  <div class="results" id="results">
+  <div class="results" id="results" aria-live="polite">
 
     <div class="res-hero">
       <div class="res-hero-eyebrow" data-t="resEyebrow">Simuleringsresultat</div>
@@ -477,6 +599,7 @@ const T = {
 let lang = 'sv';
 
 function setLang(l) {
+  document.documentElement.lang = l || arguments[0];
   lang = l;
   ['en','sv','es'].forEach(x => document.getElementById('lb-'+x).classList.remove('active'));
   document.getElementById('lb-'+l).classList.add('active');
@@ -662,7 +785,91 @@ function resetCalc() {
   document.getElementById('results').classList.remove('visible');
   window.scrollTo({top:0,behavior:'smooth'});
 }
+
+const EDU_CONTENT = {
+  en: {
+    title: 'How inheritance tax works in Spain (Comunidad Valenciana)',
+    items: [
+      { h: 'Who pays inheritance tax', p: 'Inheritance tax (Impuesto de Sucesiones) is paid by the beneficiaries. Non-residents inheriting Spanish assets must file with Spanish tax authorities within 6 months of death (extendable by 6 months on request).' },
+      { h: '99% reduction in Valencia', p: 'As of 2023, children and grandchildren receive a 99% bonificación on their inheritance tax in the Comunidad Valenciana, meaning they effectively pay almost no tax on most inheritances.' },
+      { h: 'Tax rates', p: 'Inheritance tax rates are progressive from <strong>7.65%</strong> up to <strong>34%</strong> on amounts over €797,555. The 99% bonificación in Valencia significantly reduces the effective rate for direct heirs.' },
+      { h: 'Multiplier coefficients', p: "The final tax is multiplied by a coefficient based on the heir's pre-existing wealth and relationship to the deceased. Distant relatives pay significantly more than direct heirs." },
+      { h: 'Property valuation', p: "Spanish property is valued at market value or the catastro's valor de referencia, whichever is higher. Undervaluing property in an inheritance can lead to penalties." },
+    ],
+    cta: 'This calculation is only an estimate. Property taxation in Spain depends on many individual factors. A qualified lawyer should review your specific situation before you make any decisions.',
+    btnWa: 'Request legal review',
+    btnTg: 'Quick query via Telegram',
+    disclaimer: '⚠️ This calculator provides an estimate for informational purposes only. Spanish tax calculations depend on individual circumstances. Professional legal advice is recommended before taking any financial decision.',
+  },
+  sv: {
+    title: 'Så fungerar arvsskatten i Spanien (Comunidad Valenciana)',
+    items: [
+      { h: 'Vem betalar arvsskatt', p: 'Arvsskatt (Impuesto de Sucesiones) betalas av arvtagarna. Icke-residenter som ärver spanska tillgångar måste deklarera inom 6 månader från dödsdatumet (kan förlängas med 6 månader).' },
+      { h: '99% reducering i Valencia', p: 'Från 2023 har barn och barnbarn rätt till 99% bonificación i Comunidad Valenciana, vilket i praktiken innebär mycket låg eller ingen arvsskatt på de flesta arv.' },
+      { h: 'Skattesatser', p: 'Arvsskatten är progressiv från <strong>7,65%</strong> till <strong>34%</strong> på belopp över 797.555 €. 99% bonificación i Valencia reducerar den effektiva skatten avsevärt för direkta arvingar.' },
+      { h: 'Multiplikatorkoefficienter', p: 'Den slutliga skatten multipliceras med en koefficient baserad på arvingens förmögenhet och relation till den avlidne. Avlägsna släktingar betalar väsentligt mer.' },
+      { h: 'Fastighetsvärdering', p: 'Spansk fastighet värderas till marknadsvärdet eller katastrets valor de referencia, det högre av de två. Undervärdering kan leda till sanktioner från skattemyndigheten.' },
+    ],
+    cta: 'Detta resultat är en uppskattning. Fastighetsbeskattning i Spanien beror på många individuella faktorer. En kvalificerad advokat bör granska din specifika situation innan du fattar beslut.',
+    btnWa: 'Juridisk granskning',
+    btnTg: 'Snabbfråga via Telegram',
+    disclaimer: '⚠️ Denna kalkylator ger en uppskattning i informationssyfte. Spansk skatteberäkning beror på individuella förhållanden. Professionell juridisk rådgivning rekommenderas innan ekonomiska beslut fattas.',
+  },
+  es: {
+    title: 'Cómo funciona el Impuesto de Sucesiones en España (Comunitat Valenciana)',
+    items: [
+      { h: 'Quién paga el Impuesto de Sucesiones', p: 'El Impuesto de Sucesiones lo pagan los beneficiarios. Los no residentes que hereden bienes en España deben autoliquidar en los 6 meses desde el fallecimiento (prorrogable 6 meses más).' },
+      { h: 'Bonificación del 99% en Valencia', p: 'Desde 2023, los hijos y nietos tienen derecho a una bonificación del 99% en la Comunitat Valenciana, lo que supone en la práctica que casi no pagan impuesto en la mayoría de las herencias.' },
+      { h: 'Tipos impositivos', p: 'El Impuesto de Sucesiones es progresivo, entre el <strong>7,65%</strong> y el <strong>34%</strong> para importes superiores a 797.555 €. La bonificación del 99% en Valencia reduce significativamente el tipo efectivo para herederos directos.' },
+      { h: 'Coeficientes multiplicadores', p: 'La cuota se multiplica por un coeficiente según el patrimonio preexistente del heredero y su parentesco. Los parientes lejanos pagan significativamente más que los herederos directos.' },
+      { h: 'Valoración de inmuebles', p: 'Los inmuebles se valoran al precio de mercado o al valor de referencia catastral, el mayor de los dos. La infravaloración puede dar lugar a sanciones de la Administración Tributaria.' },
+    ],
+    cta: 'Este resultado es una estimación orientativa. La fiscalidad inmobiliaria en España depende de muchos factores individuales. Un abogado cualificado debe revisar su situación concreta antes de tomar decisiones.',
+    btnWa: 'Solicitar revisión jurídica',
+    btnTg: 'Consulta rápida por Telegram',
+    disclaimer: '⚠️ Esta calculadora ofrece una estimación orientativa. Los cálculos fiscales en España dependen de las circunstancias individuales. Se recomienda asesoramiento jurídico profesional antes de tomar decisiones económicas.',
+  },
+};
+
+function updateEduSection(l) {
+  var d = EDU_CONTENT[l];
+  if (!d) return;
+  var tEl = document.getElementById('edu-title');
+  var iEl = document.getElementById('edu-items');
+  var cEl = document.getElementById('edu-cta-text');
+  var wEl = document.getElementById('edu-btn-wa');
+  var tgEl = document.getElementById('edu-btn-tg');
+  var dsEl = document.getElementById('edu-disclaimer');
+  if (tEl) tEl.textContent = d.title;
+  if (iEl) iEl.innerHTML = d.items.map(function(item) {
+    return '<div class="edu-item"><div class="edu-item-header">' + item.h + 
+           '</div><div class="edu-item-body">' + item.p + '</div></div>';
+  }).join('');
+  if (cEl) cEl.textContent = d.cta;
+  if (wEl) wEl.textContent = '💬 ' + d.btnWa;
+  if (tgEl) tgEl.textContent = '🤖 ' + d.btnTg;
+  if (dsEl) dsEl.textContent = d.disclaimer;
+}
+
 </script>
+
+
+<!-- EDUCATIONAL SECTION -->
+<div class="edu-section">
+  <div class="edu-header">
+    <div class="edu-icon">📖</div>
+    <h2 class="edu-title" id="edu-title"></h2>
+  </div>
+  <div class="edu-items" id="edu-items"></div>
+  <div class="edu-cta">
+    <p class="edu-cta-text" id="edu-cta-text"></p>
+    <p id="edu-disclaimer" class="edu-disclaimer-inline"></p>
+    <div class="edu-cta-btns">
+      <a href="https://wa.me/34629549430" class="edu-btn edu-btn-primary" id="edu-btn-wa">💬 Request legal review</a>
+      <a href="https://t.me/Colasabogadosbot" class="edu-btn edu-btn-secondary" id="edu-btn-tg">🤖 Quick query via Telegram</a>
+    </div>
+  </div>
+</div>
 
 <!-- FOOTER AUTOR -->
 <div style="

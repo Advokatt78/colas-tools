@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="description" content="Calculate capital gains tax (Modelo 210) when selling property in Spain as a non-resident. Includes 3% withholding, deductible costs and net gain. Free tool.">
+<link rel="canonical" href="https://advokatt78.github.io/colas-tools/calculadora-venta-noresidente.html">
+<meta property="og:title" content="Capital Gains Tax Calculator Spain – Non-Residents (Modelo 210)">
+<meta property="og:description" content="Calculate capital gains tax (Modelo 210) when selling property in Spain as a non-resident. Includes 3% withholding, deductible costs and net gain. Free tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://advokatt78.github.io/colas-tools/calculadora-venta-noresidente.html">
+<meta property="og:site_name" content="Colás Abogados / Advokater">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Hugo Gutiérrez Colás – Colás Abogados">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skattekalkylator – Försäljning av bostad i Spanien</title>
+<title>Capital Gains Tax Calculator Spain – Non-Residents | Colás Abogados</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
+    --accent: #CC0B20;
+    --accent-dark: #A00918;
     --gold: #C9A84C;
     --gold-light: #E8D5A3;
     --dark: #1A1A2E;
@@ -95,8 +106,7 @@
   }
 
   .lang-btn.active {
-    background: var(--dark);
-    border-color: var(--dark);
+    background: var(--accent); border-color: var(--accent);
     color: var(--white);
   }
 
@@ -308,7 +318,7 @@
   .calc-btn {
     width: 100%;
     padding: 16px;
-    background: var(--dark);
+    background: var(--accent);
     color: var(--white);
     border: none;
     border-radius: 10px;
@@ -474,11 +484,11 @@
   }
 
   .cta-link.primary {
-    background: var(--dark);
+    background: var(--accent);
     color: var(--white);
   }
 
-  .cta-link.primary:hover { background: var(--dark-mid); }
+  .cta-link.primary:hover { background: var(--accent-dark); }
 
   .cta-link.secondary {
     border: 1.5px solid var(--border);
@@ -515,6 +525,117 @@
   .reset-btn:hover { color: rgba(255,255,255,0.7); }
 
   .section-card + .section-card { margin-top: 16px; }
+
+  /* ── Educational Section ──────────────────────────────────── */
+  .edu-section {
+    max-width: 860px;
+    margin: 48px auto 0;
+    padding: 0 24px 64px;
+  }
+  .edu-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid var(--border, #E0D8CC);
+  }
+  .edu-icon { font-size: 28px; }
+  .edu-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 500;
+    color: var(--primary, #1A1A2E);
+    line-height: 1.2;
+  }
+  .edu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+  .edu-item {
+    background: var(--white, #fff);
+    border: 1px solid var(--border, #E0D8CC);
+    border-left: 4px solid var(--accent, #CC0B20);
+    border-radius: 8px;
+    padding: 18px 22px;
+  }
+  .edu-item-header {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary, #1A1A2E);
+    margin-bottom: 7px;
+  }
+  .edu-item-body {
+    font-size: 13.5px;
+    color: var(--muted, #7A7870);
+    line-height: 1.65;
+  }
+  .edu-item-body strong { color: var(--primary, #1A1A2E); }
+  .edu-cta {
+    background: linear-gradient(135deg, var(--primary, #1A1A2E) 0%, #2a2a4a 100%);
+    border-radius: 12px;
+    padding: 28px 32px;
+    text-align: center;
+  }
+  .edu-cta-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .edu-disclaimer-inline {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+    margin: 0 0 16px;
+    font-style: italic;
+  }
+  .edu-cta-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .edu-btn {
+    padding: 11px 24px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .edu-btn-primary {
+    background: var(--accent, #CC0B20);
+    color: #fff;
+  }
+  .edu-btn-primary:hover { background: #a00918; }
+  .edu-btn-secondary {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .edu-btn-secondary:hover { background: rgba(255,255,255,0.2); }
+
+  /* ── Disclaimer ─────────────────────────────────────────────── */
+  .legal-disclaimer {
+    background: #FFF8E7;
+    border: 1px solid #F0D080;
+    border-left: 4px solid #C9A000;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 12px;
+    color: #5a4a00;
+    line-height: 1.6;
+    margin: 24px 0 0;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
 </style>
 </head>
 <body>
@@ -523,7 +644,7 @@
 
   <!-- Language toggle -->
   <div class="lang-toggle">
-    <button class="lang-btn active" onclick="setLang('en')" id="btn-sv">Svenska</button>
+    <button class="lang-btn active" onclick=\"setLang('sv')\" id="btn-sv">Svenska</button>
     <button class="lang-btn" onclick="setLang('en')" id="btn-en">English</button>
     <button class="lang-btn" onclick="setLang('es')" id="btn-es">Español</button>
   </div>
@@ -555,7 +676,7 @@
       <div class="field">
         <label data-t="purchaseYear">Köpår</label>
         <div class="input-wrap">
-          <input type="number" id="purchaseYear" placeholder="2010" min="1950" max="2025" style="padding-right:14px">
+          <input type="number" id="purchaseYear" placeholder="2010" min="1950" max="" style="padding-right:14px">
         </div>
       </div>
     </div>
@@ -683,7 +804,7 @@
   <button class="calc-btn" onclick="calculate()" data-t="calcBtn">Beräkna skatt</button>
 
   <!-- Results -->
-  <div class="results-card" id="results">
+  <div class="results-card" id="results" aria-live="polite">
     <div class="results-title" data-t="resultsTitle">Beräkningsresultat</div>
 
     <div class="result-row">
@@ -1006,7 +1127,91 @@ function reset() {
   document.getElementById('cta-box').classList.remove('visible');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+const EDU_CONTENT = {
+  en: {
+    title: 'How capital gains tax works when selling property in Spain',
+    items: [
+      { h: 'Who pays and when', p: 'Non-resident sellers pay capital gains tax on the profit from selling Spanish property. Modelo 210 must be filed within 3 months of the sale.' },
+      { h: 'Tax rates for non-residents', p: 'EU/EEA residents pay <strong>19%</strong> on the net gain. Residents outside the EU/EEA pay <strong>24%</strong>. Spanish tax residents pay on a progressive scale from 19% to 28%.' },
+      { h: 'The 3% withholding (retención)', p: 'The buyer must withhold 3% of the sale price and pay it to the Spanish Tax Agency on behalf of the seller. This is an advance against the final capital gains tax. If 3% withheld exceeds your liability, you can claim a refund.' },
+      { h: 'Deductible costs', p: 'You can deduct from your taxable gain: original purchase price, purchase taxes and fees, cost of improvements (with invoices), estate agent commissions, and legal fees for the sale.' },
+      { h: 'Municipal capital gains tax (plusvalía)', p: 'A separate local tax based on the increase in official land value. Since 2021 you can choose between two methods and challenge it if the property has not gained in value.' },
+    ],
+    cta: 'This calculation is only an estimate. Property taxation in Spain depends on many individual factors. A qualified lawyer should review your specific situation before you make any decisions.',
+    btnWa: 'Request legal review',
+    btnTg: 'Quick query via Telegram',
+    disclaimer: '⚠️ This calculator provides an estimate for informational purposes only. Spanish tax calculations depend on individual circumstances. Professional legal advice is recommended before taking any financial decision.',
+  },
+  sv: {
+    title: 'Så fungerar kapitalvinstskatten vid försäljning i Spanien',
+    items: [
+      { h: 'Vem betalar och när', p: 'Icke-residenter som säljer spansk fastighet betalar kapitalvinstskatt på vinsten. Modelo 210 ska lämnas inom 3 månader från försäljningen.' },
+      { h: 'Skattesatser för icke-residenter', p: 'EU/EES-bosatta betalar <strong>19%</strong> på nettovinsten. Bosatta utanför EU/EES betalar <strong>24%</strong>. Spanska residenter beskattas progressivt 19–28%.' },
+      { h: '3%-avdrag vid källan (retención)', p: 'Köparen håller inne 3% av köpeskillingen och betalar det till spanska skattemyndigheten å säljarens vägnar. Om 3% överstiger skatten kan säljaren ansöka om återbetalning.' },
+      { h: 'Avdragsgilla kostnader', p: 'Minska den skattepliktiga vinsten med: inköpspris, skatter vid köpet, förbättringskostnader (med kvitton), mäklararvode och juridiska kostnader vid försäljningen.' },
+      { h: 'Kommunal värdestegringsskatt (plusvalía)', p: 'En separat kommunal skatt baserad på ökning av markens taxeringsvärde. Sedan 2021 kan du välja mellan två metoder och bestrida skatten om fastigheten inte stigit i värde.' },
+    ],
+    cta: 'Detta resultat är en uppskattning. Fastighetsbeskattning i Spanien beror på många individuella faktorer. En kvalificerad advokat bör granska din specifika situation innan du fattar beslut.',
+    btnWa: 'Juridisk granskning',
+    btnTg: 'Snabbfråga via Telegram',
+    disclaimer: '⚠️ Denna kalkylator ger en uppskattning i informationssyfte. Spansk skatteberäkning beror på individuella förhållanden. Professionell juridisk rådgivning rekommenderas innan ekonomiska beslut fattas.',
+  },
+  es: {
+    title: 'Cómo funciona la ganancia patrimonial al vender vivienda en España',
+    items: [
+      { h: 'Quién paga y cuándo', p: 'Los no residentes que vendan una propiedad en España tributan por la ganancia. El Modelo 210 debe presentarse en los 3 meses siguientes a la venta.' },
+      { h: 'Tipos impositivos para no residentes', p: 'Los residentes en la UE/EEE pagan el <strong>19%</strong> sobre la ganancia neta. Los de fuera de la UE/EEE pagan el <strong>24%</strong>. Los residentes fiscales en España tributan progresivamente entre el 19% y el 28%.' },
+      { h: 'La retención del 3%', p: 'El comprador retiene el 3% del precio de venta y lo ingresa a la AEAT en nombre del vendedor. Si la retención supera la cuota final, el vendedor puede solicitar la devolución.' },
+      { h: 'Gastos deducibles', p: 'Puede reducir la ganancia deduciendo: precio de adquisición, impuestos en la compra, coste de mejoras (con factura), comisiones de agencia y honorarios de abogado en la venta.' },
+      { h: 'Plusvalía municipal (IIVTNU)', p: 'Impuesto local que grava el incremento del valor del terreno. Desde 2021 puede elegirse entre dos métodos de cálculo y puede impugnarse si el inmueble no ha incrementado su valor real.' },
+    ],
+    cta: 'Este resultado es una estimación orientativa. La fiscalidad inmobiliaria en España depende de muchos factores individuales. Un abogado cualificado debe revisar su situación concreta antes de tomar decisiones.',
+    btnWa: 'Solicitar revisión jurídica',
+    btnTg: 'Consulta rápida por Telegram',
+    disclaimer: '⚠️ Esta calculadora ofrece una estimación orientativa. Los cálculos fiscales en España dependen de las circunstancias individuales. Se recomienda asesoramiento jurídico profesional antes de tomar decisiones económicas.',
+  },
+};
+
+function updateEduSection(l) {
+  var d = EDU_CONTENT[l];
+  if (!d) return;
+  var tEl = document.getElementById('edu-title');
+  var iEl = document.getElementById('edu-items');
+  var cEl = document.getElementById('edu-cta-text');
+  var wEl = document.getElementById('edu-btn-wa');
+  var tgEl = document.getElementById('edu-btn-tg');
+  var dsEl = document.getElementById('edu-disclaimer');
+  if (tEl) tEl.textContent = d.title;
+  if (iEl) iEl.innerHTML = d.items.map(function(item) {
+    return '<div class="edu-item"><div class="edu-item-header">' + item.h + 
+           '</div><div class="edu-item-body">' + item.p + '</div></div>';
+  }).join('');
+  if (cEl) cEl.textContent = d.cta;
+  if (wEl) wEl.textContent = '💬 ' + d.btnWa;
+  if (tgEl) tgEl.textContent = '🤖 ' + d.btnTg;
+  if (dsEl) dsEl.textContent = d.disclaimer;
+}
+
 </script>
+
+
+<!-- EDUCATIONAL SECTION -->
+<div class="edu-section">
+  <div class="edu-header">
+    <div class="edu-icon">📖</div>
+    <h2 class="edu-title" id="edu-title"></h2>
+  </div>
+  <div class="edu-items" id="edu-items"></div>
+  <div class="edu-cta">
+    <p class="edu-cta-text" id="edu-cta-text"></p>
+    <p id="edu-disclaimer" class="edu-disclaimer-inline"></p>
+    <div class="edu-cta-btns">
+      <a href="https://wa.me/34629549430" class="edu-btn edu-btn-primary" id="edu-btn-wa">💬 Request legal review</a>
+      <a href="https://t.me/Colasabogadosbot" class="edu-btn edu-btn-secondary" id="edu-btn-tg">🤖 Quick query via Telegram</a>
+    </div>
+  </div>
+</div>
 
 <!-- FOOTER AUTOR -->
 <div style="
