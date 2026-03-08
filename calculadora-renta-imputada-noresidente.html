@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora Renta Imputada IRNR 2025 — No Residentes España | Colás Abogados</title>
+<meta name="description" content="Calcula la renta imputada IRNR (Modelo 210) para no residentes con vivienda en España para uso propio o vacía. Tipo 1,1% o 2% sobre valor catastral. Costa Blanca y toda España.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Colás Abogados / Advokater">
+<link rel="canonical" href="https://advokatt78.github.io/colas-tools/calculadora-renta-imputada-noresidente.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculadora Renta Imputada IRNR 2025 — No Residentes España">
+<meta property="og:description" content="Calcula gratis la renta imputada IRNR para no residentes con vivienda en España. Modelo 210 anual. Tipo 1,1% o 2% sobre valor catastral.">
+<meta property="og:url" content="https://advokatt78.github.io/colas-tools/calculadora-renta-imputada-noresidente.html">
+<meta property="og:site_name" content="Colás Abogados — Herramientas Fiscales">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Calculadora Renta Imputada IRNR — No Residentes España">
+<meta name="twitter:description" content="Modelo 210 renta imputada: calcula tu cuota como no residente con vivienda en España.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Calculadora Renta Imputada IRNR No Residentes",
+  "description": "Calculadora de la renta imputada del Impuesto sobre la Renta de No Residentes (IRNR) para titulares no residentes de vivienda urbana en España para uso propio.",
+  "url": "https://advokatt78.github.io/colas-tools/calculadora-renta-imputada-noresidente.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "author": {
+    "@type": "LegalService",
+    "name": "Colás Abogados / Advokater",
+    "url": "https://www.colas-abogados.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle Mozart 9",
+      "addressLocality": "L'Alfàs del Pi",
+      "postalCode": "03581",
+      "addressCountry": "ES"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué es la renta imputada de no residentes?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La renta imputada es un rendimiento ficticio que la ley del IRNR atribuye a los no residentes propietarios de vivienda urbana en España cuando no la alquilan. Se calcula aplicando el 1,1% o el 2% sobre el valor catastral del inmueble, en proporción a los días de titularidad en el año." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuándo hay que declarar la renta imputada?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La renta imputada se devenga el 31 de diciembre de cada año. El Modelo 210 correspondiente puede presentarse desde el 1 de enero hasta el 31 de diciembre del año siguiente. No existe un período trimestral para esta modalidad, a diferencia del alquiler." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es el tipo: 1,1% o 2%?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Se aplica el 1,1% cuando el valor catastral del inmueble fue revisado (ponencia de valores aprobada) en el propio ejercicio o en cualquiera de los 10 años anteriores. En los demás casos se aplica el 2%. La fecha de revisión catastral figura en el recibo del IBI." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si la vivienda estuvo alquilada parte del año?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Los días en que el inmueble haya estado arrendado quedan excluidos de la renta imputada. Por esos días deberá declararse la renta de alquiler (también por Modelo 210, con carácter trimestral). La suma de días de renta imputada y días de alquiler no puede superar los días de titularidad en el año." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es el tipo impositivo del IRNR?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Para residentes en la Unión Europea, Islandia, Noruega y Liechtenstein el tipo general es el 19%. Para el resto de no residentes el tipo es el 24%. El tipo se aplica sobre la base imponible calculada (valor catastral × porcentaje × días / 365 × participación)." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué ocurre si la vivienda no tiene valor catastral notificado?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Cuando el Catastro no ha notificado un valor catastral, la base imponible se calcula sobre el 50% del mayor entre el valor de adquisición y el valor comprobado por la Administración tributaria. Esta situación es frecuente en inmuebles de nueva construcción pendientes de revisión catastral." }
+    }
+  ]
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1A1A2E;
+    --red: #CC0B20;
+    --gold: #B8973A;
+    --gold-light: #d4b15a;
+    --cream: #F8F4EE;
+    --cream-dark: #EDE7DC;
+    --text: #2C2C3A;
+    --text-muted: #6B6B7A;
+    --border: rgba(184,151,58,0.25);
+    --shadow: 0 4px 24px rgba(26,26,46,0.10);
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Source Sans 3', Georgia, serif; background: var(--cream); color: var(--text); min-height: 100vh; }
+
+  /* ── HEADER ─────────────────────────────────────── */
+  header {
+    background: var(--navy); padding: 20px 0;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  header::before {
+    content:''; position:absolute; inset:0;
+    background: repeating-linear-gradient(-55deg, transparent, transparent 40px, rgba(184,151,58,.04) 40px, rgba(184,151,58,.04) 41px);
+  }
+  .header-inner { position:relative;z-index:1; display:flex;flex-direction:column;align-items:center;gap:6px; }
+  .logo-line { display:flex;align-items:center;gap:14px; }
+  .logo-icon { width:44px;height:44px; background:linear-gradient(135deg,var(--gold),var(--gold-light)); border-radius:50%; display:flex;align-items:center;justify-content:center; font-size:20px; box-shadow:0 2px 12px rgba(184,151,58,.4); }
+  .firm-name { font-family:'Playfair Display',serif; font-size:22px;font-weight:700; color:#fff;letter-spacing:.5px; }
+  .firm-name span { color:var(--gold-light); }
+  .tool-title { font-size:13px;font-weight:300; color:rgba(255,255,255,.6); letter-spacing:3px;text-transform:uppercase; margin-top:2px; }
+  .gold-bar { width:60px;height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin-top:8px; }
+  .lang-btns { position:absolute;top:16px;right:20px; display:flex;gap:6px;z-index:10; }
+  .lang-btn { padding:5px 12px;border-radius:20px; border:1px solid rgba(184,151,58,.4); background:transparent; font-family:'Source Sans 3',sans-serif; font-size:11px;font-weight:600;letter-spacing:.5px; cursor:pointer;color:rgba(255,255,255,.6); transition:all .2s; }
+  .lang-btn.active,.lang-btn:hover { background:var(--gold);border-color:var(--gold);color:var(--navy); }
+
+  /* ── LAYOUT ─────────────────────────────────────── */
+  .container { max-width:920px;margin:0 auto; padding:36px 20px 60px; }
+  .intro { text-align:center;margin-bottom:32px; }
+  .intro h1 { font-family:'Playfair Display',serif; font-size:28px;font-weight:600; color:var(--navy);margin-bottom:8px; }
+  .intro h1 span { color:var(--red); }
+  .intro p { font-size:15px;color:var(--text-muted); line-height:1.6;max-width:660px;margin:0 auto; }
+
+  /* ── CARD ────────────────────────────────────────── */
+  .card { background:#fff; border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:32px; margin-bottom:24px; }
+  .card-title { font-family:'Playfair Display',serif; font-size:17px;font-weight:600; color:var(--navy); margin-bottom:22px; padding-bottom:12px; border-bottom:1px solid var(--border); display:flex;align-items:center;gap:10px; }
+  .card-title::before { content:'';width:4px;height:18px; background:var(--gold);border-radius:2px; display:block; }
+
+  /* ── FORM ────────────────────────────────────────── */
+  .form-grid { display:grid;gap:20px; }
+  .form-row { display:grid;grid-template-columns:1fr 1fr;gap:20px; }
+  @media(max-width:600px){ .form-row{grid-template-columns:1fr;} }
+  .field { display:flex;flex-direction:column;gap:6px; }
+  label { font-size:12px;font-weight:600; text-transform:uppercase;letter-spacing:.8px; color:var(--text-muted); }
+  select, input[type="number"], input[type="date"] {
+    width:100%; padding:11px 14px; border:1.5px solid #DDD8CF; border-radius:8px;
+    font-family:'Source Sans 3',sans-serif; font-size:15px;color:var(--text); background:#fff;
+    transition:border-color .2s,box-shadow .2s; appearance:none; -webkit-appearance:none;
+  }
+  select:focus, input:focus { outline:none; border-color:var(--gold); box-shadow:0 0 0 3px rgba(184,151,58,.15); }
+  .field-note { font-size:11.5px;color:var(--text-muted);line-height:1.4; }
+
+  /* ── TOGGLE OPTIONS ──────────────────────────────── */
+  .toggle-group { display:grid;gap:10px; }
+  .toggle-group.cols-2 { grid-template-columns:1fr 1fr; }
+  @media(max-width:600px){ .toggle-group.cols-2{grid-template-columns:1fr;} }
+  .toggle-opt { border:1.5px solid #DDD8CF;border-radius:10px;padding:14px 16px; cursor:pointer;transition:all .2s; }
+  .toggle-opt.selected { border-color:var(--gold);background:linear-gradient(135deg,#fdf9f0,#faf4e4); }
+  .toggle-opt input[type=radio] { display:none; }
+  .toggle-opt .opt-title { font-size:15px;font-weight:600;color:var(--navy);margin-bottom:3px; }
+  .toggle-opt .opt-desc { font-size:12px;color:var(--text-muted);line-height:1.4; }
+
+  /* ── VISOR DÍAS ──────────────────────────────────── */
+  .days-visual {
+    background:var(--cream); border:1px solid var(--border); border-radius:10px;
+    padding:16px 20px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  }
+  .days-bar-wrap { flex:1;min-width:200px; }
+  .days-bar-label { font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:var(--text-muted);margin-bottom:6px; }
+  .days-bar { height:12px;border-radius:6px;background:#E5DFD5;overflow:hidden;display:flex; }
+  .days-bar .seg-own { background:var(--navy);transition:width .3s; }
+  .days-bar .seg-rent { background:var(--gold);transition:width .3s; }
+  .days-bar .seg-notowned { background:#E5DFD5; }
+  .days-legend { display:flex;gap:14px;margin-top:8px;flex-wrap:wrap; }
+  .days-legend-item { display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-muted); }
+  .days-legend-dot { width:10px;height:10px;border-radius:2px;flex-shrink:0; }
+
+  /* ── OPTIONAL FIELDS ─────────────────────────────── */
+  .optional-wrap { border:1px dashed var(--border);border-radius:10px;padding:18px 20px;margin-top:4px; }
+  .optional-title { font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--gold);margin-bottom:12px; }
+
+  /* ── BTN ─────────────────────────────────────────── */
+  .btn-calc { width:100%;padding:16px; background:linear-gradient(135deg,var(--navy),#2a2a4a); color:#fff;border:none; border-radius:8px;cursor:pointer; font-family:'Source Sans 3',sans-serif; font-size:15px;font-weight:600;letter-spacing:.5px; text-transform:uppercase; transition:all .25s; position:relative;overflow:hidden; }
+  .btn-calc::after { content:'';position:absolute;top:0;left:-100%;width:100%;height:100%; background:linear-gradient(90deg,transparent,rgba(184,151,58,.25),transparent); transition:left .5s; }
+  .btn-calc:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(26,26,46,.25);}
+  .btn-calc:hover::after{left:100%;}
+
+  /* ── RESULT ──────────────────────────────────────── */
+  #result { display:none; }
+  .result-highlight {
+    background:var(--navy); border-radius:10px; padding:24px 28px;
+    display:grid;grid-template-columns:1fr 1fr;gap:20px;
+    margin-bottom:24px;
+  }
+  @media(max-width:600px){ .result-highlight{grid-template-columns:1fr;} }
+  .result-highlight-item { text-align:center; }
+  .rh-label { font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px; }
+  .rh-value { font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#fff; }
+  .rh-sub { font-size:12px;color:rgba(255,255,255,.45);margin-top:4px; }
+  .rh-divider { width:1px;background:rgba(255,255,255,.1);align-self:stretch; }
+  @media(max-width:600px){ .rh-divider{display:none;} }
+
+  .result-detail { display:grid;grid-template-columns:1fr 1fr;gap:0; }
+  @media(max-width:600px){ .result-detail{grid-template-columns:1fr;} }
+  .rd-item { padding:12px 0;border-bottom:1px solid #F0EBE2;display:flex;flex-direction:column;gap:3px; }
+  .rd-item:nth-child(odd) { padding-right:20px; }
+  .rd-item:nth-child(even) { padding-left:20px;border-left:1px solid #F0EBE2; }
+  @media(max-width:600px){ .rd-item:nth-child(even){padding-left:0;border-left:none;} }
+  .rd-label { font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text-muted); }
+  .rd-value { font-size:15px;font-weight:600;color:var(--text);font-family:'Playfair Display',serif; }
+
+  /* Mixed scenario box */
+  .mixed-box { background:linear-gradient(135deg,#f9f3e8,#f2e8cd); border:1px solid var(--gold); border-radius:10px; padding:16px 20px; margin-bottom:20px; display:flex;gap:14px; }
+  .mixed-icon { font-size:22px;flex-shrink:0;margin-top:2px; }
+  .mixed-body h4 { font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px; }
+  .mixed-body p { font-size:13px;color:var(--text-muted);line-height:1.55; }
+  .mixed-table { width:100%;border-collapse:collapse;margin-top:12px;font-size:13px; }
+  .mixed-table th { text-align:left;padding:7px 10px;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text-muted);border-bottom:2px solid var(--cream-dark); }
+  .mixed-table td { padding:9px 10px;border-bottom:1px solid #F0EBE2;color:var(--text); }
+  .mixed-table tr:last-child td { border-bottom:none;font-weight:700;background:#f8f4ee; }
+  .td-num { text-align:right;font-family:'Playfair Display',serif;font-weight:600; }
+
+  /* Devengado badge */
+  .devengado-badge { display:inline-flex;align-items:center;gap:8px; padding:8px 14px;border-radius:20px; background:var(--cream-dark);color:var(--navy); font-size:12px;font-weight:600;margin-bottom:20px; }
+
+  /* ── SEO SECTIONS ────────────────────────────────── */
+  .seo-section { background:#fff; border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:40px; margin-bottom:24px; }
+  .seo-section h2 { font-family:'Playfair Display',serif; font-size:22px;font-weight:600; color:var(--navy); margin-bottom:18px; padding-bottom:12px; border-bottom:1px solid var(--border); display:flex;align-items:center;gap:10px; }
+  .seo-section h2::before { content:'';width:4px;height:20px; background:var(--gold);border-radius:2px; display:block;flex-shrink:0; }
+  .seo-section h3 { font-family:'Playfair Display',serif; font-size:16px;font-weight:600; color:var(--navy);margin:20px 0 8px; }
+  .seo-section p { font-size:15px;line-height:1.75; color:var(--text);margin-bottom:14px; }
+  .seo-section ul { margin:0 0 16px 20px; }
+  .seo-section li { font-size:15px;line-height:1.7;color:var(--text);margin-bottom:6px; }
+  .seo-section .legal-ref { font-size:12.5px;color:var(--text-muted); background:var(--cream); border-left:3px solid var(--gold); padding:10px 14px;border-radius:0 6px 6px 0; margin:16px 0;line-height:1.6; }
+  .faq-item { border-bottom:1px solid var(--border);padding:18px 0; }
+  .faq-item:last-child{border-bottom:none;}
+  .faq-q { font-size:15px;font-weight:600;color:var(--navy);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px; }
+  .faq-q::before { content:'P';flex-shrink:0;width:22px;height:22px;border-radius:50%; background:var(--gold);color:#fff;font-size:11px;font-weight:700; display:flex;align-items:center;justify-content:center;margin-top:1px; }
+  .faq-a { font-size:14px;line-height:1.7;color:var(--text);padding-left:32px; }
+
+  /* ── CTA ─────────────────────────────────────────── */
+  .cta-card { background:linear-gradient(135deg,var(--navy),#2a2a4a); border-radius:12px;padding:32px; display:flex;justify-content:space-between;align-items:center; gap:24px;flex-wrap:wrap;margin-bottom:24px; }
+  .cta-card-text h3 { font-family:'Playfair Display',serif; font-size:20px;font-weight:600;color:#fff;margin-bottom:8px; }
+  .cta-card-text p { font-size:14px;color:rgba(255,255,255,.7);line-height:1.6; }
+  .cta-btns { display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0; }
+  .cta-btn { padding:12px 20px;border-radius:8px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;text-decoration:none;display:inline-block;transition:all .2s; }
+  .cta-btn-gold{background:var(--gold);color:var(--navy);}
+  .cta-btn-gold:hover{background:#d4b15a;}
+  .cta-btn-outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3);}
+  .cta-btn-outline:hover{border-color:#fff;}
+
+  /* ── DISCLAIMER ──────────────────────────────────── */
+  .disclaimer { margin-top:32px;padding:16px 20px;background:var(--cream-dark);border-radius:10px;border-left:3px solid var(--gold);font-size:12.5px;color:var(--text-muted);line-height:1.6; }
+  .disclaimer strong{color:var(--navy);}
+
+  /* ── ERROR ───────────────────────────────────────── */
+  .error-msg { color:var(--red);font-size:12px;margin-top:4px;display:none; }
+
+  /* ── FOOTER ──────────────────────────────────────── */
+  footer { text-align:center;padding:24px;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border);margin-top:20px; }
+  footer a{color:var(--gold);text-decoration:none;}
+  footer a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="lang-btns">
+    <button class="lang-btn active" id="lb-es" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" id="lb-en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="lb-sv" onclick="setLang('sv')">SV</button>
+  </div>
+  <div class="header-inner">
+    <div class="logo-line">
+      <div class="logo-icon">🏠</div>
+      <div class="firm-name">Colás <span>Abogados</span> / Advokater</div>
+    </div>
+    <div class="tool-title" id="tool-title">Renta Imputada · IRNR · Modelo 210</div>
+    <div class="gold-bar"></div>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="intro">
+    <h1 id="h1-main">Renta <span>Imputada</span> — No Residentes</h1>
+    <p id="intro-sub">Calcula la cuota anual de IRNR por renta imputada (Modelo 210) cuando una persona no residente es titular de una vivienda urbana en España para uso propio o la mantiene vacía. También resuelve el escenario mixto: parte del año en alquiler y parte de uso propio.</p>
+  </div>
+
+  <!-- FORMULARIO -->
+  <div class="card" id="calculadora">
+    <div class="card-title" id="card-title-label">Datos del inmueble</div>
+
+    <div class="form-grid">
+
+      <!-- Valor catastral y participación -->
+      <div class="form-row">
+        <div class="field">
+          <label id="lbl-vc">Valor catastral (€)</label>
+          <input type="number" id="valorCatastral" min="0" step="1" placeholder="120.000">
+          <span class="field-note" id="note-vc">Figura en el recibo del IBI. Si el inmueble carece de valor catastral notificado, use el campo alternativo abajo.</span>
+          <div class="error-msg" id="err-vc"></div>
+        </div>
+        <div class="field">
+          <label id="lbl-part">Porcentaje de titularidad (%)</label>
+          <input type="number" id="participacion" min="0.01" max="100" step="0.01" value="100">
+          <span class="field-note" id="note-part">Introduce 50 si eres copropietario al 50%.</span>
+          <div class="error-msg" id="err-part"></div>
+        </div>
+      </div>
+
+      <!-- Tipo de imputación -->
+      <div class="field">
+        <label id="lbl-tipo">Porcentaje de imputación</label>
+        <div class="toggle-group cols-2">
+          <label class="toggle-opt selected" id="opt-11">
+            <input type="radio" name="imputacion" value="1.1" checked>
+            <div class="opt-title">1,1%</div>
+            <div class="opt-desc" id="desc-11">Valor catastral revisado en el ejercicio actual o en los 10 anteriores</div>
+          </label>
+          <label class="toggle-opt" id="opt-2">
+            <input type="radio" name="imputacion" value="2">
+            <div class="opt-title">2%</div>
+            <div class="opt-desc" id="desc-2">Valor catastral no revisado en los últimos 10 años — o sin valor catastral notificado</div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Tipo IRNR -->
+      <div class="field">
+        <label id="lbl-tasa">Tipo impositivo IRNR</label>
+        <div class="toggle-group cols-2">
+          <label class="toggle-opt selected" id="opt-19">
+            <input type="radio" name="tasaIRNR" value="19" checked>
+            <div class="opt-title">19%</div>
+            <div class="opt-desc" id="desc-19">UE / Islandia / Noruega / Liechtenstein</div>
+          </label>
+          <label class="toggle-opt" id="opt-24">
+            <input type="radio" name="tasaIRNR" value="24">
+            <div class="opt-title">24%</div>
+            <div class="opt-desc" id="desc-24">Resto de países — resto de no residentes</div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Días -->
+      <div class="form-row">
+        <div class="field">
+          <label id="lbl-dias-prop">Días de titularidad en el año</label>
+          <input type="number" id="diasTitularidad" min="1" max="365" step="1" value="365">
+          <div class="error-msg" id="err-dias-prop"></div>
+        </div>
+        <div class="field">
+          <label id="lbl-dias-alq">Días en alquiler (si los hay)</label>
+          <input type="number" id="diasAlquiler" min="0" max="365" step="1" value="0">
+          <span class="field-note" id="note-dias-alq">Estos días tributan como rendimiento de alquiler, no como renta imputada. Introduce 0 si la vivienda no ha estado arrendada.</span>
+          <div class="error-msg" id="err-dias-alq"></div>
+        </div>
+      </div>
+
+      <!-- Visualizador días -->
+      <div class="days-visual" id="days-visual">
+        <div class="days-bar-wrap">
+          <div class="days-bar-label" id="lbl-bar">Distribución del año</div>
+          <div class="days-bar">
+            <div class="seg-own" id="bar-own" style="width:100%"></div>
+            <div class="seg-rent" id="bar-rent" style="width:0%"></div>
+          </div>
+          <div class="days-legend">
+            <div class="days-legend-item"><div class="days-legend-dot" style="background:var(--navy)"></div><span id="leg-imp">Renta imputada</span></div>
+            <div class="days-legend-item"><div class="days-legend-dot" style="background:var(--gold)"></div><span id="leg-alq">Alquiler</span></div>
+            <div class="days-legend-item"><div class="days-legend-dot" style="background:#E5DFD5"></div><span id="leg-noown">No titular</span></div>
+          </div>
+        </div>
+        <div style="font-size:13px;color:var(--text-muted);text-align:right;flex-shrink:0;">
+          <div id="days-summary" style="line-height:1.8;"></div>
+        </div>
+      </div>
+
+      <!-- Base alternativa -->
+      <div class="optional-wrap">
+        <div class="optional-title" id="lbl-opt-title">Opcional — Sin valor catastral notificado</div>
+        <div class="field">
+          <label id="lbl-base-alt">Base alternativa (€)</label>
+          <input type="number" id="baseAlternativa" min="0" step="1" placeholder="0">
+          <span class="field-note" id="note-base-alt">Si el Catastro no ha notificado valor para este inmueble, la base es el 50% del mayor entre el precio de adquisición y el valor comprobado por Hacienda. Introduce directamente esa base aquí.</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="error-msg" id="err-general" style="margin-top:16px;font-size:14px;"></div>
+
+    <div style="margin-top:24px;">
+      <button class="btn-calc" onclick="calcular()" id="btn-calc">✦ Calcular Renta Imputada</button>
+    </div>
+  </div>
+
+  <!-- RESULTADO -->
+  <div class="card" id="result">
+    <div class="card-title" id="result-title-label">Resultado del cálculo</div>
+    <div id="resultContent"></div>
+  </div>
+
+  <div class="disclaimer">
+    <strong id="disclaimer-title">Aviso legal:</strong> <span id="disclaimer-text">Esta calculadora ofrece una estimación orientativa con fines informativos. El resultado final depende de los datos catastrales vigentes al 31 de diciembre del ejercicio y de la situación específica del inmueble. Colás Abogados / Advokater no asume responsabilidad por decisiones tomadas basándose exclusivamente en esta estimación. Consulte siempre con un profesional.</span>
+  </div>
+
+  <!-- SECCIÓN SEO 1: Qué es -->
+  <section class="seo-section" id="que-es-renta-imputada">
+    <h2 id="seo-h2-1">Qué es la renta imputada de no residentes y cuándo se paga</h2>
+    <div id="seo-content-1"></div>
+  </section>
+
+  <!-- SECCIÓN SEO 2: Cómo se calcula -->
+  <section class="seo-section" id="como-calcular-renta-imputada">
+    <h2 id="seo-h2-2">Cómo se calcula la renta imputada: fórmula paso a paso</h2>
+    <div id="seo-content-2"></div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-card">
+    <div class="cta-card-text">
+      <h3 id="cta-title">¿Necesita que un abogado gestione su Modelo 210?</h3>
+      <p id="cta-text">Colás Abogados verifica si su inmueble debe declarar renta imputada, alquiler o ambos conceptos, y presenta correctamente el Modelo 210 en plazo.</p>
+    </div>
+    <div class="cta-btns">
+      <a href="https://www.colas-abogados.com" class="cta-btn cta-btn-gold" id="cta-contact">Contactar</a>
+      <a href="https://wa.me/34629549430" class="cta-btn cta-btn-outline">WhatsApp</a>
+      <a href="https://t.me/Colasabogadosbot" class="cta-btn cta-btn-outline">Telegram</a>
+    </div>
+  </div>
+
+  <!-- SECCIÓN SEO 3: FAQ -->
+  <section class="seo-section" id="faq-renta-imputada">
+    <h2 id="seo-h2-3">Preguntas frecuentes sobre la renta imputada de no residentes</h2>
+    <div id="seo-content-3"></div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>Colás Abogados / Advokater</strong> · Calle Mozart 9, 03581 L'Alfàs del Pi ·
+  <a href="tel:+34966868492">+34 966 868 492</a> ·
+  <a href="mailto:info@colas-abogados.com">info@colas-abogados.com</a> ·
+  <a href="https://www.colas-abogados.com">www.colas-abogados.com</a>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   TRADUCCIONES ES / EN / SV
+═══════════════════════════════════════════════════ */
+const T = {
+  es: {
+    toolTitle: "Renta Imputada · IRNR · Modelo 210",
+    h1: "Renta", h1span: "Imputada — No Residentes",
+    introSub: "Calcula la cuota anual de IRNR por renta imputada (Modelo 210) cuando una persona no residente es titular de una vivienda urbana en España para uso propio o la mantiene vacía. También resuelve el escenario mixto: parte del año en alquiler y parte de uso propio.",
+    cardTitle: "Datos del inmueble",
+    lblVC: "Valor catastral (€)", noteVC: "Figura en el recibo del IBI. Si el inmueble carece de valor catastral notificado, use el campo alternativo abajo.",
+    lblPart: "Porcentaje de titularidad (%)", notePart: "Introduce 50 si eres copropietario al 50%.",
+    lblTipo: "Porcentaje de imputación",
+    desc11: "Valor catastral revisado en el ejercicio actual o en los 10 anteriores",
+    desc2: "Valor catastral no revisado en los últimos 10 años — o sin valor catastral notificado",
+    lblTasa: "Tipo impositivo IRNR",
+    desc19: "UE / Islandia / Noruega / Liechtenstein",
+    desc24: "Resto de países — resto de no residentes",
+    lblDiasProp: "Días de titularidad en el año",
+    lblDiasAlq: "Días en alquiler (si los hay)",
+    noteDiasAlq: "Estos días tributan como rendimiento de alquiler, no como renta imputada. Introduce 0 si la vivienda no ha estado arrendada.",
+    lblBar: "Distribución del año",
+    legImp: "Renta imputada", legAlq: "Alquiler", legNoown: "No titular",
+    lblOptTitle: "Opcional — Sin valor catastral notificado",
+    lblBaseAlt: "Base alternativa (€)",
+    noteBaseAlt: "Si el Catastro no ha notificado valor para este inmueble, la base es el 50% del mayor entre el precio de adquisición y el valor comprobado por Hacienda. Introduce directamente esa base aquí.",
+    btnCalc: "✦ Calcular Renta Imputada",
+    resultTitle: "Resultado del cálculo",
+    disclaimerTitle: "Aviso legal:",
+    disclaimerText: "Esta calculadora ofrece una estimación orientativa con fines informativos. El resultado final depende de los datos catastrales vigentes al 31 de diciembre del ejercicio y de la situación específica del inmueble. Consulte siempre con un profesional.",
+    ctaTitle: "¿Necesita que un abogado gestione su Modelo 210?",
+    ctaText: "Colás Abogados verifica si su inmueble debe declarar renta imputada, alquiler o ambos conceptos, y presenta correctamente el Modelo 210 en plazo.",
+    ctaContact: "Contactar",
+    seoH2_1: "Qué es la renta imputada de no residentes y cuándo se paga",
+    seoH2_2: "Cómo se calcula la renta imputada: fórmula paso a paso",
+    seoH2_3: "Preguntas frecuentes sobre la renta imputada de no residentes",
+    // Resultado
+    rDevengado: "📅 Devengo: 31 diciembre — Plazo presentación: todo el año siguiente",
+    rCuotaLabel: "Cuota IRNR anual", rCuotaSub: "Renta imputada — uso propio",
+    rBaseLabel: "Base imponible", rBaseSub: "Valor catastral × % imputación × días / 365 × titularidad",
+    rDiasImp: "Días gravados (renta imputada)",
+    rDiasAlq: "Días excluidos (alquiler)",
+    rPctImp: "Porcentaje imputación",
+    rTasa: "Tipo IRNR",
+    rParticipacion: "Titularidad",
+    rBaseAlt: "Base utilizada",
+    rBaseAltVal: "Base alternativa", rBaseCatVal: "Valor catastral",
+    rMixedTitle: "Escenario mixto: uso propio + alquiler",
+    rMixedP: "Su inmueble ha estado alquilado durante parte del año. La renta imputada se limita a los días de uso propio. Por los días de alquiler deberá presentar además el Modelo 210 de rendimientos del capital inmobiliario (declaración trimestral).",
+    rMixedConcepto: "Concepto", rMixedDias: "Días", rMixedBase: "Base", rMixedCuota: "Cuota estimada",
+    rMixedImp: "Renta imputada (Modelo 210 anual)",
+    rMixedAlq: "Alquiler (Modelo 210 trimestral)",
+    rMixedAlqNote: "— calcular en calculadora de alquiler",
+    rMixedTotal: "Total estimado",
+    errVC: "Introduce el valor catastral o una base alternativa.", errPart: "Introduce un porcentaje entre 0,01 y 100.", errDiasProp: "Introduce entre 1 y 365 días.", errDiasAlq: "Los días en alquiler no pueden superar los días de titularidad.",
+    // SEO content
+    seo1_p1: "La <strong>renta imputada de no residentes</strong> es un rendimiento ficticio que el legislador atribuye a las personas físicas no residentes en España que son titulares de bienes inmuebles urbanos no arrendados, o arrendados sólo parte del año. Se regula en el artículo 85 de la Ley 35/2006 del IRPF (de aplicación supletoria) y en el artículo 24.5 del texto refundido de la Ley del IRNR (RDLeg 5/2004).",
+    seo1_p2: "El impuesto se devenga el <strong>31 de diciembre</strong> de cada año natural. Eso significa que aunque usted venda el inmueble en noviembre, habrá devengado renta imputada por los días transcurridos entre el 1 de enero y la fecha de la venta. El Modelo 210 correspondiente puede presentarse desde el 1 de enero hasta el 31 de diciembre del año siguiente.",
+    seo1_legal: "<strong>Base legal:</strong> Art. 24.5 RDLeg 5/2004 (LIRNR); Art. 85 Ley 35/2006 (LIRPF). La renta imputada solo aplica a <em>inmuebles urbanos</em>. Los bienes inmuebles rústicos o los garajes independientes pueden tener un tratamiento diferente.",
+    seo1_h3: "¿Quién está obligado a declarar?",
+    seo1_p3: "Todo no residente titular de un inmueble urbano en España que no haya estado arrendado la totalidad del año. Si el inmueble ha estado arrendado durante todo el ejercicio, no existe renta imputada (pero sí rendimiento de capital inmobiliario por el alquiler). Si estuvo arrendado sólo parte del año, la renta imputada se calcula exclusivamente por los días de uso propio o vacío.",
+    seo2_p1: "La fórmula de cálculo establecida en la normativa es:",
+    seo2_formula: "Base imponible = Valor catastral × Porcentaje de imputación (1,1% ó 2%) × (Días gravados / 365) × Porcentaje de titularidad",
+    seo2_p2: "Sobre esa base imponible se aplica el <strong>tipo impositivo general del IRNR</strong>: 19% para residentes en la UE, Islandia, Noruega y Liechtenstein; 24% para el resto. El resultado es la cuota a ingresar en el Modelo 210.",
+    seo2_h3a: "¿Cuándo se aplica el 1,1% y cuándo el 2%?",
+    seo2_p3: "El porcentaje del <strong>1,1%</strong> se aplica cuando el valor catastral vigente fue aprobado mediante ponencia de valores en el propio ejercicio o en cualquiera de los diez ejercicios anteriores (es decir, ha sido revisado recientemente). En todos los demás casos se aplica el <strong>2%</strong>. La fecha de la última revisión catastral figura en el recibo del IBI; también puede consultarse en la Sede Electrónica del Catastro.",
+    seo2_h3b: "Escenario mixto: vivienda alquilada parte del año",
+    seo2_p4: "Si el inmueble ha estado arrendado durante una parte del año y ha permanecido vacío o para uso propio el resto, coexisten dos obligaciones distintas: <strong>(1)</strong> Renta imputada por los días de no arrendamiento → Modelo 210 anual. <strong>(2)</strong> Rendimiento de capital inmobiliario por los días de alquiler → Modelo 210 trimestral. Esta calculadora calcula automáticamente el componente de renta imputada y le avisa si debe presentar también el Modelo 210 de alquiler.",
+    seo2_legal: "<strong>Sin gastos deducibles:</strong> A diferencia del rendimiento de alquiler, en la renta imputada no se admite deducción de gasto alguno (hipoteca, comunidad, suministros, etc.). La base imponible es siempre el porcentaje sobre el valor catastral.",
+    faq1_q: "¿Qué es la renta imputada y por qué tengo que pagarla si no alquilo?",
+    faq1_a: "La ley presupone que el hecho de tener una segunda vivienda en España le genera un beneficio —aunque no la arriende—, similar al ahorro en alquiler que obtendría un residente. Por eso le atribuye una renta ficticia equivalente al 1,1% o 2% del valor catastral. Es una peculiaridad del sistema español que afecta a todos los no residentes propietarios de inmuebles urbanos.",
+    faq2_q: "¿Cuándo hay que presentar el Modelo 210 de renta imputada?",
+    faq2_a: "El impuesto se devenga el 31 de diciembre. El plazo de presentación es el año natural completo siguiente, es decir, entre el 1 de enero y el 31 de diciembre del año posterior al ejercicio. No existe obligación trimestral para la renta imputada, a diferencia del alquiler.",
+    faq3_q: "¿Cuál es el tipo: 1,1% o 2%?",
+    faq3_a: "Se aplica el 1,1% cuando el valor catastral fue revisado (ponencia de valores aprobada) en el ejercicio actual o en cualquiera de los 10 anteriores. Si la revisión es más antigua o no existe, el tipo es el 2%. Puede verificarlo en el recibo del IBI de la vivienda o en la Sede Electrónica del Catastro.",
+    faq4_q: "¿Qué ocurre si la vivienda estuvo alquilada parte del año?",
+    faq4_a: "Por los días en alquiler deberá declarar el rendimiento del capital inmobiliario (Modelo 210 trimestral, sin retención por no residente). Por los días restantes —hasta el total de días de titularidad— deberá declarar renta imputada en el Modelo 210 anual. La calculadora gestiona este escenario automáticamente.",
+    faq5_q: "¿Y si el inmueble no tiene valor catastral notificado?",
+    faq5_a: "Puede ocurrir en inmuebles de nueva construcción o con pendencia catastral. En ese caso, la base imponible se calcula sobre el 50% del mayor entre el valor de adquisición y el valor comprobado por Hacienda. Use el campo 'Base alternativa' de esta calculadora para obtener la estimación.",
+    faq6_q: "¿Tengo que declarar si vendí el inmueble durante el año?",
+    faq6_a: "Sí. El devengo del 31 de diciembre no impide que la renta imputada se calcule por los días del año en que fue titular antes de la venta. Si transmitió el 30 de junio, habrá renta imputada por 181 días. Además, la transmisión puede generar ganancia o pérdida patrimonial sujeta al IRNR (Modelo 210 diferente).",
+  },
+
+  en: {
+    toolTitle: "Imputed Rental Income · IRNR · Model 210",
+    h1: "Imputed", h1span: "Rental Income — Non-Residents",
+    introSub: "Calculate the annual IRNR liability for imputed income (Model 210) when a non-resident owns urban property in Spain for personal use or leaves it empty. Also handles the mixed scenario: part of the year rented, part own use.",
+    cardTitle: "Property details",
+    lblVC: "Cadastral value (€)", noteVC: "Shown on your IBI (council tax) bill. If the property has no notified cadastral value, use the alternative base field below.",
+    lblPart: "Ownership share (%)", notePart: "Enter 50 if you co-own 50% of the property.",
+    lblTipo: "Imputation percentage",
+    desc11: "Cadastral value revised in the current tax year or any of the previous 10 years",
+    desc2: "Cadastral value not revised in the last 10 years — or no notified cadastral value",
+    lblTasa: "IRNR tax rate",
+    desc19: "EU / Iceland / Norway / Liechtenstein",
+    desc24: "Rest of the world — other non-residents",
+    lblDiasProp: "Days of ownership during the year",
+    lblDiasAlq: "Days rented during the year (if any)",
+    noteDiasAlq: "These days are taxed as rental income, not imputed income. Enter 0 if the property was not rented.",
+    lblBar: "Year distribution",
+    legImp: "Imputed income", legAlq: "Rental", legNoown: "Not owned",
+    lblOptTitle: "Optional — No notified cadastral value",
+    lblBaseAlt: "Alternative tax base (€)",
+    noteBaseAlt: "If the Cadastre has not notified a value, the base is generally 50% of the higher of the acquisition price or the value assessed by the Tax Authority. Enter that alternative base directly here.",
+    btnCalc: "✦ Calculate Imputed Income",
+    resultTitle: "Calculation result",
+    disclaimerTitle: "Legal notice:",
+    disclaimerText: "This calculator provides an indicative estimate for informational purposes only. The final amount depends on the cadastral value in force on 31 December of the tax year and the specific circumstances of the property. Always consult a professional.",
+    ctaTitle: "Need a lawyer to file your Model 210?",
+    ctaText: "Colás Abogados can verify whether your property should declare imputed income, rental income or both, and file Model 210 correctly and on time.",
+    ctaContact: "Contact us",
+    seoH2_1: "What is non-resident imputed income tax and when is it paid?",
+    seoH2_2: "How to calculate imputed income: step-by-step formula",
+    seoH2_3: "Frequently asked questions about non-resident imputed income",
+    rDevengado: "📅 Accrual: 31 December — Filing deadline: throughout the following year",
+    rCuotaLabel: "Annual IRNR liability", rCuotaSub: "Imputed income — own use",
+    rBaseLabel: "Tax base", rBaseSub: "Cadastral value × imputation % × days / 365 × ownership share",
+    rDiasImp: "Taxable days (imputed income)",
+    rDiasAlq: "Excluded days (rental)",
+    rPctImp: "Imputation percentage",
+    rTasa: "IRNR rate",
+    rParticipacion: "Ownership share",
+    rBaseAlt: "Base used",
+    rBaseAltVal: "Alternative base", rBaseCatVal: "Cadastral value",
+    rMixedTitle: "Mixed scenario: own use + rental",
+    rMixedP: "Your property was rented for part of the year. Imputed income is limited to the days of own use. For the rental days you must also file Model 210 for real property rental income (quarterly filing).",
+    rMixedConcepto: "Item", rMixedDias: "Days", rMixedBase: "Tax base", rMixedCuota: "Est. liability",
+    rMixedImp: "Imputed income (Model 210 annual)",
+    rMixedAlq: "Rental income (Model 210 quarterly)",
+    rMixedAlqNote: "— calculate in the rental calculator",
+    rMixedTotal: "Total estimate",
+    errVC: "Enter the cadastral value or an alternative base.", errPart: "Enter a share between 0.01 and 100.", errDiasProp: "Enter between 1 and 365 days.", errDiasAlq: "Rented days cannot exceed days of ownership.",
+    seo1_p1: "<strong>Non-resident imputed income</strong> is a notional income that Spanish tax law attributes to non-resident individuals who own urban property in Spain that is not rented out, or only partially rented during the year. It is regulated in Article 24.5 of the consolidated Non-Resident Income Tax Act (RDLeg 5/2004).",
+    seo1_p2: "The tax accrues on <strong>31 December</strong> of each calendar year. This means that even if you sell the property in November, imputed income will have accrued for the days between 1 January and the sale date. Model 210 can be filed from 1 January to 31 December of the following year.",
+    seo1_legal: "<strong>Legal basis:</strong> Art. 24.5 RDLeg 5/2004 (LIRNR); Art. 85 Ley 35/2006 (LIRPF). Imputed income only applies to <em>urban properties</em>. Rural land or independent garages may be treated differently.",
+    seo1_h3: "Who must file?",
+    seo1_p3: "Every non-resident who owns an urban property in Spain that was not rented out for the entire year. If the property was fully rented throughout the year, there is no imputed income (but there is rental real estate income). If it was only partially rented, imputed income is calculated only for the days of own use or vacancy.",
+    seo2_p1: "The formula established by law is:",
+    seo2_formula: "Tax base = Cadastral value × Imputation percentage (1.1% or 2%) × (Taxable days / 365) × Ownership share",
+    seo2_p2: "The general <strong>IRNR tax rate</strong> is then applied: 19% for EU, Iceland, Norway and Liechtenstein residents; 24% for all others. The result is the amount due in Model 210.",
+    seo2_h3a: "When does 1.1% apply and when does 2% apply?",
+    seo2_p3: "The <strong>1.1%</strong> rate applies when the current cadastral value was approved (ponencia de valores) in the current tax year or any of the previous ten years (i.e. recently revised). In all other cases the rate is <strong>2%</strong>. The date of the last cadastral revision is shown on the IBI bill or on the Cadastre's online portal.",
+    seo2_h3b: "Mixed scenario: property rented for part of the year",
+    seo2_p4: "If the property was rented for part of the year and left empty or for own use for the rest, two separate obligations arise: <strong>(1)</strong> Imputed income for non-rented days → Annual Model 210. <strong>(2)</strong> Real property rental income for rental days → Quarterly Model 210. This calculator automatically computes the imputed income component and alerts you if you also need to file the rental Model 210.",
+    seo2_legal: "<strong>No deductible expenses:</strong> Unlike rental income, no expenses are deductible when computing imputed income (mortgage, community fees, utilities, etc.). The tax base is always the percentage applied to the cadastral value.",
+    faq1_q: "What is imputed income and why do I have to pay tax if I don't rent?",
+    faq1_a: "The law presumes that owning a second home in Spain generates a benefit — even if you don't let it — similar to the rent a resident would save by living in their own property. It therefore attributes a notional income equivalent to 1.1% or 2% of the cadastral value. This is a feature of the Spanish tax system that applies to all non-residents who own urban properties.",
+    faq2_q: "When must Model 210 for imputed income be filed?",
+    faq2_a: "The tax accrues on 31 December. The filing window is the full following calendar year: between 1 January and 31 December of the year after the tax year. There is no quarterly obligation for imputed income, unlike rental income.",
+    faq3_q: "Which rate applies: 1.1% or 2%?",
+    faq3_a: "1.1% applies when the cadastral value was revised in the current year or any of the previous 10 years. Otherwise, 2% applies. You can check the last revision date on your IBI bill or at the Cadastre's online portal.",
+    faq4_q: "What if the property was rented for part of the year?",
+    faq4_a: "For the rental days you must declare real property rental income (quarterly Model 210). For the remaining days you declare imputed income in the annual Model 210. This calculator handles the mixed scenario automatically.",
+    faq5_q: "What if the property has no notified cadastral value?",
+    faq5_a: "This can happen with newly built properties. In that case, the tax base is 50% of the higher of the acquisition price or the value assessed by the Tax Authority. Use the 'Alternative base' field in this calculator.",
+    faq6_q: "Do I have to file if I sold the property during the year?",
+    faq6_a: "Yes. Accrual on 31 December does not prevent imputed income from being calculated for the days you were the owner before the sale. If you transferred on 30 June, imputed income applies for 181 days. The disposal may also generate a capital gain or loss subject to IRNR (a separate Model 210).",
+  },
+
+  sv: {
+    toolTitle: "Schablonintäkt · IRNR · Modelo 210",
+    h1: "Schablonintäkt", h1span: "— Icke-residenter Spanien",
+    introSub: "Beräkna den årliga IRNR-skatten för schablonintäkt (Modelo 210) när en icke-resident äger en urban bostad i Spanien för eget bruk eller låter den stå tom. Hanterar även blandscenariot: del av året uthyrd, del av året eget bruk.",
+    cardTitle: "Uppgifter om fastigheten",
+    lblVC: "Katastralvärde (€)", noteVC: "Anges på IBI-avin (fastighetsskattsedeln). Om fastigheten saknar meddelat katastralvärde, använd det alternativa underlaget nedan.",
+    lblPart: "Ägarandel (%)", notePart: "Ange 50 om du äger halva fastigheten.",
+    lblTipo: "Schablonprocent",
+    desc11: "Katastralvärdet reviderat under innevarande eller något av de 10 föregående beskattningsåren",
+    desc2: "Katastralvärdet inte reviderat de senaste 10 åren — eller inget meddelat katastralvärde",
+    lblTasa: "IRNR-skattesats",
+    desc19: "EU / Island / Norge / Liechtenstein",
+    desc24: "Övriga länder — övriga icke-residenter",
+    lblDiasProp: "Ägda dagar under året",
+    lblDiasAlq: "Uthyrda dagar under året (om tillämpligt)",
+    noteDiasAlq: "Dessa dagar beskattas som hyresinkomst, inte som schablonintäkt. Ange 0 om fastigheten inte var uthyrd.",
+    lblBar: "Årsfördelning",
+    legImp: "Schablonintäkt", legAlq: "Uthyrning", legNoown: "Ej ägd",
+    lblOptTitle: "Valfritt — Inget meddelat katastralvärde",
+    lblBaseAlt: "Alternativt skatteunderlag (€)",
+    noteBaseAlt: "Om Katastret inte har meddelat något värde beräknas underlaget normalt som 50 % av det högsta av anskaffningsvärdet eller det av Skatteverket kontrollerade värdet. Ange det alternativa underlaget direkt här.",
+    btnCalc: "✦ Beräkna schablonintäkt",
+    resultTitle: "Beräkningsresultat",
+    disclaimerTitle: "Juridisk anmärkning:",
+    disclaimerText: "Denna kalkylator ger endast en vägledande uppskattning. Det slutliga beloppet beror på det katastralvärde som gäller den 31 december för beskattningsåret och fastighetsspecifika omständigheter. Konsultera alltid en professionell rådgivare.",
+    ctaTitle: "Behöver du hjälp med Modelo 210?",
+    ctaText: "Colás Abogados kontrollerar om din fastighet ska deklarera schablonintäkt, hyresinkomst eller båda, och lämnar in Modelo 210 korrekt och i tid.",
+    ctaContact: "Kontakta oss",
+    seoH2_1: "Vad är schablonintäkt för icke-residenter och när betalas den?",
+    seoH2_2: "Hur beräknas schablonintäkten: steg-för-steg-formel",
+    seoH2_3: "Vanliga frågor om schablonintäkt för icke-residenter",
+    rDevengado: "📅 Uppkommer: 31 december — Deklarationsfrist: hela följande kalenderår",
+    rCuotaLabel: "Årlig IRNR-skatt", rCuotaSub: "Schablonintäkt — eget bruk",
+    rBaseLabel: "Skatteunderlag", rBaseSub: "Katastralvärde × schablonprocent × dagar / 365 × ägarandel",
+    rDiasImp: "Skattepliktiga dagar (schablonintäkt)",
+    rDiasAlq: "Undantagna dagar (uthyrning)",
+    rPctImp: "Schablonprocent",
+    rTasa: "IRNR-skattesats",
+    rParticipacion: "Ägarandel",
+    rBaseAlt: "Underlag som används",
+    rBaseAltVal: "Alternativt underlag", rBaseCatVal: "Katastralvärde",
+    rMixedTitle: "Blandat scenario: eget bruk + uthyrning",
+    rMixedP: "Din fastighet var uthyrd under en del av året. Schablonintäkten begränsas till dagarna för eget bruk. För uthyrningsdagarna måste du dessutom lämna in Modelo 210 för hyresinkomst (kvartalsvisa deklarationer).",
+    rMixedConcepto: "Post", rMixedDias: "Dagar", rMixedBase: "Underlag", rMixedCuota: "Beräknad skatt",
+    rMixedImp: "Schablonintäkt (Modelo 210 årsdeklaration)",
+    rMixedAlq: "Hyresinkomst (Modelo 210 kvartalsvis)",
+    rMixedAlqNote: "— beräkna i hyreskalkylatorn",
+    rMixedTotal: "Totalt beräknat",
+    errVC: "Ange katastralvärdet eller ett alternativt underlag.", errPart: "Ange en andel mellan 0,01 och 100.", errDiasProp: "Ange mellan 1 och 365 dagar.", errDiasAlq: "Uthyrda dagar får inte överstiga ägda dagar.",
+    seo1_p1: "<strong>Schablonintäkt för icke-residenter</strong> är en fingerad inkomst som den spanska skattelagstiftningen tillskriver icke-residenta fysiska personer som äger urban fast egendom i Spanien som inte hyrs ut, eller bara hyrs ut delar av året. Bestämmelsen finns i artikel 24.5 i den konsoliderade IRNR-lagen (RDLeg 5/2004).",
+    seo1_p2: "Skatten anses uppkomma den <strong>31 december</strong> varje kalenderår. Det innebär att om du säljer fastigheten i november har schablonintäkt ändå uppkommit för dagarna från den 1 januari till försäljningsdagen. Modelo 210 kan lämnas in från den 1 januari till den 31 december följande år.",
+    seo1_legal: "<strong>Rättslig grund:</strong> Art. 24.5 RDLeg 5/2004 (LIRNR); Art. 85 Ley 35/2006 (LIRPF). Schablonintäkt gäller enbart <em>urban fast egendom</em>. Lantbruksfastigheter eller fristående garage kan behandlas annorlunda.",
+    seo1_h3: "Vem är skyldig att deklarera?",
+    seo1_p3: "Alla icke-residenter som äger urban fast egendom i Spanien som inte var uthyrd hela året. Om fastigheten var fullt uthyrd under hela året föreligger ingen schablonintäkt (men däremot hyresinkomst). Om den var delvis uthyrd beräknas schablonintäkten enbart för dagarna med eget bruk eller tomställd.",
+    seo2_p1: "Beräkningsformeln enligt lagstiftningen är:",
+    seo2_formula: "Skatteunderlag = Katastralvärde × Schablonprocent (1,1% eller 2%) × (Skattepliktiga dagar / 365) × Ägarandel",
+    seo2_p2: "På det skatteunderlaget tillämpas sedan den allmänna <strong>IRNR-skattesatsen</strong>: 19% för bosatta i EU, Island, Norge och Liechtenstein; 24% för övriga. Resultatet är skatten som ska betalas i Modelo 210.",
+    seo2_h3a: "När gäller 1,1% och när gäller 2%?",
+    seo2_p3: "<strong>1,1%</strong> tillämpas när det aktuella katastralvärdet fastställdes (ponencia de valores godkändes) under innevarande eller något av de tio föregående åren (dvs. det är nyligen reviderat). I alla andra fall gäller <strong>2%</strong>. Datumet för den senaste katastralrevisionen framgår av IBI-avin eller kan kontrolleras på Katastrets webbplats.",
+    seo2_h3b: "Blandat scenario: fastighet uthyrd del av året",
+    seo2_p4: "Om fastigheten var uthyrd under en del av året och stod tom eller användes för eget bruk under resten, uppkommer två separata skattskyldigheter: <strong>(1)</strong> Schablonintäkt för dagarna utan uthyrning → Årsdeklaration Modelo 210. <strong>(2)</strong> Hyresinkomst för uthyrningsdagarna → Kvartalsvisa Modelo 210. Denna kalkylator beräknar automatiskt schablonintäktskomponenten och meddelar om du även behöver lämna in Modelo 210 för hyresinkomst.",
+    seo2_legal: "<strong>Inga avdragsgilla kostnader:</strong> Till skillnad från hyresinkomst medges inga kostnadsavdrag vid beräkning av schablonintäkt (bolån, avgifter till bostadsrättsförening, försörjningskostnader m.m.). Skatteunderlaget är alltid procentsatsen tillämpad på katastralvärdet.",
+    faq1_q: "Vad är schablonintäkt och varför ska jag betala om jag inte hyr ut?",
+    faq1_a: "Lagen presumerar att det faktum att äga en fritidsbostad i Spanien ger dig en förmån — även om du inte hyr ut den — liknande den hyresbesparing en bosatt i Spanien gör. Därför tillskriver den dig en fingerad inkomst motsvarande 1,1% eller 2% av katastralvärdet. Detta är ett särdrag i det spanska skattesystemet som gäller alla icke-residenter som äger urban fast egendom.",
+    faq2_q: "När ska Modelo 210 för schablonintäkt lämnas in?",
+    faq2_a: "Skatten anses uppkomma den 31 december. Deklarationsfristen är hela det efterföljande kalenderåret, det vill säga mellan den 1 januari och den 31 december året efter beskattningsåret. Det finns ingen kvartalsfrist för schablonintäkt, till skillnad från hyresinkomst.",
+    faq3_q: "Vilken procentsats gäller: 1,1% eller 2%?",
+    faq3_a: "1,1% gäller när katastralvärdet reviderades under innevarande år eller något av de 10 föregående åren. Annars gäller 2%. Du kan kontrollera datumet för den senaste revisionen på IBI-avin eller på Katastrets webbplats.",
+    faq4_q: "Vad händer om fastigheten var uthyrd del av året?",
+    faq4_a: "För uthyrningsdagarna ska du deklarera hyresinkomst (kvartalsvisa Modelo 210). För övriga dagar deklarerar du schablonintäkt i den årliga Modelo 210. Denna kalkylator hanterar blandscenariot automatiskt.",
+    faq5_q: "Vad händer om fastigheten saknar meddelat katastralvärde?",
+    faq5_a: "Det kan förekomma vid nybyggda fastigheter. I sådant fall beräknas skatteunderlaget som 50% av det högsta av anskaffningspriset eller det av skattemyndigheten kontrollerade värdet. Använd fältet 'Alternativt underlag' i denna kalkylator.",
+    faq6_q: "Måste jag deklarera om jag sålde fastigheten under året?",
+    faq6_a: "Ja. Att skatten anses uppkomma den 31 december hindrar inte schablonintäkt från att beräknas för de dagar du var ägare före försäljningen. Om du sålde den 30 juni gäller schablonintäkt för 181 dagar. Överlåtelsen kan dessutom ge upphov till kapitalvinst eller kapitalförlust som beskattas inom IRNR (separat Modelo 210).",
+  }
+};
+
+let currentLang = 'es';
+
+/* ── setLang ─────────────────────────────────────── */
+function setLang(l) {
+  currentLang = l;
+  document.documentElement.lang = l;
+  ['es','en','sv'].forEach(x => document.getElementById('lb-'+x).classList.toggle('active', x===l));
+  const t = T[l];
+  // Header
+  document.getElementById('tool-title').textContent = t.toolTitle;
+  document.getElementById('h1-main').innerHTML = t.h1 + ' <span>' + t.h1span + '</span>';
+  document.getElementById('intro-sub').textContent = t.introSub;
+  // Form
+  document.getElementById('card-title-label').innerHTML = '<span></span>' + t.cardTitle;
+  document.getElementById('lbl-vc').textContent = t.lblVC;
+  document.getElementById('note-vc').textContent = t.noteVC;
+  document.getElementById('lbl-part').textContent = t.lblPart;
+  document.getElementById('note-part').textContent = t.notePart;
+  document.getElementById('lbl-tipo').textContent = t.lblTipo;
+  document.getElementById('desc-11').textContent = t.desc11;
+  document.getElementById('desc-2').textContent = t.desc2;
+  document.getElementById('lbl-tasa').textContent = t.lblTasa;
+  document.getElementById('desc-19').textContent = t.desc19;
+  document.getElementById('desc-24').textContent = t.desc24;
+  document.getElementById('lbl-dias-prop').textContent = t.lblDiasProp;
+  document.getElementById('lbl-dias-alq').textContent = t.lblDiasAlq;
+  document.getElementById('note-dias-alq').textContent = t.noteDiasAlq;
+  document.getElementById('lbl-bar').textContent = t.lblBar;
+  document.getElementById('leg-imp').textContent = t.legImp;
+  document.getElementById('leg-alq').textContent = t.legAlq;
+  document.getElementById('leg-noown').textContent = t.legNoown;
+  document.getElementById('lbl-opt-title').textContent = t.lblOptTitle;
+  document.getElementById('lbl-base-alt').textContent = t.lblBaseAlt;
+  document.getElementById('note-base-alt').textContent = t.noteBaseAlt;
+  document.getElementById('btn-calc').textContent = t.btnCalc;
+  document.getElementById('result-title-label').innerHTML = '<span></span>' + t.resultTitle;
+  document.getElementById('disclaimer-title').textContent = t.disclaimerTitle;
+  document.getElementById('disclaimer-text').textContent = t.disclaimerText;
+  // CTA
+  document.getElementById('cta-title').textContent = t.ctaTitle;
+  document.getElementById('cta-text').textContent = t.ctaText;
+  document.getElementById('cta-contact').textContent = t.ctaContact;
+  // SEO
+  document.getElementById('seo-h2-1').innerHTML = '<span></span>' + t.seoH2_1;
+  document.getElementById('seo-h2-2').innerHTML = '<span></span>' + t.seoH2_2;
+  document.getElementById('seo-h2-3').innerHTML = '<span></span>' + t.seoH2_3;
+  renderSEO(t);
+  updateDaysVisual();
+  if (document.getElementById('result').style.display !== 'none') calcular();
+}
+
+function renderSEO(t) {
+  document.getElementById('seo-content-1').innerHTML = `
+    <p>${t.seo1_p1}</p>
+    <p>${t.seo1_p2}</p>
+    <div class="legal-ref">${t.seo1_legal}</div>
+    <h3>${t.seo1_h3}</h3>
+    <p>${t.seo1_p3}</p>
+  `;
+  document.getElementById('seo-content-2').innerHTML = `
+    <p>${t.seo2_p1}</p>
+    <div class="legal-ref" style="font-size:14px;font-weight:600;color:var(--navy);">${t.seo2_formula}</div>
+    <p>${t.seo2_p2}</p>
+    <h3>${t.seo2_h3a}</h3>
+    <p>${t.seo2_p3}</p>
+    <h3>${t.seo2_h3b}</h3>
+    <p>${t.seo2_p4}</p>
+    <div class="legal-ref">${t.seo2_legal}</div>
+  `;
+  document.getElementById('seo-content-3').innerHTML = [1,2,3,4,5,6].map(i => `
+    <div class="faq-item">
+      <div class="faq-q">${t['faq'+i+'_q']}</div>
+      <div class="faq-a">${t['faq'+i+'_a']}</div>
+    </div>
+  `).join('');
+}
+
+/* ── Toggle styles ───────────────────────────────── */
+document.querySelectorAll('.toggle-opt input[type=radio]').forEach(r => {
+  r.addEventListener('change', () => {
+    document.querySelectorAll('.toggle-opt').forEach(o => {
+      o.classList.toggle('selected', o.querySelector('input').checked);
+    });
+  });
+});
+
+/* ── Days visual ─────────────────────────────────── */
+function updateDaysVisual() {
+  const prop = Math.max(1, Math.min(365, parseInt(document.getElementById('diasTitularidad').value) || 365));
+  const alq  = Math.max(0, Math.min(prop, parseInt(document.getElementById('diasAlquiler').value) || 0));
+  const imp  = prop - alq;
+  const noOwned = 365 - prop;
+  document.getElementById('bar-own').style.width  = (imp / 365 * 100).toFixed(1) + '%';
+  document.getElementById('bar-rent').style.width = (alq / 365 * 100).toFixed(1) + '%';
+  const t = T[currentLang];
+  document.getElementById('days-summary').innerHTML =
+    `${t.legImp}: <strong>${imp}</strong><br>${t.legAlq}: <strong>${alq}</strong>${noOwned > 0 ? '<br>' + t.legNoown + ': <strong>' + noOwned + '</strong>' : ''}`;
+}
+document.getElementById('diasTitularidad').addEventListener('input', updateDaysVisual);
+document.getElementById('diasAlquiler').addEventListener('input', updateDaysVisual);
+
+/* ── Formato ─────────────────────────────────────── */
+function fmt(n) {
+  const loc = currentLang === 'sv' ? 'sv-SE' : currentLang === 'en' ? 'en-GB' : 'es-ES';
+  return new Intl.NumberFormat(loc, { style:'currency', currency:'EUR', maximumFractionDigits:2 }).format(n || 0);
+}
+function fmtPct(n) {
+  const loc = currentLang === 'sv' ? 'sv-SE' : currentLang === 'en' ? 'en-GB' : 'es-ES';
+  return new Intl.NumberFormat(loc, { maximumFractionDigits:2, minimumFractionDigits:2 }).format(n) + '%';
+}
+
+/* ── Validación ──────────────────────────────────── */
+function showErr(id, msg) {
+  const el = document.getElementById(id);
+  if (el) { el.textContent = msg || ''; el.style.display = msg ? 'block' : 'none'; }
+}
+function validate() {
+  const t = T[currentLang];
+  let ok = true;
+  ['err-vc','err-part','err-dias-prop','err-dias-alq','err-general'].forEach(id => showErr(id, ''));
+  const vc  = parseFloat(document.getElementById('valorCatastral').value) || 0;
+  const ba  = parseFloat(document.getElementById('baseAlternativa').value) || 0;
+  if (vc <= 0 && ba <= 0) { showErr('err-vc', t.errVC); ok = false; }
+  const part = parseFloat(document.getElementById('participacion').value);
+  if (!(part > 0 && part <= 100)) { showErr('err-part', t.errPart); ok = false; }
+  const dp = parseInt(document.getElementById('diasTitularidad').value) || 0;
+  if (!(dp >= 1 && dp <= 365)) { showErr('err-dias-prop', t.errDiasProp); ok = false; }
+  const da = parseInt(document.getElementById('diasAlquiler').value) || 0;
+  if (da < 0 || da > dp) { showErr('err-dias-alq', t.errDiasAlq); ok = false; }
+  return ok;
+}
+
+/* ── Cálculo ─────────────────────────────────────── */
+function calcular() {
+  if (!validate()) return;
+  const t = T[currentLang];
+  const vc   = parseFloat(document.getElementById('valorCatastral').value) || 0;
+  const ba   = parseFloat(document.getElementById('baseAlternativa').value) || 0;
+  const part = parseFloat(document.getElementById('participacion').value) / 100;
+  const dp   = parseInt(document.getElementById('diasTitularidad').value);
+  const da   = parseInt(document.getElementById('diasAlquiler').value) || 0;
+  const diasImp = Math.max(dp - da, 0);
+  const pctImp  = parseFloat(document.querySelector('input[name="imputacion"]:checked').value) / 100;
+  const tasa    = parseFloat(document.querySelector('input[name="tasaIRNR"]:checked').value) / 100;
+  const baseSource = ba > 0 ? ba : vc;
+  const usingAlt   = ba > 0;
+
+  // Base imponible renta imputada
+  const baseImp  = baseSource * pctImp * (diasImp / 365) * part;
+  const cuotaImp = baseImp * tasa;
+
+  // Escenario mixto: estimación alquiler (base orientativa, sin gastos)
+  const hasMixedRental = da > 0;
+  const baseAlqEst  = baseSource * (da / 365) * part; // base bruta orientativa
+  const cuotaAlqEst = baseAlqEst * tasa;
+
+  // Render resultado
+  const result = document.getElementById('result');
+  result.style.display = 'block';
+
+  let html = `
+    <div class="devengado-badge">${t.rDevengado}</div>
+
+    <div class="result-highlight">
+      <div class="result-highlight-item">
+        <div class="rh-label">${t.rCuotaLabel}</div>
+        <div class="rh-value">${fmt(cuotaImp)}</div>
+        <div class="rh-sub">${t.rCuotaSub}</div>
+      </div>
+      <div class="rh-divider"></div>
+      <div class="result-highlight-item">
+        <div class="rh-label">${t.rBaseLabel}</div>
+        <div class="rh-value">${fmt(baseImp)}</div>
+        <div class="rh-sub">${t.rBaseSub}</div>
+      </div>
+    </div>
+
+    <div class="result-detail">
+      <div class="rd-item"><div class="rd-label">${t.rDiasImp}</div><div class="rd-value">${diasImp} / 365</div></div>
+      <div class="rd-item"><div class="rd-label">${t.rDiasAlq}</div><div class="rd-value">${da}</div></div>
+      <div class="rd-item"><div class="rd-label">${t.rPctImp}</div><div class="rd-value">${fmtPct(pctImp * 100)}</div></div>
+      <div class="rd-item"><div class="rd-label">${t.rTasa}</div><div class="rd-value">${fmtPct(tasa * 100)}</div></div>
+      <div class="rd-item"><div class="rd-label">${t.rParticipacion}</div><div class="rd-value">${fmtPct(part * 100)}</div></div>
+      <div class="rd-item"><div class="rd-label">${t.rBaseAlt}</div><div class="rd-value">${usingAlt ? t.rBaseAltVal : t.rBaseCatVal}</div></div>
+    </div>
+  `;
+
+  if (hasMixedRental) {
+    html += `
+    <div class="mixed-box" style="margin-top:24px;">
+      <div class="mixed-icon">⚠️</div>
+      <div class="mixed-body">
+        <h4>${t.rMixedTitle}</h4>
+        <p>${t.rMixedP}</p>
+        <table class="mixed-table">
+          <tr>
+            <th>${t.rMixedConcepto}</th>
+            <th style="text-align:center">${t.rMixedDias}</th>
+            <th style="text-align:right">${t.rMixedBase}</th>
+            <th style="text-align:right">${t.rMixedCuota}</th>
+          </tr>
+          <tr>
+            <td>${t.rMixedImp}</td>
+            <td class="td-num">${diasImp}</td>
+            <td class="td-num">${fmt(baseImp)}</td>
+            <td class="td-num">${fmt(cuotaImp)}</td>
+          </tr>
+          <tr>
+            <td>${t.rMixedAlq} <span style="font-size:11px;color:var(--text-muted)">${t.rMixedAlqNote}</span></td>
+            <td class="td-num">${da}</td>
+            <td class="td-num">—</td>
+            <td class="td-num">—</td>
+          </tr>
+          <tr>
+            <td>${t.rMixedTotal}</td>
+            <td class="td-num">${dp}</td>
+            <td class="td-num">${fmt(baseImp)}</td>
+            <td class="td-num">${fmt(cuotaImp)} +</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    `;
+  }
+
+  document.getElementById('resultContent').innerHTML = html;
+  result.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+/* ── Init ────────────────────────────────────────── */
+window.addEventListener('DOMContentLoaded', () => {
+  setLang('es');
+  updateDaysVisual();
+  // Fix card-title ::before (se pierde al hacer innerHTML)
+  document.querySelectorAll('.card-title').forEach(el => {
+    if (!el.querySelector('span')) {
+      el.innerHTML = '<span style="display:inline-block;width:4px;height:18px;background:var(--gold);border-radius:2px;margin-right:10px;vertical-align:middle;"></span>' + el.textContent;
+    }
+  });
+});
+</script>
+</body>
+</html>
