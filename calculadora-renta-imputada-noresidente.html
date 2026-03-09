@@ -435,11 +435,11 @@
 <footer>
   <strong>Colás Abogados / Advokater</strong> · Calle Mozart 9, 03581 L'Alfàs del Pi ·
   <a href="tel:+34966868492">+34 966 868 492</a> ·
-  <a href="/cdn-cgi/l/email-protection#9df4f3fbf2ddfef2f1fceeb0fcfff2fafcf9f2eeb3fef2f0"><span class="__cf_email__" data-cfemail="93fafdf5fcd3f0fcfff2e0bef2f1fcf4f2f7fce0bdf0fcfe">[email&#160;protected]</span></a> ·
+  <a href="mailto:info@colas-abogados.com">info@colas-abogados.com</a> ·
   <a href="https://www.colas-abogados.com">www.colas-abogados.com</a>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 /* ═══════════════════════════════════════════════════
    TRADUCCIONES ES / EN / SV
 ═══════════════════════════════════════════════════ */
@@ -755,8 +755,9 @@ function renderSEO(t) {
 /* ── Toggle styles ───────────────────────────────── */
 document.querySelectorAll('.toggle-opt input[type=radio]').forEach(r => {
   r.addEventListener('change', () => {
-    document.querySelectorAll('.toggle-opt').forEach(o => {
-      o.classList.toggle('selected', o.querySelector('input').checked);
+    const groupName = r.name;
+    document.querySelectorAll(`.toggle-opt input[name="${groupName}"]`).forEach(input => {
+      input.closest('.toggle-opt').classList.toggle('selected', input.checked);
     });
   });
 });
